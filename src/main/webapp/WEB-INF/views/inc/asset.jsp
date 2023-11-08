@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<title>Kind Heart Charity - Free Bootstrap 5.2.2 CSS Template</title>
+<!-- CSS FILES -->        
+<link href="/apa/asset/css/bootstrap.min.css" rel="stylesheet">
+<link href="/apa/asset/css/bootstrap-icons.css" rel="stylesheet">
+<link href="/apa/asset/css/templatemo-kind-heart-charity.css" rel="stylesheet">
+<link href="/apa/asset/css/main.css" rel="stylesheet">
 
-<title>아파! 어디가?</title>
-
-<link rel="shortcut icon" href="/toy/asset/favicon.ico">
-
-<link rel="stylesheet"
-	href="http://pinnpublic.dothome.co.kr/cdn/example-min.css">
-
-<link rel="stylesheet" href="/toy/asset/css/toy.css">
-
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="http://pinnpublic.dothome.co.kr/cdn/example-min.js"></script>
+<!-- JAVASCRIPT FILES -->
+<script src="/apa/asset/js/jquery.min.js"></script>
+<script src="/apa/asset/js/bootstrap.min.js"></script>
+<script src="/apa/asset/js/jquery.sticky.js"></script>
+<script src="/apa/asset/js/click-scroll.js"></script>
+<script src="/apa/asset/js/counter.js"></script>
+<script src="/apa/asset/js/custom.js"></script>
