@@ -18,14 +18,19 @@ public class RegisterView extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String mediSeq = req.getParameter("mediSeq");
-		
+
 		DiagnosisDAO dao = new DiagnosisDAO();
-		
+
 		DiagnosisRgstDTO dto = dao.getRegisterDetail(mediSeq);
-		
+
+		// 개행문자처리
+		String symptom = dto.getSymptom();
+		symptom = symptom.replace("\r\n", "<br>");
+		dto.setSymptom(symptom);
+
 		req.setAttribute("dto", dto);
 		req.setAttribute("mediSeq", mediSeq);
-		
+
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/hospital/diagnosis/register-view.jsp");
 		dispatcher.forward(req, resp);
 	}

@@ -16,16 +16,21 @@ import com.apa.repository.hospital.DiagnosisDAO;
 public class View extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		String mediSeq = req.getParameter("mediSeq");
-		//System.out.println(mediSeq);
-		
+		// System.out.println(mediSeq);
+
 		DiagnosisDAO dao = new DiagnosisDAO();
 
 		DiagnosisRgstDTO dto = dao.getAllRegisterDetail(mediSeq);
+		
+		// 개행문자처리
+		String symptom = dto.getSymptom();
+		symptom = symptom.replace("\r\n", "<br>");
+		dto.setSymptom(symptom);
 
 		req.setAttribute("dto", dto);
-		
+
 		RequestDispatcher dispatcher = req
 				.getRequestDispatcher("/WEB-INF/views/hospital/diagnosis/all/register/view.jsp");
 		dispatcher.forward(req, resp);

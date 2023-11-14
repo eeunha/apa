@@ -10,16 +10,6 @@
 .sidebar-clicked {
 	background-color: #dddfeb;
 }
-
-.list tr {
-	height: 40px;
-	
-}
-
-#btnArea {
-	margin-top: 20px;
-}
-
 button {
 	border: none;
 	border-radius: 5px;
@@ -33,24 +23,53 @@ button:hover {
 	background-color: #CCC;
 }
 
-#title-date {
-	padding-top: 28px;
-	margin-left: 30px;
-	font-size: 1.2rem;
 
+#btnArea {
+	margin: 10px auto;
 }
 
-#box-div {
+table {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+table tr {
+	height: 40px;
+	border-bottom: 1px solid #e3e6f0;
+}
+table tr:last-child {
+	border-bottom: none;
+}
+
+table tr th {
+	width: 150px;
+	border-right: 1px solid #e3e6f0;
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+table tr td {
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
+#container {
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+	flex-direction: column;
 }
 
-.box {
-	border: 1px solid black;
+input, textarea {
+	border: 1px solid #e3e6f0;
+	border-radius: 2px;
+	width: 300px;
 }
 
+textarea{
+	margin-top: 5px;
+	width: 300px;
+	height: 200px;
+	resize: none;
+}
 </style>
 <body id="page-top">
 
@@ -117,8 +136,7 @@ button:hover {
 						<a class="collapse-item" href="/apa/hospital/medicheck/list.do">오늘의 건강검진</a> 
 						<a class="collapse-item" href="/apa/hospital/medicheck/all/register/list.do">모든 건강검진 예약</a> <a
 							class="collapse-item" href="/apa/hospital/medicheck/all/history/list.do">모든 건강검진 내역</a>
-						<a
-							class="collapse-item" href="/apa/hospital/chart/list.do">문진표</a>
+						<a class="collapse-item" href="/apa/hospital/chart/list.do">문진표</a>
 					</div>
 				</div></li>
 
@@ -225,9 +243,9 @@ button:hover {
 									<h5 class="m-0 font-weight-bold text-primary">예약번호: ${mediSeq}</h5>
 								</div>
 								<!-- Card Body -->
-								<div class="card-body box-div">
+								<div class="card-body">
 									<form method="POST" action="/apa/hospital/diagnosis/write-diagnosis.do">
-									
+										<div id="container">
 										<table>
 											<tr>
 												<th>병원명</th>
@@ -262,7 +280,7 @@ button:hover {
 											<button type="submit">작성하기</button>
 											<button type="button" onclick="location.href='/apa/hospital/diagnosis/list.do';">뒤로가기</button>
 										</div>
-									
+										</div>
 									</form>
 								</div>
 							</div>

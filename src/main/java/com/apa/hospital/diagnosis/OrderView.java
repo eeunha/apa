@@ -22,9 +22,14 @@ public class OrderView extends HttpServlet {
 		DiagnosisDAO dao = new DiagnosisDAO();
 
 		DiagnosisRgstDTO dto = dao.getOrderDetail(mediSeq);
+		
+		// 개행문자처리
+		String symptom = dto.getSymptom();
+		symptom = symptom.replace("\r\n", "<br>");
+		dto.setSymptom(symptom);
 
 		req.setAttribute("dto", dto);
-		
+
 		System.out.println("childSeq: " + dto.getChildSeq());
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/hospital/diagnosis/order-view.jsp");
