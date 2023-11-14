@@ -47,6 +47,7 @@ button {
 	border: none;
 	border-radius: 5px;
 	color: #858796
+	cursor: pointer;
 }
 
 .null-msg {
@@ -83,6 +84,10 @@ button {
 
 #register-list th:nth-child(8) {
 	width: 150px;
+}
+
+#register-list td:nth-child(8) {
+	cursor: default;
 }
 
 #register-list td:nth-child(6) {
@@ -128,6 +133,10 @@ button {
 
 #history-list th:nth-child(10) {
 	width: 140px;
+}
+
+#history-list td:nth-child(10) {
+	cursor: default;
 }
 
 #history-list td:nth-child(5) {
@@ -327,7 +336,7 @@ button {
 								<div class="card-body">
 									<table id="register-list" class="list">
 										<thead>
-											<c:if test="${list.size() != 0}">
+											<c:if test="${registerList.size() != 0}">
 												<tr>
 													<th>번호</th>
 													<th>예약번호</th>
@@ -367,7 +376,7 @@ button {
 												</tr>
 											</c:forEach>
 
-											<c:if test="${list.size() == 0}">
+											<c:if test="${registerList.size() == 0}">
 												<h4 class="null-msg">오늘 날짜의 예약 신청이 없습니다.</h4>
 											</c:if>
 										</tbody>
@@ -409,16 +418,18 @@ button {
 										<tbody>
 											<c:forEach items="${mediList}" var="dto">
 												<tr
-													onclick="location.href='/apa/hospital/diagnosis/history-view.do?mediSeq=${dto.mediSeq}';">
-													<%-- <td>${mediList.size() - status.count + 1}</td> --%>
+													onclick="location.href='/apa/hospital/diagnosis/order-view.do?mediSeq=${dto.mediSeq}';">
 													<td>${dto.rnum}</td>
 													<td>${dto.mediSeq}</td>
 													<td>${dto.userName}</td>
-													<td><c:if test="${dto.childName == null}">
+													<td>
+														<c:if test="${dto.childName == null}">
 															${dto.userName}
-														</c:if> <c:if test="${dto.childName != null}">
+														</c:if> 
+														<c:if test="${dto.childName != null}">
 															${dto.childName}
-														</c:if></td>
+														</c:if>
+													</td>
 													<c:if test="${dto.symptom == null}">
 														<td class="symptomNull">(미작성)</td>
 													</c:if>
@@ -430,17 +441,16 @@ button {
 													<td>${dto.doctorName}</td>
 													<td>${dto.treatmentDate}</td>
 													<td>${dto.waitingStatus}</td>
-													<td><c:if test="${dto.waitingStatus == '대기중'}">
+													<td>
+														<c:if test="${dto.waitingStatus == '대기중'}">
 															<button type="button" name="btnCall" id="btnCall"
 																onclick="callPatient(${dto.mediSeq});">환자호출</button>
-														</c:if> <c:if test="${dto.waitingStatus == '진료중'}">
-															<%-- <button type="button" name="btnFinish" id="btnFinish"
-																onclick="finishDiagnosis(${dto.mediSeq});">진료완료</button> --%>
-															<%-- <button type="button" name="btnFinish" id="btnFinish"
-																onclick="location.href='/apa/hospital/diagnosis/write.do?mediSeq=${dto.mediSeq}';">진료완료</button> --%>
-															 <button type="button" name="btnFinish" id="btnFinish"
-																onclick="location.href='/apa/hospital/diagnosis/test.do?mediSeq=${dto.mediSeq}';">진료완료</button>
-														</c:if></td>
+														</c:if> 
+														<c:if test="${dto.waitingStatus == '진료중'}">
+															 <button type="button" name="btnFinishaa" id="btnFinishaa"
+																onclick="completeDiagnosis(${dto.mediSeq});">진료완료</button>
+														</c:if>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -483,8 +493,6 @@ button {
 		});
 		
 		function approvalRegister(mediSeq){
-			//alert('승인');
-			//alert(mediSeq);
 			
 			if(confirm('예약을 승인하시겠습니까?')) {
 				$.ajax({
@@ -494,7 +502,7 @@ button {
 					dataType: 'json',
 					success: function(result) {
 						if (result.result == 1) {
-							alert('예약을 승인하였습니다.');
+							//alert('예약을 승인하였습니다.');
 							
 							location.href='/apa/hospital/diagnosis/list.do';//목록 새로고침
 							
@@ -566,13 +574,19 @@ button {
 			
 		}
 		
-		function finishDiagnosis(mediSeq) {
+		function completeDiagnosis(mediSeq) {
 			
-			if (confirm('진료를 완료하시겠습니까? 확인을 누르시면 진료 내역을 작성합니다.')) {
+			if (confirm('진료를 완료하시겠습니까? 확인을 누르시면 진료내역서를 작성합니다.')) {
 				//alert("완료");
-				location.href='/apa/hospital/diagnosis/write.do?mediSeq=' + mediSeq;
+				location.href='/apa/hospital/diagnosis/write-diagnosis.do?mediSeq=' + mediSeq;
 			}	
 		}
+		
+		/* function complete(mediSeq) {
+			alert('진료 내역을 작성합니다.');
+			
+			location.href = '/apa/hospital/diagnosis/write-diagnosis.do?mediSeq=' + mediSeq;
+		} */
 	</script>
 </body>
 </html>

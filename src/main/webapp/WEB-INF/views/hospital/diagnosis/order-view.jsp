@@ -95,9 +95,9 @@ button:hover {
 			<div id="collapseUtilities1" class="collapse show"
 				aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<a class="collapse-item"
+					<a class="collapse-item sidebar-clicked"
 						href="/apa/hospital/diagnosis/list.do">오늘의 진료</a> <a
-						class="collapse-item sidebar-clicked"
+						class="collapse-item"
 						href="/apa/hospital/diagnosis/all/register/list.do">모든 진료 예약</a>
 					<a class="collapse-item"
 						href="/apa/hospital/diagnosis/all/history/list.do">모든 진료 내역</a>
@@ -175,7 +175,7 @@ button:hover {
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800 hansans"
-							style="padding-top: 28px;">예약 상세보기</h1>
+							style="padding-top: 28px;">진료 상세보기</h1>
 					</div>
 
 					<!-- Topbar Navbar -->
@@ -222,7 +222,7 @@ button:hover {
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h5 class="m-0 font-weight-bold text-primary">예약번호: ${dto.mediSeq}</h5>
+									<h5 class="m-0 font-weight-bold text-primary">진료 예약 번호: ${dto.mediSeq}</h5>
 								</div>
 								<!-- Card Body -->
 								<div class="card-body box-div">
@@ -319,14 +319,22 @@ button:hover {
 											<td>${dto.regdate}</td>	
 										</tr>
 										<tr>
-											<th>예약 상태</th>
+											<th>진행 상태</th>
 											<td>${dto.waitingStatus}</td>	
 										</tr>
 									
 									</table>
 									
 									<div id="btnArea">
-										<button type="button" onclick="location.href='/apa/hospital/diagnosis/all/register/list.do';">뒤로가기</button>
+										<c:if test="${dto.waitingStatus == '대기중'}">
+											<button type="button" onclick="callPatient(${dto.mediSeq});">환자호출</button>
+										</c:if>
+										
+										<c:if test="${dto.waitingStatus == '진료중'}">
+											<button type="button" onclick="completeDiagnosis(${dto.mediSeq});">진료완료</button>
+										</c:if>
+									
+										<button type="button" onclick="location.href='/apa/hospital/diagnosis/list.do';">뒤로가기</button>
 									</div>
 								</div>
 							</div>
@@ -351,7 +359,46 @@ button:hover {
 	<%@ include file="/WEB-INF/views/inc/hospitallogouttop.jsp"%>
 
 	<script>
+	function callPatient(mediSeq) {
 		
+		// 진료대기환자목록 update
+		// update tblWatingPatientList set waitingStatus = '진료중' where mediSeq = ?
+				
+		if(confirm('환자를 호출하시겠습니까?')) {
+			$.ajax({
+				type:'POST',
+				url: '/apa/hospital/diagnosis/call.do',
+				data: 'mediSeq=' + mediSeq,
+				dataType: 'json',
+				success: function(result) {
+					if (result.result == 1) {
+						//load(); //목록 새로고침
+						
+						alert('환자를 호출하였습니다.');
+						
+						location.href='/apa/hospital/diagnosis/list.do'; //목록 새로고침
+						
+					} else {
+						alert('0');
+					}
+				}, 
+				error: function(a, b, c) {
+					console.log(a, b, c);
+				}
+			});
+		}		
+		
+	}
+	
+	
+	function completeDiagnosis(mediSeq) {
+		
+		if (confirm('진료를 완료하시겠습니까? 확인을 누르시면 진료 내역을 작성합니다.')) {
+			//alert("완료");
+			location.href='/apa/hospital/diagnosis/write-diagnosis.do?mediSeq=' + mediSeq;
+		}	
+	}
+	
 	</script>
 </body>
 </html>

@@ -175,7 +175,7 @@ button:hover {
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800 hansans"
-							style="padding-top: 28px;">예약 상세보기</h1>
+							style="padding-top: 28px;">진료내역서 작성하기</h1>
 					</div>
 
 					<!-- Topbar Navbar -->
@@ -222,17 +222,48 @@ button:hover {
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h5 class="m-0 font-weight-bold text-primary">진료 예약 번호: ${mediSeq}</h5>
+									<h5 class="m-0 font-weight-bold text-primary">예약번호: ${mediSeq}</h5>
 								</div>
 								<!-- Card Body -->
 								<div class="card-body box-div">
-									<table>
-										<tr><th>hi</th><td>hmm</td></tr>
-									</table>
+									<form method="POST" action="/apa/hospital/diagnosis/write-diagnosis.do">
 									
-									<div id="btnArea">
-										<button type="button" onclick="location.href='/apa/hospital/diagnosis/list.do';">뒤로가기</button>
-									</div>
+										<table>
+											<tr>
+												<th>병원명</th>
+												<td>${name}</td>	
+											</tr>
+											<tr>
+												<th>의사명</th>
+												<td>${doctorName}</td>	
+											</tr>
+											<tr>
+												<th>진료예약번호</th>
+												<td>${mediSeq}</td>	
+											</tr>
+											<tr>
+												<th>진단명</th>
+												<td><input type="text" name="mediName" id="mediName" required></td>	
+											</tr>
+											<tr>
+												<th>질병코드</th>
+												<td><input type="text" name="mediCode" id="mediCode" required></td>	
+											</tr>
+											<tr>
+												<th>진료내용</th>
+												<td><textarea name="mediContent" id="mediContent" required></textarea></td>	
+											</tr>
+										
+										</table>
+										
+										<input type="hidden" name="mediSeq" id="mediSeq" value=${mediSeq}>
+										
+										<div id="btnArea">
+											<button type="submit">작성하기</button>
+											<button type="button" onclick="location.href='/apa/hospital/diagnosis/list.do';">뒤로가기</button>
+										</div>
+									
+									</form>
 								</div>
 							</div>
 						</div>
@@ -256,8 +287,9 @@ button:hover {
 	<%@ include file="/WEB-INF/views/inc/hospitallogouttop.jsp"%>
 
 	<script>
-	
-	
+		
+		
+		
 	</script>
 </body>
 </html>

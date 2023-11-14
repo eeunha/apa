@@ -20,6 +20,8 @@ import com.apa.repository.hospital.DiagnosisDAO;
 public class List extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		// 병원의 오늘의 진료(예약, 순서) 내역 가져오기
 
 		// 인증 티켓
 		req.getSession().setAttribute("id", "yonse");
@@ -35,7 +37,7 @@ public class List extends HttpServlet {
 
 		// System.out.println(sb2.toString());
 
-		// 병원의 오늘의 진료(예약, 순서) 내역 가져오기
+		
 		String hospitalId = req.getSession().getAttribute("id").toString();
 		// System.out.println(hospitalId);
 
@@ -49,7 +51,7 @@ public class List extends HttpServlet {
 			String symptom = dto.getSymptom();
 			if (symptom != null && symptom.length() > 25) {
 				symptom = symptom.substring(0, 25) + "...";
-			} 
+			}
 			dto.setSymptom(symptom);
 		}
 
@@ -65,34 +67,41 @@ public class List extends HttpServlet {
 		int n = 0;
 		int loop = 0;
 		int blockSize = 10; // 한번에 보여줄 페이지 개수
+		
+		//System.out.println("변수 설정");
 
 		String page = req.getParameter("page");
-		// System.out.println("page: " + page);
+		//System.out.println("page: " + page);
 
 		if (page == null || page.equals("")) {
 			nowPage = 1;
 		} else {
 			nowPage = Integer.parseInt(page);
 		}
-		// System.out.println("nowPage: " + nowPage);
+		//System.out.println("nowPage: " + nowPage);
 
 		begin = ((nowPage - 1) * pageSize) + 1;
 		end = begin + pageSize - 1;
 
-		// System.out.println("begin: " + begin);
-		// System.out.println("end: " + end);
+		//System.out.println("begin: " + begin);
+		//System.out.println("end: " + end);
 
+		//System.out.println("페이지 가져오기");
+		
+		
 		// 1.
 		HashMap<String, String> map = new HashMap<>();
 		map.put("begin", begin + "");
 		map.put("end", end + "");
+
+		//System.out.println("list - hospitalId: " + hospitalId);
 
 		map.put("hospitalId", hospitalId);
 
 		// 2.
 		// 오늘자 진료(순서) 내역 가져오기
 		ArrayList<DiagnosisHistoryDTO> mediList = dao.getHistoryList(map);
-		// System.out.println("mediList.size(): " + mediList.size());
+		//System.out.println("mediList.size(): " + mediList.size());
 
 		for (DiagnosisHistoryDTO dto : mediList) {
 			// 긴 상세증상 줄이기
@@ -104,14 +113,16 @@ public class List extends HttpServlet {
 
 			// 예약일시의 시간만 가져오기
 			dto.setTreatmentDate(dto.getTreatmentDate().substring(11, 16));
+			
+			//System.out.println(dto.getTreatmentDate());
 		}
 
 		// 총 게시물 수
 		totalCount = dao.getHistoryListCount(hospitalId);
-		// System.out.println("totalCount: " + totalCount);
+		//System.out.println("totalCount: " + totalCount);
 
 		totalPage = (int) Math.ceil((double) totalCount / pageSize);
-		// System.out.println("totalPage: " + totalPage);
+		//System.out.println("totalPage: " + totalPage);
 
 		// 페이지바
 		StringBuilder sb = new StringBuilder();
@@ -119,6 +130,8 @@ public class List extends HttpServlet {
 		loop = 1; // 루프 변수(10바퀴)
 		n = ((nowPage - 1) / blockSize) * blockSize + 1; // 출력 페이지 번호
 
+		//System.out.println("n: " + n);
+		
 		// 이전 10페이지
 		if (n == 1) {
 			sb.append(String.format(" <a href='#!';>[이전 %d페이지]</a>&nbsp;&nbsp;", blockSize));
@@ -126,6 +139,8 @@ public class List extends HttpServlet {
 			sb.append(String.format(" <a href='/apa/hospital/diagnosis/list.do?page=%d';>[이전 %d페이지]</a>&nbsp;&nbsp;",
 					n - 1, blockSize));
 		}
+		
+		//System.out.println(sb.toString());
 
 		while (!(loop > blockSize || n > totalPage)) {
 			// System.out.println("loop: " + loop);
@@ -145,6 +160,8 @@ public class List extends HttpServlet {
 			loop++;
 			n++;
 		}
+		
+		//System.out.println(sb.toString());
 
 		// 다음 10페이지
 		if (n > totalPage) {
@@ -153,6 +170,8 @@ public class List extends HttpServlet {
 			sb.append(
 					String.format(" <a href='/apa/hospital/diagnosis/list.do?page=%d';>[다음 %d페이지]</a> ", n, blockSize));
 		}
+
+		//System.out.println(sb.toString());
 
 		// 3.
 		req.setAttribute("today", sb2.toString());

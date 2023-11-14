@@ -367,7 +367,7 @@ button:hover {
 						if (result.result == 1) {
 							//load(); //목록 새로고침
 							
-							alert('예약을 승인하였습니다.');
+							//alert('예약을 승인하였습니다.');
 							
 							location.href='/apa/hospital/diagnosis/all/register/list.do';//목록 새로고침
 							

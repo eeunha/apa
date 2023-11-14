@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.hospital.DiagnosisRgstDTO;
 import com.apa.repository.hospital.DiagnosisDAO;
 
-@WebServlet("/hospital/diagnosis/history-view.do")
-public class HistoryView extends HttpServlet {
+@WebServlet("/hospital/diagnosis/order-view.do")
+public class OrderView extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -21,11 +21,13 @@ public class HistoryView extends HttpServlet {
 
 		DiagnosisDAO dao = new DiagnosisDAO();
 
-		DiagnosisRgstDTO dto = dao.getAllRegisterDetail(mediSeq);
+		DiagnosisRgstDTO dto = dao.getOrderDetail(mediSeq);
 
 		req.setAttribute("dto", dto);
+		
+		System.out.println("childSeq: " + dto.getChildSeq());
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/hospital/diagnosis/history-view.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/hospital/diagnosis/order-view.jsp");
 		dispatcher.forward(req, resp);
 	}
 }
