@@ -10,16 +10,6 @@
 .sidebar-clicked {
 	background-color: #dddfeb;
 }
-
-.list tr {
-	height: 40px;
-	
-}
-
-#btnArea {
-	margin-top: 20px;
-}
-
 button {
 	border: none;
 	border-radius: 5px;
@@ -33,24 +23,40 @@ button:hover {
 	background-color: #CCC;
 }
 
-#title-date {
-	padding-top: 28px;
-	margin-left: 30px;
-	font-size: 1.2rem;
 
+#btnArea {
+	margin: 10px auto;
 }
 
-#box-div {
+table {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+table tr {
+	height: 40px;
+	border-bottom: 1px solid #e3e6f0;
+}
+table tr:last-child {
+	border-bottom: none;
+}
+
+table tr th {
+	width: 150px;
+	border-right: 1px solid #e3e6f0;
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+table tr td {
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
+#container {
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
+	flex-direction: column;
 }
-
-.box {
-	border: 1px solid black;
-}
-
 </style>
 <body id="page-top">
 
@@ -225,7 +231,8 @@ button:hover {
 									<h5 class="m-0 font-weight-bold text-primary">예약번호: ${dto.mediSeq}</h5>
 								</div>
 								<!-- Card Body -->
-								<div class="card-body box-div">
+								<div class="card-body">
+									<div id="container">
 									<table>
 										<c:if test="${dto.childSeq == null}">
 											<tr>
@@ -332,6 +339,7 @@ button:hover {
 										</c:if>
 										<button type="button" onclick="location.href='/apa/hospital/diagnosis/all/register/list.do';">뒤로가기</button>
 									</div>
+								</div>
 								</div>
 							</div>
 						</div>

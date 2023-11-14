@@ -10,16 +10,6 @@
 .sidebar-clicked {
 	background-color: #dddfeb;
 }
-
-.list tr {
-	height: 40px;
-	
-}
-
-.btnArea {
-	margin-top: 20px;
-}
-
 button {
 	border: none;
 	border-radius: 5px;
@@ -33,31 +23,49 @@ button:hover {
 	background-color: #CCC;
 }
 
-#title-date {
-	padding-top: 28px;
-	margin-left: 30px;
-	font-size: 1.2rem;
-
-}
-
-#box-div {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
-
-.box {
-	border: 1px solid black;
-}
-
-.diagnosisArea {
-	margin-top: 30px;
+#btnArea {
+	margin: 10px auto;
 }
 
 #diagnosisTitle {
 	font-weight: bold;
-	margin-left: 10px;
+	margin: 70px 0 20px 20px;
+}
+
+#detailTitle {
+	font-weight: bold;
+	margin: 20px 0 20px 20px;
+
+}
+
+table {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+table tr {
+	height: 40px;
+	border-bottom: 1px solid #e3e6f0;
+}
+table tr:last-child {
+	border-bottom: none;
+}
+
+table tr th {
+	width: 150px;
+	border-right: 1px solid #e3e6f0;
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+table tr td {
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
+#container {
+	display: flex;
+	flex-direction: column;
 }
 
 </style>
@@ -234,7 +242,9 @@ button:hover {
 									<h5 class="m-0 font-weight-bold text-primary">진료 예약 번호: ${dto.mediSeq}</h5>
 								</div>
 								<!-- Card Body -->
-								<div class="card-body box-div">
+								<div class="card-body">
+									<div id="container">
+									<h5 id="detailTitle">진료 정보</h5>
 									<table>
 										<c:if test="${dto.childSeq == null}">
 											<tr>
@@ -334,11 +344,10 @@ button:hover {
 									
 									</table>
 									
-									<c:if test="${writeDto.waitingStatus == '진료완료'}">
-										<div class="diagnosisArea">
-											<hr>
-											<h5 id="diagnosisTitle">진료내역서</h5>
-											<table>
+									<c:if test="${dto.waitingStatus == '진료완료'}">
+										<h5 id="diagnosisTitle">진료내역서</h5>
+											
+										<table>
 											<tr>
 												<th>병원명</th>
 												<td>${name}</td>	
@@ -349,7 +358,7 @@ button:hover {
 											</tr>
 											<tr>
 												<th>진료예약번호</th>
-												<td>${mediSeq}</td>	
+												<td>${dto.mediSeq}</td>	
 											</tr>
 											<tr>
 												<th>진단명</th>
@@ -365,10 +374,9 @@ button:hover {
 											</tr>
 										
 										</table>										
-										</div>
 									</c:if>
 									
-									<div class="btnArea">
+									<div id="btnArea">
 										<c:if test="${dto.waitingStatus != '진료완료'}">
 											<c:if test="${dto.waitingStatus == '대기중'}">
 												<button type="button" onclick="callPatient(${dto.mediSeq});">환자호출</button>
@@ -382,6 +390,7 @@ button:hover {
 										<button type="button" onclick="location.href='/apa/hospital/diagnosis/all/history/list.do';">뒤로가기</button>
 									</div>
 									
+								</div>
 								</div>
 							</div>
 						</div>
@@ -422,7 +431,7 @@ button:hover {
 						
 						alert('환자를 호출하였습니다.');
 						
-						location.href='/apa/hospital/diagnosis/list.do'; //목록 새로고침
+						location.href='/apa/hospital/diagnosis/all/history/list.do'; //목록 새로고침
 						
 					} else {
 						alert('0');

@@ -272,10 +272,10 @@ button:hover {
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h5 class="m-0 font-weight-bold text-primary">예약</h5>
                                     <!-- <h5 class="m-0 font-weight-bold text-primary">예약</h5> -->
-                                    <div>
+                                    <!-- <div>
                                     	<input type="date">
                                     	<button type="submit">검색</button>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">

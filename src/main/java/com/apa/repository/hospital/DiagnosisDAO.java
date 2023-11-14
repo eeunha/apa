@@ -70,7 +70,7 @@ public class DiagnosisDAO {
 
 			rs = pstat.executeQuery();
 
-			System.out.println(sql);
+			//System.out.println(sql);
 
 			ArrayList<DiagnosisHistoryDTO> list = new ArrayList<>();
 
@@ -442,7 +442,7 @@ public class DiagnosisDAO {
 
 			rs = pstat.executeQuery();
 
-			System.out.println(sql);
+			//System.out.println(sql);
 
 			ArrayList<DiagnosisHistoryDTO> list = new ArrayList<>();
 
@@ -483,7 +483,7 @@ public class DiagnosisDAO {
 			if (rs.next()) {
 				return rs.getInt("cnt");
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -537,6 +537,34 @@ public class DiagnosisDAO {
 			e.printStackTrace();
 		}
 
+		return null;
+	}
+
+	public MediHistoryDTO getWriteDiagnosis(String mediSeq) {
+		try {
+
+			String sql = "select * from tblMediHistory where mediSeq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, mediSeq);
+
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+				MediHistoryDTO dto = new MediHistoryDTO();
+
+				dto.setMediHistorySeq(rs.getString("mediHistorySeq"));
+				dto.setMediSeq(rs.getString("mediSeq"));
+				dto.setMediName(rs.getString("mediName"));
+				dto.setMediCode(rs.getString("mediCode"));
+				dto.setMediContent(rs.getString("mediContent"));
+
+				return dto;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
