@@ -17,7 +17,7 @@
 	<main id="main">
 		<h1 title="sub">회원 <small>로그인</small></h1>
 		
-		<form method="POST" action="/toy/user/login.do">
+		<form method="POST" action="/apa/user/login.do">
 			<table class="vertical">
 				<tr>
 					<th>아이디</th>
@@ -29,10 +29,20 @@
 				</tr>
 			</table>
 			<div>
-				<button type="button" class="back" onclick="location.href='/toy/index.do';">돌아가기</button>
+				<button type="button" class="back" onclick="location.href='/apa/main.do';">돌아가기</button>
 				<button type="submit" class="login primary">로그인</button>
 			</div>
 		</form>
+					
+			<hr>
+		
+		<div>
+			<form method="POST" action="/apa/user/login.do">
+				<input type="hidden" name="id" value="yonse"> 
+				<input type="hidden" name="pw" value="Yonse1234!">
+				<button type="submit" class="login primary">연세</button>
+			</form>
+		</div>
 	</main>	
 	
 	<script>

@@ -1,4 +1,4 @@
-package com.apa.hospital.diagnosis.total;
+package com.apa.hospital.diagnosis.all.history;
 
 import java.io.IOException;
 
@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/hospital/diagnosis/total/list.do")
+@WebServlet("/hospital/diagnosis/all/history/list.do")
 public class List extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/hospital/diagnosis/total/list.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/hospital/diagnosis/all/history/list.jsp");
 		dispatcher.forward(req, resp);
 	}
 

@@ -9,12 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/hospital/diagnosis/view.do")
-public class View extends HttpServlet {
+@WebServlet("/apa/hospital/diagnosis/write.do") // 가상주소 바로 생성
+public class Write extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/hospital/diagnosis/view.jsp");
+		// 1.
+		String mediSeq = req.getParameter("mediSeq");
+		System.out.println(mediSeq);
+
+		// 2.
+		req.setAttribute("mediSeq", mediSeq); // 전달용
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/apa/hospital/diagnosis/write.jsp");
 		dispatcher.forward(req, resp);
+
 	}
 }

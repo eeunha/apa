@@ -46,7 +46,7 @@
 
         <nav class="navbar navbar-expand-lg bg-light shadow-lg">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="/apa/main.do">
                     <img src="/apa/asset/images/logo.png" class="logo img-fluid" alt="Kind Heart Charity">
                     <span style="font-size: 2rem;">
                         <div style="padding-top: 20px;" class="hansans">아파! 어디가?</div>
@@ -91,10 +91,10 @@
                         </li>
 
                         <li class="nav-item ms-3">
-                            <a class="nav-link custom-btn custom-border-btn btn" href="donate.html">로그인</a>
+                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/user/login.do">로그인</a>
                         </li>
                         <li class="nav-item ms-3">
-                            <a class="nav-link custom-btn custom-border-btn btn" href="donate.html">회원가입</a>
+                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/hospital/diagnosis/list.do">회원가입</a>
                         </li>
                     </ul>
                 </div>

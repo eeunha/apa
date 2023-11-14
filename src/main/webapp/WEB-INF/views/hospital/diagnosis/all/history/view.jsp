@@ -10,7 +10,7 @@
 </style>
 </head>
 <body>
-	<!-- /hospital/diagnosis/approval.jsp -->
+	<!-- /hospital/diagnosis/all/history/view.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp" %>
 	
 		
