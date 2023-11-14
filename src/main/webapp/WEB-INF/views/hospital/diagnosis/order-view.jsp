@@ -447,7 +447,6 @@ table tr td {
 	function completeDiagnosis(mediSeq) {
 		
 		if (confirm('진료를 완료하시겠습니까? 확인을 누르시면 진료 내역을 작성합니다.')) {
-			//alert("완료");
 			location.href='/apa/hospital/diagnosis/write-diagnosis.do?mediSeq=' + mediSeq;
 		}	
 	}

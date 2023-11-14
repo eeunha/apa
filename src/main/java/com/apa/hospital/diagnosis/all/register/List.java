@@ -100,10 +100,13 @@ public class List extends HttpServlet {
 
 		// 이전 10페이지
 		if (n == 1) {
-			sb.append(String.format(" <a href='#!';>[이전 %d페이지]</a>&nbsp;&nbsp;", blockSize));
+//			sb.append(String.format(" <a href='#!';>[이전 %d페이지]</a>&nbsp;&nbsp;", blockSize));
+			sb.append(" <a href='#!';>[이전 페이지]</a>&nbsp;&nbsp;");
 		} else {
-			sb.append(String.format(" <a href='/apa/hospital/diagnosis/all/register/list.do?page=%d';>[이전 %d페이지]</a>&nbsp;&nbsp;",
-					n - 1, blockSize));
+//			sb.append(String.format(" <a href='/apa/hospital/diagnosis/all/register/list.do?page=%d';>[이전 %d페이지]</a>&nbsp;&nbsp;",
+//					n - 1, blockSize));
+			sb.append(String.format(" <a href='/apa/hospital/diagnosis/all/register/list.do?page=%d';>[이전 페이지]</a>&nbsp;&nbsp;",
+					n - 1));
 		}
 
 		while (!(loop > blockSize || n > totalPage)) {
@@ -127,10 +130,13 @@ public class List extends HttpServlet {
 
 		// 다음 10페이지
 		if (n > totalPage) {
-			sb.append(String.format(" <a href='#!';>[다음 %d페이지]</a> ", blockSize));
+//			sb.append(String.format(" <a href='#!';>[다음 %d페이지]</a> ", blockSize));
+			sb.append(" <a href='#!';>[다음 페이지]</a> ");
 		} else {
-			sb.append(String.format(" <a href='/apa/hospital/diagnosis/all/register/list.do?page=%d';>[다음 %d페이지]</a> ",
-					n, blockSize));
+//			sb.append(String.format(" <a href='/apa/hospital/diagnosis/all/register/list.do?page=%d';>[다음 %d페이지]</a> ",
+//					n, blockSize));
+			sb.append(String.format(" <a href='/apa/hospital/diagnosis/all/register/list.do?page=%d';>[다음 페이지]</a> ",
+					n));
 		}
 
 //		System.out.println(sb.toString());
