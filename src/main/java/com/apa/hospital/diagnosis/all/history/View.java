@@ -25,25 +25,32 @@ public class View extends HttpServlet {
 		// 예약정보
 		DiagnosisRgstDTO dto = dao.getOrderDetail(mediSeq);
 
-		// 진단서
-		MediHistoryDTO writeDto = dao.getWriteDiagnosis(mediSeq);
+		if (dto.getSymptom() != null) {
 
-		
+			// 진단서
+			MediHistoryDTO writeDto = dao.getWriteDiagnosis(mediSeq);
+
+			if (writeDto != null && writeDto.getMediContent() != null) {
+
+				// 개행문자처리
+				String content = writeDto.getMediContent();
+				content = content.replace("\r\n", "<br>");
+				writeDto.setMediContent(content);
+			}
+
+			req.setAttribute("writeDto", writeDto); // 진료내역서 dto
+		}
+
 		// 개행문자처리
 		String symptom = dto.getSymptom();
 		symptom = symptom.replace("\r\n", "<br>");
 		dto.setSymptom(symptom);
 
-		String content = writeDto.getMediContent();
-		content = content.replace("\r\n", "<br>");
-		writeDto.setMediContent(content);
-
-		
 		// 해당 의사 이름
 		String doctorName = dao.getDoctorName(mediSeq);
 
 		req.setAttribute("dto", dto); // 예약정보
-		req.setAttribute("writeDto", writeDto); // 진료내역서 dto
+
 		req.setAttribute("doctorName", doctorName); // 해당 진료 의사 이름
 
 		System.out.println("childSeq: " + dto.getChildSeq());

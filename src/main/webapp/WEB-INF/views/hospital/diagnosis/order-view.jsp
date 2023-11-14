@@ -24,8 +24,20 @@ button:hover {
 }
 
 
+
 #btnArea {
 	margin: 10px auto;
+}
+
+#diagnosisTitle {
+	font-weight: bold;
+	margin: 70px 0 20px 20px;
+}
+
+#detailTitle {
+	font-weight: bold;
+	margin: 20px 0 20px 20px;
+
 }
 
 table {
@@ -37,7 +49,6 @@ table tr {
 	height: 40px;
 	border-bottom: 1px solid #e3e6f0;
 }
-
 table tr:last-child {
 	border-bottom: none;
 }
@@ -58,6 +69,7 @@ table tr td {
 	display: flex;
 	flex-direction: column;
 }
+
 </style>
 <body id="page-top">
 
@@ -332,6 +344,38 @@ table tr td {
 										</tr>
 									
 									</table>
+									
+									<c:if test="${dto.waitingStatus == '진료완료'}">
+										<h5 id="diagnosisTitle">진료내역서</h5>
+											
+										<table>
+											<tr>
+												<th>병원명</th>
+												<td>${name}</td>	
+											</tr>
+											<tr>
+												<th>의사명</th>
+												<td>${doctorName}</td>	
+											</tr>
+											<tr>
+												<th>진료예약번호</th>
+												<td>${dto.mediSeq}</td>	
+											</tr>
+											<tr>
+												<th>진단명</th>
+												<td>${writeDto.mediName}</td>	
+											</tr>
+											<tr>
+												<th>질병코드</th>
+												<td>${writeDto.mediCode}</td>	
+											</tr>
+											<tr>
+												<th>진료내용</th>
+												<td>${writeDto.mediContent}</td>	
+											</tr>
+										
+										</table>										
+									</c:if>
 									
 									<div id="btnArea">
 										<c:if test="${dto.waitingStatus == '대기중'}">

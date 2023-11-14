@@ -52,6 +52,8 @@ button {
 
 .null-msg {
 	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 #register-list th:nth-child(1) {
@@ -377,7 +379,7 @@ button {
 											</c:forEach>
 
 											<c:if test="${registerList.size() == 0}">
-												<h4 class="null-msg">오늘 날짜의 예약 신청이 없습니다.</h4>
+												<h4 class="null-msg">오늘 신청된 예약이 없습니다.</h4>
 											</c:if>
 										</tbody>
 									</table>
