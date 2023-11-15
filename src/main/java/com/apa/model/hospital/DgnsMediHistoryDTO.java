@@ -1,6 +1,6 @@
 package com.apa.model.hospital;
 
-public class MediHistoryDTO {
+public class DgnsMediHistoryDTO {
 	private String mediHistorySeq;
 	private String mediSeq;
 	private String mediName;

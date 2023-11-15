@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.apa.model.hospital.DiagnosisRgstDTO;
-import com.apa.model.hospital.MediHistoryDTO;
+import com.apa.model.hospital.DgnsMediHistoryDTO;
 import com.apa.repository.hospital.DiagnosisDAO;
 
 @WebServlet("/hospital/diagnosis/order-view.do")
@@ -28,7 +28,7 @@ public class OrderView extends HttpServlet {
 		if (dto.getSymptom() != null) {
 
 			// 진단서
-			MediHistoryDTO writeDto = dao.getWriteDiagnosis(mediSeq);
+			DgnsMediHistoryDTO writeDto = dao.getWriteDiagnosis(mediSeq);
 
 			if (writeDto != null && writeDto.getMediContent() != null) {
 
@@ -41,10 +41,12 @@ public class OrderView extends HttpServlet {
 			req.setAttribute("writeDto", writeDto); // 진료내역서 dto
 		}
 
-		// 개행문자처리
-		String symptom = dto.getSymptom();
-		symptom = symptom.replace("\r\n", "<br>");
-		dto.setSymptom(symptom);
+		if (dto.getSymptom() != null) {
+			// 개행문자처리
+			String symptom = dto.getSymptom();
+			symptom = symptom.replace("\r\n", "<br>");
+			dto.setSymptom(symptom);
+		}
 
 		// 해당 의사 이름
 		String doctorName = dao.getDoctorName(mediSeq);

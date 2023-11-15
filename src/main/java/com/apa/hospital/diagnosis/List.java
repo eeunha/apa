@@ -24,9 +24,9 @@ public class List extends HttpServlet {
 		// 병원의 오늘의 진료(예약, 순서) 내역 가져오기
 
 		// 인증 티켓
-		req.getSession().setAttribute("id", "yonse");
-		req.getSession().setAttribute("name", "연세위드의원");
-		req.getSession().setAttribute("lv", "병원");
+//		req.getSession().setAttribute("id", "yonse");
+//		req.getSession().setAttribute("name", "연세위드의원");
+//		req.getSession().setAttribute("lv", "병원");
 
 		// 오늘 날짜
 		Calendar today = Calendar.getInstance();

@@ -37,5 +37,5 @@ INSERT INTO tblRegister (mediSeq, hospitalId, userSeq, childSeq, mediWay, doctor
 INSERT INTO tblRegister (mediSeq, hospitalId, userSeq, childSeq, mediWay, doctorSeq, treatmentDate, regdate, symptom, dispenseSeq) VALUES (seqRegister.nextVal, 'yonse', 203, null, '대면', 41, TO_DATE('2023-11-14 12:00:00', 'YYYY-MM-DD:HH24:MI:SS'), TO_DATE('2023-11-14 10:10:00', 'YYYY-MM-DD:HH24:MI:SS'), '열이 나요', null);
 INSERT INTO tblRegister (mediSeq, hospitalId, userSeq, childSeq, mediWay, doctorSeq, treatmentDate, regdate, symptom, dispenseSeq) VALUES (seqRegister.nextVal, 'yonse', 33, 8, '대면', 50, TO_DATE('2023-11-14 13:00:00', 'YYYY-MM-DD:HH24:MI:SS'), TO_DATE('2023-11-14 16:40:00', 'YYYY-MM-DD:HH24:MI:SS'), '눈이 충혈됐어요', null);
 
-
+으나짱 화이팅
 commit;

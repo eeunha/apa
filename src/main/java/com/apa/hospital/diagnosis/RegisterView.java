@@ -23,10 +23,12 @@ public class RegisterView extends HttpServlet {
 
 		DiagnosisRgstDTO dto = dao.getRegisterDetail(mediSeq);
 
-		// 개행문자처리
-		String symptom = dto.getSymptom();
-		symptom = symptom.replace("\r\n", "<br>");
-		dto.setSymptom(symptom);
+		if (dto.getSymptom() != null) {
+			// 개행문자처리
+			String symptom = dto.getSymptom();
+			symptom = symptom.replace("\r\n", "<br>");
+			dto.setSymptom(symptom);
+		}
 
 		req.setAttribute("dto", dto);
 		req.setAttribute("mediSeq", mediSeq);

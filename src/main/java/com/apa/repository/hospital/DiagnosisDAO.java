@@ -9,7 +9,7 @@ import java.util.HashMap;
 
 import com.apa.model.hospital.DiagnosisHistoryDTO;
 import com.apa.model.hospital.DiagnosisRgstDTO;
-import com.apa.model.hospital.MediHistoryDTO;
+import com.apa.model.hospital.DgnsMediHistoryDTO;
 import com.apa.repository.DBUtil;
 
 public class DiagnosisDAO {
@@ -394,7 +394,7 @@ public class DiagnosisDAO {
 		return null;
 	}
 
-	public int addMediHistory(MediHistoryDTO dto) {
+	public int addMediHistory(DgnsMediHistoryDTO dto) {
 		try {
 
 			String sql = "insert into tblMediHistory (mediHistorySeq, mediSeq, mediName, mediCode, mediContent) values (seqMediHistory.nextVal, ?, ?, ?, ?)";
@@ -540,7 +540,7 @@ public class DiagnosisDAO {
 		return null;
 	}
 
-	public MediHistoryDTO getWriteDiagnosis(String mediSeq) {
+	public DgnsMediHistoryDTO getWriteDiagnosis(String mediSeq) {
 		try {
 
 			String sql = "select * from tblMediHistory where mediSeq = ?";
@@ -551,7 +551,7 @@ public class DiagnosisDAO {
 			rs = pstat.executeQuery();
 
 			if (rs.next()) {
-				MediHistoryDTO dto = new MediHistoryDTO();
+				DgnsMediHistoryDTO dto = new DgnsMediHistoryDTO();
 
 				dto.setMediHistorySeq(rs.getString("mediHistorySeq"));
 				dto.setMediSeq(rs.getString("mediSeq"));

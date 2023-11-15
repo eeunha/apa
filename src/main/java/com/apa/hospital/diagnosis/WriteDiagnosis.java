@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.apa.model.hospital.MediHistoryDTO;
+import com.apa.model.hospital.DgnsMediHistoryDTO;
 import com.apa.repository.hospital.DiagnosisDAO;
 
 @WebServlet("/hospital/diagnosis/write-diagnosis.do")
@@ -55,7 +55,7 @@ public class WriteDiagnosis extends HttpServlet {
 		
 		//진료내역서 작성 insert
 
-		MediHistoryDTO dto = new MediHistoryDTO();
+		DgnsMediHistoryDTO dto = new DgnsMediHistoryDTO();
 		dto.setMediName(mediName);
 		dto.setMediCode(mediCode);
 		dto.setMediContent(mediContent);

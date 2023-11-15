@@ -125,7 +125,7 @@ textarea{
 			</li>
 
 			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
+			<!-- <li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseUtilities2"
 				aria-expanded="true" aria-controls="collapseUtilities"> <i
 					class="fas fa-fw fa-calendar-check"></i> <span>건강검진</span>
@@ -138,7 +138,7 @@ textarea{
 							class="collapse-item" href="/apa/hospital/medicheck/all/history/list.do">모든 건강검진 내역</a>
 						<a class="collapse-item" href="/apa/hospital/chart/list.do">문진표</a>
 					</div>
-				</div></li>
+				</div></li> -->
 
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"

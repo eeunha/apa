@@ -115,6 +115,13 @@ where to_date(treatmentDate, 'yyyy-mm-dd') = to_date((select sysdate from dual),
 
 
 
+
+select r.mediSeq, userSeq, childSeq, mediWay, doctorSeq, treatmentDate, regdate, symptom, dispenseSeq, userName, userSSN, userId, userTel, userAddress, userEmail, userChild, childName, childSSN, childTel, doctorName, doctorImage, departmentName, waitingPatientSeq, waitingStatus from vwRegisterDetail r left outer join tblWatingPatientList p on r.mediSeq = p.mediSeq where r.mediSeq = 410; 
+
+select count(*) as cnt from vwDiagnosisHistory where hospitalId = 'yonse' and waitingStatus not like '예약거부';
+select * from (select a.*, rownum as rnum from (select * from vwDiagnosisHistory where hospitalId = 'yonse' and waitingStatus not like '예약거부' order by treatmentDate desc, mediSeq desc) a);
+
+
 select * from (select a.*, rownum as rnum from (select * from vwDiagnosisHistory where to_date(treatmentDate, 'yyyy-mm-dd') = to_date((select sysdate from dual), 'yyyy-mm-dd') and hospitalId = 'yonse' order by treatmentDate, mediSeq) a) where rnum between 1 and 10;
 
 
