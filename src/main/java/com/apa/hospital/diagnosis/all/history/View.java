@@ -55,7 +55,7 @@ public class View extends HttpServlet {
 
 		req.setAttribute("doctorName", doctorName); // 해당 진료 의사 이름
 
-		System.out.println("childSeq: " + dto.getChildSeq());
+		//System.out.println("childSeq: " + dto.getChildSeq());
 
 		RequestDispatcher dispatcher = req
 				.getRequestDispatcher("/WEB-INF/views/hospital/diagnosis/all/history/view.jsp");

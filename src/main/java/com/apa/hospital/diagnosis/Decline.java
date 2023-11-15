@@ -30,8 +30,6 @@ public class Decline extends HttpServlet {
 		JSONObject obj = new JSONObject();
 		obj.put("result", result);
 		
-		System.out.println("예약거부");
-		
 		PrintWriter writer = resp.getWriter();
 		writer.write(obj.toString());
 		writer.close();

@@ -20,12 +20,9 @@ public class WriteDiagnosis extends HttpServlet {
 
 		String mediSeq = req.getParameter("mediSeq");
 		
-		System.out.println("write - mediSeq: " + mediSeq);
-		
 		DiagnosisDAO dao = new DiagnosisDAO();
 		
 		String doctorName = dao.getDoctorName(mediSeq);
-		System.out.println("write - doctorName: " + doctorName);
 		
 		req.setAttribute("mediSeq", mediSeq);
 		req.setAttribute("doctorName", doctorName);
@@ -43,13 +40,6 @@ public class WriteDiagnosis extends HttpServlet {
 		String mediName = req.getParameter("mediName");
 		String mediCode = req.getParameter("mediCode");
 		String mediContent = req.getParameter("mediContent");
-		
-//		System.out.println();
-//		System.out.println(mediSeq);
-//		System.out.println(mediName);
-//		System.out.println(mediCode);
-//		System.out.println(mediContent);
-//		System.out.println();
 		
 		DiagnosisDAO dao = new DiagnosisDAO();
 		
@@ -75,10 +65,6 @@ public class WriteDiagnosis extends HttpServlet {
 		
 		PrintWriter writer = resp.getWriter();
 		if (updateResult == 1) {
-			System.out.println("수정 완료");
-			
-//			resp.setContentType("text/html; charset=UTF-8");
-//			writer.print("<script>alert('진료내역서 작성이 완료되었습니다. 진료를 완료합니다.');location.href='/apa/hospital/diagnosis/list.do';</script>");
 			
 			resp.sendRedirect("/apa/hospital/diagnosis/list.do");
 		} else {

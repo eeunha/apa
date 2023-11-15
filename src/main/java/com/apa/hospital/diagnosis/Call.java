@@ -27,8 +27,6 @@ public class Call extends HttpServlet {
 		JSONObject obj = new JSONObject();
 		obj.put("result", result);
 		
-		System.out.println("servlet - 환자호출 -> 진료중 상태 변경");
-		
 		PrintWriter writer = resp.getWriter();
 		writer.write(obj.toString());
 		writer.close();

@@ -18,7 +18,6 @@ public class View extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String mediSeq = req.getParameter("mediSeq");
-		// System.out.println(mediSeq);
 
 		DiagnosisDAO dao = new DiagnosisDAO();
 
