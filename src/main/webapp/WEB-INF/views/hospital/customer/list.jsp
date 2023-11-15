@@ -10,64 +10,105 @@
 .sidebar-clicked {
 	background-color: #dddfeb;
 }
-button {
-	border: none;
-	border-radius: 5px;
-	color: #858796;
-	font-size: 1.1rem;
-	width: 100px;
+
+.list tr {
 	height: 40px;
-	margin-right: 10px;
 }
-button:hover {
+
+.list tbody tr:hover {
+	background-color: #dddfeb;
+}
+
+.list th {
+	text-align: center;
+	border-right: 1px solid #CCC;
+}
+
+.list tr:first-child th {
+	background-color: #edf0f7;
+}
+
+.list td {
+	border-bottom: 1px solid #edf0f7;
+	border-right: 1px solid #edf0f7;
+	text-align: center;
+}
+
+.list th:last-child, .list td:last-child {
+	border-right: none;
+}
+
+.list tr td button:hover {
 	background-color: #CCC;
 }
 
-#btnArea {
-	margin: 10px auto;
+
+.list th:nth-child(1) {
+	width: 50px;
 }
 
-#diagnosisTitle {
-	font-weight: bold;
-	margin: 70px 0 20px 20px;
+/* .list th:nth-child(2) {
+	width: 90px;
+} */
+
+.list th:nth-child(2) {
+	width: 100px;
 }
 
-#detailTitle {
-	font-weight: bold;
-	margin: 20px 0 20px 20px;
-
+.list th:nth-child(3) {
+	width: 180px;
 }
 
-table {
-	margin-left: 20px;
-	margin-right: 20px;
+.list th:nth-child(4) {
+	width: 180px;
 }
 
-table tr {
-	height: 40px;
-	border-bottom: 1px solid #e3e6f0;
-}
-table tr:last-child {
-	border-bottom: none;
+.list th:nth-child(5) {
+	width: 500px;
 }
 
-table tr th {
-	width: 150px;
-	border-right: 1px solid #e3e6f0;
-	padding-left: 20px;
-	padding-right: 10px;
+.list th:nth-child(6) {
+	width: 200px;
 }
 
-table tr td {
+.list th:nth-child(7) {
+	width: 400px;
+}
+
+.list td:nth-child(5), .list td:nth-child(6) {
 	padding-left: 10px;
-	padding-right: 20px;
+	text-align: left;
 }
 
-#container {
+button {
+	border: none;
+	border-radius: 5px;
+	color: #858796
+	cursor: pointer;
+}
+
+.null-msg {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#pagebar {
+	text-align: center;
+	margin-top: 20px;
+	font-size: 1.1rem;
+}
+
+.memoNull {
+	color: #CCC;
+}
+
+.memoArea {
+	padding-left: 5px;
+	padding-right: 5px;
 	display: flex;
-	flex-direction: column;
+	justify-content: space-between;
 }
-
 </style>
 <body id="page-top">
 
@@ -121,23 +162,6 @@ table tr td {
 				</div>
 			</div>
 			</li>
-
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<!-- <li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities2"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-calendar-check"></i> <span>건강검진</span>
-			</a>
-				<div id="collapseUtilities2" class="collapse"
-					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="/apa/hospital/medicheck/list.do">오늘의 건강검진</a> 
-						<a class="collapse-item" href="/apa/hospital/medicheck/all/register/list.do">모든 건강검진 예약</a> <a
-							class="collapse-item" href="/apa/hospital/medicheck/all/history/list.do">모든 건강검진 내역</a>
-						<a
-							class="collapse-item" href="/apa/hospital/chart/list.do">문진표</a>
-					</div>
-				</div></li> -->
 
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item active"><a class="nav-link" href="#"
@@ -239,11 +263,62 @@ table tr td {
 								<!-- Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h5 class="m-0 font-weight-bold text-primary">내원환자 관리</h5>
+									<h5 class="m-0 font-weight-bold text-primary">내원환자 목록</h5>
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
+									<table class="list">
+										<thead>
+											<c:if test="${list.size() != 0}">
+												<tr>
+													<th>번호</th>
+													<!-- <th>환자번호</th> -->
+													<th>이름</th>
+													<th>주민등록번호</th>
+													<th>전화번호</th>
+													<th>주소</th>
+													<th>이메일</th>
+													<th>메모</th>
+												</tr>
+											</c:if>
+										</thead>
+										
+										<tbody>
+											<c:forEach items="${list}" var="dto" varStatus="status">
+												<tr>
+													<td>${status.count}</td>
+													<%-- <td>${dto.patientSeq}</td> --%>
+													<td>${dto.patientName}</td>
+													<td>${dto.patientSSN}</td>
+													<td>${dto.patientTel}</td>
+													<td>${dto.patientAddress}</td>
+													<td>${dto.patientEmail}</td>
+													<c:if test="${dto.memo == null}">
+														<td>
+															<button type="button" class="addMemo">작성하기</button>
+														</td>
+													</c:if>
+													<c:if test="${dto.memo != null}">
+														<td>
+															<div class="memoArea">
+																${dto.memo}
+																<button type="button" class="editMemo">수정</button>
+															</div>
+														</td>
+													</c:if>
+												</tr>
+											</c:forEach>
+										</tbody>								
+									</table>
 									
+									<c:if test="${list.size() != 0}">
+										<!-- 페이지바 -->
+										<div id="pagebar">${pagebar}</div>
+									</c:if>
+									
+									<c:if test="${list.size() == 0}">
+										<h4 class="null-msg">내원 환자가 없습니다.</h4>
+									</c:if>
 								</div>
 							</div>
 						</div>

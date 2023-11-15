@@ -35,6 +35,8 @@ public class List extends HttpServlet {
 		sb2.append(today.get(Calendar.MONTH) + 1 + "월 ");
 		sb2.append(today.get(Calendar.DATE) + "일");
 
+		//System.out.println("test: " + req.getSession().getAttribute("id").toString());
+		
 		String hospitalId = req.getSession().getAttribute("id").toString();
 
 		DiagnosisDAO dao = new DiagnosisDAO();

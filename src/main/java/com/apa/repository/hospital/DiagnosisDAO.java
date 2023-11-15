@@ -70,7 +70,7 @@ public class DiagnosisDAO {
 
 			rs = pstat.executeQuery();
 
-			//System.out.println(sql);
+			// System.out.println(sql);
 
 			ArrayList<DiagnosisHistoryDTO> list = new ArrayList<>();
 
@@ -100,7 +100,7 @@ public class DiagnosisDAO {
 
 	public int approvalRegister(String mediSeq) {
 		try {
-
+			//System.out.println("approval- mediSeq: " + mediSeq);
 			String sql = "insert into tblWatingPatientList (waitingPatientSeq, mediSeq, waitingStatus) values (seqWatingPatientList.nextVal, ?, default)";
 
 			pstat = conn.prepareStatement(sql);
@@ -442,7 +442,7 @@ public class DiagnosisDAO {
 
 			rs = pstat.executeQuery();
 
-			//System.out.println(sql);
+			// System.out.println(sql);
 
 			ArrayList<DiagnosisHistoryDTO> list = new ArrayList<>();
 

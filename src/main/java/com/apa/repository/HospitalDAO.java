@@ -15,9 +15,9 @@ public class HospitalDAO {
 	private ResultSet rs;
 
 	public HospitalDAO() {
-//		conn = DBUtil.open(); 
+		conn = DBUtil.open(); 
 
-		conn = DBUtil.open("localhost", "apa_test_2", "java1234");
+//		conn = DBUtil.open("localhost", "apa_test_2", "java1234");
 	}
 
 	public HospitalDTO login(HospitalDTO dto) {
