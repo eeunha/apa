@@ -11,6 +11,10 @@
 	background-color: #dddfeb;
 }
 
+.list {
+	width: 100%;
+}
+
 .list tr {
 	height: 40px;
 }
@@ -71,9 +75,9 @@
 	width: 200px;
 }
 
-.list th:nth-child(7) {
-	width: 400px;
-}
+/* .list th:nth-child(7) {
+	width: 260px;
+} */
 
 .list td:nth-child(5), .list td:nth-child(6) {
 	padding-left: 10px;
@@ -99,7 +103,7 @@ button {
 	font-size: 1.1rem;
 }
 
-.memoNull {
+/* .memoNull {
 	color: #CCC;
 }
 
@@ -109,6 +113,10 @@ button {
 	display: flex;
 	justify-content: space-between;
 }
+
+.memoText {
+	border: 1px solid #CCC;
+} */
 </style>
 <body id="page-top">
 
@@ -264,6 +272,7 @@ button {
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 									<h5 class="m-0 font-weight-bold text-primary">내원환자 목록</h5>
+									<h6 class="m-0 font-weight-bold text-primary">총 ${totalCount}명</h6>
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
@@ -278,7 +287,7 @@ button {
 													<th>전화번호</th>
 													<th>주소</th>
 													<th>이메일</th>
-													<th>메모</th>
+													<!-- <th>메모</th> -->
 												</tr>
 											</c:if>
 										</thead>
@@ -293,19 +302,18 @@ button {
 													<td>${dto.patientTel}</td>
 													<td>${dto.patientAddress}</td>
 													<td>${dto.patientEmail}</td>
-													<c:if test="${dto.memo == null}">
-														<td>
-															<button type="button" class="addMemo">작성하기</button>
-														</td>
-													</c:if>
-													<c:if test="${dto.memo != null}">
-														<td>
-															<div class="memoArea">
-																${dto.memo}
+													<%-- <td>
+														<div class="memoArea">
+															<c:if test="${dto.memo == null}">
+																<input type="text" name="memoText" class="memoText">
+																<button type="button" class="addMemo">작성</button>
+															</c:if>
+															<c:if test="${dto.memo != null}">
+																<input type="text" name="memoText" class="memoText" value="${dto.memo}">
 																<button type="button" class="editMemo">수정</button>
-															</div>
-														</td>
-													</c:if>
+															</c:if>
+														</div>
+													</td> --%>
 												</tr>
 											</c:forEach>
 										</tbody>								

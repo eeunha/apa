@@ -328,5 +328,20 @@ select * from (select a.*, rownum as rnum from (select * from vwDiagnosisHistory
 전체 글 개수는
 날짜가 오늘이고 병원 아이디가 같은 행 개수다.
 select count(*) as cnt from where to_date() = to_date() and hospitalId='yonse'
+ ;
+select * from tblDispense;
 
 
+-- 진료대기
+select * from tblWatingPatientList where mediSeq = 410;
+update tblWatingPatientList set waitingStatus = '대기중' where mediSeq = 410;
+
+--진료기록
+select * from tblMediHistory where mediSeq = 410;
+delete from tblMediHistory where medihistoryseq = 397;
+
+--약 제조
+select * from tblDispense;
+update tblDispense set dispenseStatus = '미진료' where dispenseSeq = 202;
+
+commit;

@@ -100,7 +100,7 @@ public class DiagnosisDAO {
 
 	public int approvalRegister(String mediSeq) {
 		try {
-			//System.out.println("approval- mediSeq: " + mediSeq);
+			// System.out.println("approval- mediSeq: " + mediSeq);
 			String sql = "insert into tblWatingPatientList (waitingPatientSeq, mediSeq, waitingStatus) values (seqWatingPatientList.nextVal, ?, default)";
 
 			pstat = conn.prepareStatement(sql);
@@ -566,6 +566,44 @@ public class DiagnosisDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public String getDispenseSeq(String mediSeq) {
+		try {
+
+			String sql = "select dispenseSeq from tblRegister where mediSeq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, mediSeq);
+
+			rs = pstat.executeQuery();
+
+			if (rs.next()) {
+				return rs.getString("dispenseSeq");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	public int updateDispenseStatus(String dispenseSeq) {
+		try {
+
+			String sql = "update tblDispense set dispenseStatus = '대기' where dispenseSeq = ?";
+
+			pstat = conn.prepareStatement(sql);
+			pstat.setString(1, dispenseSeq);
+
+			return pstat.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return 0;
 	}
 
 }
