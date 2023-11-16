@@ -9,11 +9,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.apa.model.MediHistoryViewDTO;
+import com.apa.repository.UserDAO;
+
 @WebServlet("/user/treatment/view.do")
 public class View extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		String seq = req.getParameter("seq");
+		String cseq = req.getParameter("cseq");
+		String name = "";
+				
+		UserDAO dao = new UserDAO();
+		
+		MediHistoryViewDTO dto = dao.getMediHistoryView(seq);
+		
+		if (!cseq.equals("-1")) {
+			name = dao.getChildName(cseq);
+		} else {
+			name = "X";
+		}
+		
+		req.setAttribute("dto", dto);
+		req.setAttribute("name", name);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/user/treatment/view.jsp");
 		dispatcher.forward(req, resp);
 	}

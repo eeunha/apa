@@ -17,7 +17,7 @@
                         
                         <h5 class="site-footer-title mb-3">고객센터</h5>
                         <ul class="footer-menu">
-                            <li class="footer-menu-item"><a href="#" class="footer-menu-link">FAQ</a></li>
+                            <li class="footer-menu-item"><a href="/apa/service/cs/faq.do" class="footer-menu-link">FAQ</a></li>
                             <li class="footer-menu-item"><a href="#" class="footer-menu-link">문의하기</a></li>
                         </ul>
                     </div>

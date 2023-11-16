@@ -11,6 +11,27 @@
         <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
 <style>
 
+.icon {
+	max-width: 70%;
+}
+
+#middle-content-textbox1 {
+	height: 550px;
+	overflow: hidden;
+}
+
+#middle-content-textbox2 {
+	height: 320px;
+}
+
+#middle-content-textbox3 {
+	height: 320px;
+}
+
+.middle-content {
+	width: auto;
+}
+
 </style>
     </head>
     <body id="section_1">
@@ -25,32 +46,32 @@
                             <div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="/apa/asset/images/slide/volunteer-helping-with-donation-box.jpg" class="carousel-image img-fluid" alt="...">
+                                        <img src="/apa/asset/images/slide/main-image1.jpg" class="carousel-image img-fluid" alt="...">
                                         
                                         <div class="carousel-caption d-flex flex-column justify-content-end">
-                                            <h1 class="hansans">뭐적을까1</h1>
+                                            <h1 class="hansans">병원/약국 찾기</h1>
                                             
-                                            <p>작은_뭐적을까1</p>
+                                            <p>최적의 병원을 예약해보세요.</p>
                                         </div>
                                     </div>
 
                                     <div class="carousel-item">
-                                        <img src="/apa/asset/images/slide/volunteer-selecting-organizing-clothes-donations-charity.jpg" class="carousel-image img-fluid" alt="...">
+                                        <img src="/apa/asset/images/slide/main-image2.jpg" class="carousel-image img-fluid" alt="...">
                                         
                                         <div class="carousel-caption d-flex flex-column justify-content-end">
-                                            <h1 class="hansans">뭐적을까2</h1>
+                                            <h1 class="hansans">의학 상담</h1>
                                             
-                                            <p>작은_뭐적을까2</p>
+                                            <p>의학 상담 바로가기 ></p>
                                         </div>
                                     </div>
 
                                     <div class="carousel-item">
-                                        <img src="/apa/asset/images/slide/medium-shot-people-collecting-donations.jpg" class="carousel-image img-fluid" alt="...">
+                                        <img src="/apa/asset/images/slide/main-image3.jpg" class="carousel-image img-fluid" alt="...">
                                         
                                         <div class="carousel-caption d-flex flex-column justify-content-end">
-                                            <h1 class="hansans">뭐적을까3</h1>
+                                            <h1 class="hansans">의학 정보</h1>
                                             
-                                            <p>작은_뭐적을까3</p>
+                                            <p>각종 질병이 궁금하다면?</p>
                                         </div>
                                     </div>
                                 </div>
@@ -76,14 +97,11 @@
                 <div class="container">
                     <div class="row">
 
-                        <div class="col-lg-10 col-12 text-center mx-auto">
-                            <h2 class="mb-5, hansans" >뭐적을까4</h2>
-                        </div>
 
                         <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                             <div class="featured-block d-flex justify-content-center align-items-center">
-                                <a href="donate.html" class="d-block">
-                                    <img src="/apa/asset/images/icons/hands.png" class="featured-block-image img-fluid" alt="">
+                                <a href="/apa/find/list.do" class="d-block">
+                                    <img src="/apa/asset/images/icons/hospital.png" class="featured-block-image img-fluid icon" alt="">
 
                                     <p class="featured-block-text"><strong class="hansans">병원/약국 찾기</strong></p>
                                 </a>
@@ -92,8 +110,8 @@
 
                         <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
                             <div class="featured-block d-flex justify-content-center align-items-center">
-                                <a href="donate.html" class="d-block">
-                                    <img src="/apa/asset/images/icons/heart.png" class="featured-block-image img-fluid" alt="">
+                                <a href="/apa/advice/list.do" class="d-block">
+                                    <img src="/apa/asset/images/icons/doctor.png" class="featured-block-image img-fluid icon" alt="">
 
                                     <p class="featured-block-text"><strong class="hansans">의학 상담</strong></p>
                                 </a>
@@ -102,8 +120,8 @@
 
                         <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 mb-md-4">
                             <div class="featured-block d-flex justify-content-center align-items-center">
-                                <a href="donate.html" class="d-block">
-                                    <img src="/apa/asset/images/icons/receive.png" class="featured-block-image img-fluid" alt="">
+                                <a href="/apa/magazine/list.do" class="d-block">
+                                    <img src="/apa/asset/images/icons/knowledge.png" class="featured-block-image img-fluid icon" alt="">
 
                                     <p class="featured-block-text"><strong class="hansans">의학 정보</strong></p>
                                 </a>
@@ -112,8 +130,8 @@
 
                         <div class="col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
                             <div class="featured-block d-flex justify-content-center align-items-center">
-                                <a href="donate.html" class="d-block">
-                                    <img src="/apa/asset/images/icons/scholarship.png" class="featured-block-image img-fluid" alt="">
+                                <a href="/apa/community/list.do" class="d-block">
+                                    <img src="/apa/asset/images/icons/community.png" class="featured-block-image img-fluid icon" alt="">
 
                                     <p class="featured-block-text"><strong class="hansans">커뮤니티</strong></p>
                                 </a>
@@ -129,58 +147,58 @@
                     <div class="row">
 
                         <div class="col-lg-6 col-12 mb-5 mb-lg-0">
-                            <img src="/apa/asset/images/group-people-volunteering-foodbank-poor-people.jpg" class="custom-text-box-image img-fluid" alt="">
+                            <img src="/apa/asset/images/middle-image.png" class="custom-text-box-image img-fluid" alt="">
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <div class="custom-text-box">
-                                <h2 class="mb-2, hansans">대충 예방접종 관련 정보</h2>
+                            <div class="custom-text-box" id="middle-content-textbox1">
+                                <h2 class="mb-2, hansans">독감 예방접종 기피하나요?</h2>
 
-                                <h5 class="mb-3">Kind Heart Charity, Non-Profit Organization</h5>
+                                <h5 class="mb-3">아동·청소년 중심 인플루엔자 본격 유행…예방접종 서둘러야</h5>
 
-                                <p class="mb-0">This is a Bootstrap 5.2.2 CSS template for charity organization websites. You can feel free to use it. Please tell your friends about TemplateMo website. Thank you. HTML CSS files updated on 20 Oct 2022.</p>
+                                <p class="mb-0">11일 질병관리청에 따르면 호흡기감염병 의원급 표본감시 결과<br> 10월 4주차(10월 22일~28일) 외래환자 1000명당 인플루엔자 의사환자(38℃ 이상 갑작스런 발열과 기침 또는 인후통이 있는 경우) 분율은 32.6명으로 집계됐다.<br> 이는 10월 3주차(15일~21일) 18.8명 대비 73% 증가한 수치다.<br><br> 특히 인플루엔자 유행기준인 외래환자 1000명당 의사환자 6.5명보다 훨씬 높은 수치다.0
+
+연령별로 아동·청소년에서 인플루엔자 증가세가 뚜렷하다.<br>10월 4주차 기준 인플루엔자 의사환자 발생은 7∼12세(86.9명), 13∼18세(67.5명), 19∼49세(30.3명) 순으로 나타났다. 또 인플루엔자 입원환자와 중증급성호흡기감염증 입원환자 중에서도 큰 증가세를 보이고 있어 주의가 필요한 상황이다.<br><br>
+
+특히 질병청에 따르면 어린이(6개월~13세)의 경우 백신 접종률이 11월 2일 기준 47.5%로, 이는 전년 같은 기간 51.8% 대비 접종률이 낮다.<br> 지영미 질병관리청장은 “현재 인플루엔자 유행은 과거 겨울철 유행의 증가세가 지금 시작되고 있는 양상으로 9월말부터 시행중인 인플루엔자 국가예방접종에 적극적으로 참여해 줄 것”을 당부했다.</p>
                             </div>
                             
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-12">
-                                    <div class="custom-text-box mb-lg-0">
-                                        <h5 class="mb-3">Our Mission</h5>
+                                    <div class="custom-text-box mb-lg-0" id="middle-content-textbox2">
+                                        <h5 class="mb-3">국가 검진 정보</h5>
 
-                                        <p>Sed leo nisl, posuere at molestie ac, suscipit auctor quis metus</p>
+                                        <p>2023년 국가건강검진 대상자는
+                                        <br>홀수년도 출생자입니다.</p>
 
                                         <ul class="custom-list mt-2">
                                             <li class="custom-list-item d-flex">
                                                 <i class="bi-check custom-text-box-icon me-2"></i>
-                                                Charity Theme
+                                                지역가입자
                                             </li>
 
                                             <li class="custom-list-item d-flex">
                                                 <i class="bi-check custom-text-box-icon me-2"></i>
-                                                Semantic HTML
+                                                직장피부양자
+                                            </li>
+
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                직장가입자
+                                            </li>
+
+                                            <li class="custom-list-item d-flex">
+                                                <i class="bi-check custom-text-box-icon me-2"></i>
+                                                의료급여수급권자
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-12">
-                                    <div class="custom-text-box d-flex flex-wrap d-lg-block mb-lg-0">
-                                        <div class="counter-thumb"> 
-                                            <div class="d-flex">
-                                                <span class="counter-number" data-from="1" data-to="2009" data-speed="1000"></span>
-                                                <span class="counter-number-text"></span>
-                                            </div>
-
-                                            <span class="counter-text">Founded</span>
-                                        </div> 
-
-                                        <div class="counter-thumb mt-4"> 
-                                            <div class="d-flex">
-                                                <span class="counter-number" data-from="1" data-to="120" data-speed="1000"></span>
-                                                <span class="counter-number-text">B</span>
-                                            </div>
-
-                                            <span class="counter-text">Donations</span>
-                                        </div> 
+                                    <div class="custom-text-box d-flex flex-wrap d-lg-block mb-lg-0" id="middle-content-textbox3">
+										<h5 class="mb-3">2023년 예방 접종 통계</h5>
+										<div id="barchart_material"></div>
                                     </div>
                                 </div>
                             </div>
@@ -195,21 +213,21 @@
                     <div class="row">
 
                         <div class="col-lg-12 col-12 text-center mb-4">
-                            <h2 class="hansans">대충 의학상담</h2>
+                            <h2 class="hansans">의학상담</h2>
                         </div>
 
                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                             <div class="custom-block-wrap">
                                 <div class="custom-block">
-                                    <div class="custom-block-body">
-                                        <h5 class="mb-3">배가 고파요!</h5>
+                                    <div class="custom-block-body middle-content">
+                                        <h5 class="mb-3">움카민시럽과 코푸시럽의 차이...</h5>
 
-                                        <p>아침에 시리얼 먹고 왔는데도 배가 고파요</p>
+                                        <p>움카민시럽과 코푸시럽 차이가 뭔가요? 기침과 가래가 있는 증상에 둘 다 효능이...</p>
 										<hr>
                                         <div class="d-flex align-items-center my-2">
                                             <p class="mb-0">
                                                 <strong>작성일자: </strong>
-                                                날짜
+                                                2023-11-03
                                             </p>
 
                                             <p class="ms-auto mb-0">
@@ -219,7 +237,7 @@
                                         </div>
                                     </div>
 
-                                    <a href="donate.html" class="custom-btn btn">보러가기</a>
+                                    <a href="donate.html" class="custom-btn btn">Click</a>
                                 </div>
                             </div>
                         </div>
@@ -227,15 +245,15 @@
                         <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
                             <div class="custom-block-wrap">
                                 <div class="custom-block">
-                                    <div class="custom-block-body">
-                                        <h5 class="mb-3">배가 고파요!</h5>
+                                    <div class="custom-block-body middle-content">
+                                        <h5 class="mb-3">갑작스럽게 손가락과 팔꿈치에...</h5>
 
-                                        <p>아침에 시리얼 먹고 왔는데도 배가 고파요 아침에 시리얼 먹고 왔는데도 배가 고파요</p>
+                                        <p>토요일아침에 일어났는데 갑자기 약지손가락이랑 새끼손가락이 쥐나면서 팔꿈치...</p>
 										<hr>
                                         <div class="d-flex align-items-center my-2">
                                             <p class="mb-0">
                                                 <strong>작성일자: </strong>
-                                                날짜
+                                                2023-11-04
                                             </p>
 
                                             <p class="ms-auto mb-0">
@@ -245,7 +263,7 @@
                                         </div>
                                     </div>
 
-                                    <a href="donate.html" class="custom-btn btn">보러가기</a>
+                                    <a href="donate.html" class="custom-btn btn">Click</a>
                                 </div>
                             </div>
                         </div>
@@ -253,16 +271,16 @@
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="custom-block-wrap">
                                 <div class="custom-block">
-                                    <div class="custom-block-body">
-                                        <h5 class="mb-3">배가 고파요!</h5>
+                                    <div class="custom-block-body middle-content">
+                                        <h5 class="mb-3">맨발로 이물질을 밟아 발뒤꿈치가...</h5>
 
-                                        <p>이부분은 최대 2줄이 나오도록 설정 하자핮핮하잫자핮하잫자핮하ㅏㅈ핮하하</p>
+                                        <p>한시간전에 맨발로 이물질을 밟아서 발뒤꿈치가 아픈데 족저근막염으로 발전하...</p>
                                         <div>                                     
 											<hr>
 	                                        <div class="d-flex align-items-center my-2">
 	                                            <p class="mb-0">
 	                                                <strong>작성일자: </strong>
-	                                                날짜
+	                                                2023-11-05
 	                                            </p>
 	
 	                                            <p class="ms-auto mb-0">
@@ -273,7 +291,7 @@
                                         </div>
                                     </div>
 
-                                    <a href="donate.html" class="custom-btn btn">보러가기</a>
+                                    <a href="donate.html" class="custom-btn btn">Click</a>
                                 </div>
                             </div>
                         </div>
@@ -292,45 +310,16 @@
                             <div class="news-block">
                                 <div class="news-block-top">
                                     <a href="news-detail.html">
-                                        <img src="/apa/asset/images/news/medium-shot-volunteers-with-clothing-donations.jpg" class="news-image img-fluid" alt="">
+                                        <img src="/apa/asset/images/news/under-image.jpg" class="news-image img-fluid" alt="">
                                     </a>
 
                                     <div class="news-category-block">
                                         <a href="#" class="category-block-link">
-                                            Lifestyle,
-                                        </a>
-
-                                        <a href="#" class="category-block-link">
-                                            Clothing Donation
+                                            Reserve Your Health
                                         </a>
                                     </div>
                                 </div>
 
-                                <div class="news-block-info">
-                                    <div class="d-flex mt-2">
-                                        <div class="news-block-date">
-                                            <p>
-                                                <i class="bi-calendar4 custom-icon me-1"></i>
-                                                날짜
-                                            </p>
-                                        </div>
-
-                                        <div class="news-block-author mx-5">
-                                            <p>
-                                                <i class="bi-person custom-icon me-1"></i>
-                                                글쓴이 
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="news-block-title mb-2">
-                                        <h4><a href="news-detail.html" class="news-block-title-link hansans">의학 매거진 제목</a></h4>
-                                    </div>
-
-                                    <div class="news-block-body">
-                                        <p class="hansans">의학 매거진 내용</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -343,24 +332,24 @@
                                 </button>
                             </form>
 
-                            <h5 class="mt-5 mb-3 hansans">Recent news</h5>
+                            <h5 class="mt-5 mb-3 hansans">News</h5>
 
                             <div class="news-block news-block-two-col d-flex mt-4">
                                 <div class="news-block-two-col-image-wrap">
                                     <a href="news-detail.html">
-                                        <img src="/apa/asset/images/news/africa-humanitarian-aid-doctor.jpg" class="news-image img-fluid" alt="">
+                                        <img src="/apa/asset/images/news/news-image1.jpg" class="news-image img-fluid" alt="">
                                     </a>
                                 </div>
 
                                 <div class="news-block-two-col-info">
-                                    <div class="news-block-title mb-2">
-                                        <h6><a href="news-detail.html" class="news-block-title-link">Food donation area</a></h6>
+                                    <div class="news-block-title mb-2"><!-- megazineSeq = 58 -->
+                                        <h6><a href="news-detail.html" class="news-block-title-link">체중 변화 심한 당뇨환...</a></h6>
                                     </div>
 
                                     <div class="news-block-date">
                                         <p>
                                             <i class="bi-calendar4 custom-icon me-1"></i>
-                                            October 16, 2036
+                                            November 11, 2023
                                         </p>
                                     </div>
                                 </div>
@@ -369,19 +358,19 @@
                             <div class="news-block news-block-two-col d-flex mt-4">
                                 <div class="news-block-two-col-image-wrap">
                                     <a href="news-detail.html">
-                                        <img src="/apa/asset/images/news/close-up-happy-people-working-together.jpg" class="news-image img-fluid" alt="">
+                                        <img src="/apa/asset/images/news/news-image2.jpg" class="news-image img-fluid" alt="">
                                     </a>
                                 </div>
 
                                 <div class="news-block-two-col-info">
-                                    <div class="news-block-title mb-2">
-                                        <h6><a href="news-detail.html" class="news-block-title-link">Volunteering Clean</a></h6>
+                                    <div class="news-block-title mb-2"><!-- megazineSeq = 2 -->
+                                        <h6><a href="news-detail.html" class="news-block-title-link">미세먼지 장기간 노출...</a></h6>
                                     </div>
 
                                     <div class="news-block-date">
                                         <p>
                                             <i class="bi-calendar4 custom-icon me-1"></i>
-                                            October 24, 2036
+                                            October 24, 2023
                                         </p>
                                     </div>
                                 </div>
@@ -411,6 +400,25 @@
         </main>
 
         <%@ include file="/WEB-INF/views/inc/footer.jsp" %>
-        
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['', '청년', '중장년', '노년'],
+            ['2023', 200, 500, 800],
+          ]);
+
+          var options = {
+            bars: 'vertical' // Required for Material Bar Charts.
+          };
+
+          var chart = new google.charts.Bar(document.getElementById('barchart_material'));
+
+          chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+        </script>
     </body>
 </html>
