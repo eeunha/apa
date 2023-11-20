@@ -13,8 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.hospital.DgnsMediHistoryDTO;
 import com.apa.repository.hospital.DiagnosisDAO;
 
+/**
+ * 병원 - 내 진료 기능 중 진료내역서 페이지를 담당하는 클래스입니다.
+ * @author Eunha
+ *
+ */
 @WebServlet("/hospital/diagnosis/write-diagnosis.do")
 public class WriteDiagnosis extends HttpServlet {
+	/**
+	 * 진료내역서 페이지를 불러오는 메소드입니다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -32,12 +40,15 @@ public class WriteDiagnosis extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 
+	/**
+	 * 진료내역서에 작성된 내용을 저장하고 진료완료 처리를 하는 메소드입니다.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");
 
-		String mediSeq = req.getParameter("mediSeq");
+		String mediSeq = req.getParameter("mediSeq");	
 		String mediName = req.getParameter("mediName");
 		String mediCode = req.getParameter("mediCode");
 		String mediContent = req.getParameter("mediContent");

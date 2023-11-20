@@ -13,8 +13,17 @@ import org.json.simple.JSONObject;
 
 import com.apa.repository.hospital.DiagnosisDAO;
 
+/**
+ * 병원 - 내 진료 기능 중 환자를 호출하는 클래스입니다.
+ * @author Eunha
+ *
+ */
 @WebServlet("/hospital/diagnosis/call.do")
 public class Call extends HttpServlet {
+	
+	/**
+	 * 환자 호출 처리를 하고 결과를 반환하는 메소드입니다.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
