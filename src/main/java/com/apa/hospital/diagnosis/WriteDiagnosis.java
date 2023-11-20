@@ -72,6 +72,9 @@ public class WriteDiagnosis extends HttpServlet {
 		// 약 제조 상태 수정 update
 		String dispenseSeq = dao.getDispenseSeq(mediSeq); // 약 제조 번호 가져오기
 		
+//		resp.setCharacterEncoding("utf-8");
+//		resp.setContentType("text/html; charset=utf-8");
+
 		PrintWriter writer = resp.getWriter();
 
 		if (dispenseSeq != null) {

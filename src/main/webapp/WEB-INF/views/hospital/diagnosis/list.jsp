@@ -304,7 +304,7 @@ button {
 							<div
 								class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 								aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="/apa/hospital/info/view.do">
+								<a class="dropdown-item" href="#">
 									<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 내정보
 								</a>
 								<div class="dropdown-divider"></div>
@@ -504,7 +504,7 @@ button {
 					dataType: 'json',
 					success: function(result) {
 						if (result.result == 1) {
-							//alert('예약을 승인하였습니다.');
+							alert('예약을 승인하였습니다.');
 							
 							location.href='/apa/hospital/diagnosis/list.do';//목록 새로고침
 							
