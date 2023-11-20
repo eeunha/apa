@@ -366,7 +366,7 @@ public UserDTO get(String seq) {
 					+ "	WHEN R.childSeq IS NOT NULL THEN R.childSeq\r\n"
 					+ "	ELSE -1\r\n"
 					+ "END AS childSeq, \r\n"
-					+ "H.hospitalName, D.doctorName, R.treatmentDate, MH.mediName, RV.reviewSeq FROM tblMediHistory MH\r\n"
+					+ "H.hospitalName, D.doctorName, R.treatmentDate, MH.mediName, RV.reviewSeq, RD.reqDocumentSeq FROM tblMediHistory MH\r\n"
 					+ "INNER JOIN tblRegister R\r\n"
 					+ "	ON MH.mediSeq = R.mediSeq \r\n"
 					+ "INNER JOIN tblHospital H\r\n"
@@ -376,7 +376,9 @@ public UserDTO get(String seq) {
 					+ "INNER JOIN tblChild C\r\n"
 					+ "	ON C.userSeq = R.userSeq\r\n"
 					+ "LEFT OUTER JOIN tblReview RV\r\n"
-					+ "	ON RV.mediHistorySeq = mh.mediHistorySeq\r\n"
+					+ "	ON RV.mediHistorySeq = MH.mediHistorySeq\r\n"
+					+ "LEFT OUTER JOIN tblRequestDocument RD\r\n"
+					+ "	ON RD.mediHistorySeq = MH.mediHistorySeq\r\n"
 					+ "		WHERE R.userSeq = ? AND sysdate > R.treatmentDate\r\n"
 					+ "			ORDER BY R.treatmentDate DESC";
 			
@@ -391,6 +393,7 @@ public UserDTO get(String seq) {
 				
 				MediHistoryDTO dto = new MediHistoryDTO();
 				
+				dto.setReqDocumentSeq(rs.getString("reqDocumentSeq"));
 				dto.setReviewSeq(rs.getString("reviewSeq"));
 				dto.setMediHistorySeq(rs.getString("mediHistorySeq"));
 				dto.setHospitalName(rs.getString("hospitalName"));
