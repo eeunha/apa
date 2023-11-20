@@ -260,13 +260,13 @@ public UserDTO get(String seq) {
 	public int editChild(HashMap<String, String> map) {
 
 		try {
-			String sql = "UPDATE tblChild SET childName = ?, childSSN = ?, childTel = ? WHERE childSeq = ?";
+			String sql = "UPDATE tblChild SET childName = ?, childTel = ? WHERE childSeq = ?";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, map.get("name"));
-			pstat.setString(2, map.get("ssn"));
-			pstat.setString(3, map.get("tel"));
-			pstat.setString(4, map.get("childSeq"));
+			//pstat.setString(2, map.get("ssn"));
+			pstat.setString(2, map.get("tel"));
+			pstat.setString(3, map.get("childSeq"));
 			
 			return pstat.executeUpdate();
 

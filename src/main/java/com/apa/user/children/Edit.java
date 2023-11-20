@@ -28,7 +28,7 @@ public class Edit extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String name = req.getParameter("name");
-		String ssn = req.getParameter("ssn");
+		//String ssn = req.getParameter("ssn");
 		String tel = req.getParameter("tel");
 		String child = req.getParameter("child");
 		String childSeq = req.getParameter("childSeq");
@@ -39,7 +39,7 @@ public class Edit extends HttpServlet {
 		HashMap<String,String> map = new HashMap<String,String>();
 		
 		map.put("name", name);
-		map.put("ssn", ssn);
+		//map.put("ssn", ssn);
 		map.put("tel", tel);
 		map.put("child", child);
 		map.put("childSeq", childSeq);
