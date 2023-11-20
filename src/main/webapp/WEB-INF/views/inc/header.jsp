@@ -48,9 +48,9 @@
             <div class="container">
                 <a class="navbar-brand" href="/apa/main.do">
                     <img src="/apa/asset/images/logo.png" class="logo img-fluid" alt="Kind Heart Charity">
-                    <span style="font-size: 2rem;">
-                        <div style="padding-top: 20px;" class="hansans">아파! 어디가?</div>
-                        <small style="padding-top: 37px; padding-left: 10px; font-size: 1rem;">병원을가</small>
+                    <span style="font-size: 2rem;display:grid;">
+                        <div style="padding-top: 10px;height:30px;" class="hansans">아파! 어디가?</div>
+                        <small style="font-size: 1rem;">Reserve Your Health</small>
                     </span>
                 </a>
 
@@ -60,42 +60,69 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <!-- <a class="nav-link  -scroll" href="#top"></a> -->
-                        </li>
-
-                        <li class="nav-item">
-                            <!-- <a class="nav-link click-scroll" href="#section_2">의학상담</a> -->
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_3">병원/약국 찾기</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_4">의학 상담</a>
-                        </li>
-
                         <li class="nav-item dropdown">
-                            <a class="nav-link click-scroll dropdown-toggle" href="#section_5" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">의학 정보</a>
+                            <a class="nav-link click-scroll dropdown-toggle" href="/apa/find/list.do">병원/약국 찾기</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="news-detail.html">의학 매거진</a></li>
-                                <li><a class="dropdown-item" href="news-detail.html">질병백과</a></li>
-                                <li><a class="dropdown-item" href="news-detail.html">셀프 테스트</a></li>
+                                <li><a class="dropdown-item" href="/apa/find/list.do">병원 찾기</a></li>
+                                <li><a class="dropdown-item" href="/apa/find/pharmacylist.do">약국 찾기</a></li>
                             </ul>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_6">커뮤니티</a>
+                            <a class="nav-link click-scroll" href="/apa/advice/list.do">의학 상담</a>
                         </li>
 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link click-scroll dropdown-toggle" href="/apa/magazine/list.do">의학 정보</a>
+
+                            <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                                <li><a class="dropdown-item" href="/apa/magazine/list.do">의학 매거진</a></li>
+                                <li><a class="dropdown-item" href="/apa/wikilist/list.do">질병백과</a></li>
+                                <li><a class="dropdown-item" href="/apa/selftest/list.do">셀프 테스트</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="/apa/community/list.do">커뮤니티</a>
+                        </li>
+
+                        <c:if test="${empty pw && empty id}">
                         <li class="nav-item ms-3">
                             <a class="nav-link custom-btn custom-border-btn btn" href="/apa/user/login.do">로그인</a>
                         </li>
                         <li class="nav-item ms-3">
-                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/hospital/diagnosis/list.do">회원가입</a>
+                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/user/clickregister.do">회원가입</a>
                         </li>
+                        </c:if>
+                        <c:if test="${not empty pw && not empty id}">
+                        	<c:if test="${lv == 1}">
+		                        <li class="nav-item ms-3">
+		                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/user/info/view.do?seq=${seq}">마이페이지</a>
+		                        </li>
+                        	</c:if>
+                        	<c:if test="${lv == 2}">
+		                        <li class="nav-item ms-3">
+		                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/hospital/info/view.do?id=${id}">마이페이지</a>
+		                        </li>
+		                        <li class="nav-item ms-3">
+		                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/hospital/diagnosis/list.do?id=${id}">내 진료</a>
+		                        </li>
+                        	</c:if>
+                        	<c:if test="${lv == 3}">
+		                        <li class="nav-item ms-3">
+		                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/pharmacy/info/view.do?id=${id}">마이페이지</a>
+		                        </li>
+                        	</c:if>
+                        	<c:if test="${lv == 0}">
+		                        <li class="nav-item ms-3">
+		                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/admin/info/view.do?id=${id}">마이페이지</a>
+		                        </li>
+                        	</c:if>
+                        <li class="nav-item ms-3">
+                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/user/logout.do">로그아웃</a>
+                        </li>
+                        </c:if>
                     </ul>
                 </div>
             </div>

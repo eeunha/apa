@@ -36,7 +36,6 @@ public class WriteDiagnosis extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");
-		
 
 		String mediSeq = req.getParameter("mediSeq");
 		String mediName = req.getParameter("mediName");
@@ -72,17 +71,23 @@ public class WriteDiagnosis extends HttpServlet {
 
 		// 약 제조 상태 수정 update
 		String dispenseSeq = dao.getDispenseSeq(mediSeq); // 약 제조 번호 가져오기
-
-		int updateDispenseResult = dao.updateDispenseStatus(dispenseSeq); // 상태 수정하기
 		
-		resp.setContentType("text/html; charset=UTF-8");
 		PrintWriter writer = resp.getWriter();
-		if (updateDispenseResult == 1) {
-			writer.print("<script>alert('진료를 완료합니다.');location.href='/apa/hospital/diagnosis/list.do';</script>");
-//			resp.sendRedirect("/apa/hospital/diagnosis/list.do");
+
+		if (dispenseSeq != null) {
+			int updateDispenseResult = dao.updateDispenseStatus(dispenseSeq); // 상태 수정하기
+			
+			if (updateDispenseResult == 1) {
+				resp.sendRedirect("/apa/hospital/diagnosis/list.do");
+			} else {
+				writer.print("<script>alert('failed');history.back();</script>");
+			}
 		} else {
-			writer.print("<script>alert('failed');history.back();</script>");
+			resp.sendRedirect("/apa/hospital/diagnosis/list.do");			
 		}
+		
+		
+
 		writer.close();
 	}
 }

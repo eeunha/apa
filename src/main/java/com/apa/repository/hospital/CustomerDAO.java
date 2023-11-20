@@ -7,8 +7,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.apa.DBUtil;
 import com.apa.model.hospital.PatientDTO;
-import com.apa.repository.DBUtil;
+/*import com.apa.repository.DBUtil;*/
+
 
 public class CustomerDAO {
 	private Connection conn;
@@ -17,9 +19,9 @@ public class CustomerDAO {
 	private ResultSet rs;
 
 	public CustomerDAO() {
-//		conn = DBUtil.open(); 
+		conn = DBUtil.open(); 
 
-		conn = DBUtil.open("localhost", "apa_test_2", "java1234");
+		/* conn = DBUtil.open("localhost", "apa_test_2", "java1234"); */
 	}
 
 	public ArrayList<PatientDTO> getPatientList(String hospitalId) {

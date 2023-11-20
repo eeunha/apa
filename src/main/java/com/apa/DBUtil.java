@@ -7,8 +7,16 @@ public class DBUtil {
 	private static Connection conn;
 	
 	public static Connection open() {
-		String url = "jdbc:oracle:thin:@192.168.10.53:1521:xe";
-		String id = "apa";
+		//192.168.10.53
+		//apa
+		
+		//집
+		//user_lee
+		
+		//학원
+		//team
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String id = "hospital";
 		String pw = "java1234";
 		
 		try {

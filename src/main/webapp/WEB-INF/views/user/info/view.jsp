@@ -6,7 +6,102 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/assetmypage.jsp" %>
 <style>
+
+	input {
+		border: 1px solid #c6c6c6;
+	    text-align: center;
+	    border-radius: 5px;
+	    outline-color: #1cc88a;
+	}
+
+	#message {
+		width: 250px;
+		border: 0;
+		text-align: left;
+		font-weight: bold;
+		margin-left: 10px;
+		background-color: white;
+	}
+
+	#id {
+		cursor: not-allowed;
+		background-color: #d3d3d3;
+	}
+
+	#ssn1 {
+		cursor: not-allowed;
+		background-color: #d3d3d3;
+	}
 	
+	#ssn2 {
+		cursor: not-allowed;	
+		background-color: #d3d3d3;
+	}
+
+	#address {
+		width: 25em;
+	}
+
+	#my-info {
+		display: flex;
+		align-items: center;
+    	margin-bottom: 30px;
+    	justify-content: flex-start;
+	}
+
+	#my-info-name {
+    	color: #666666;
+		height: 400px;
+		display: grid;
+		font-weight: bold;
+		align-items: center;
+		margin-right: 100px;
+	}
+
+	.my-info-name-child {
+		height: 20px;
+	}
+
+	.my-info-name-child:last-child {
+		margin-bottom: 0px;
+	}
+	
+	#my-info-input {
+		height: 400px;
+		display: grid;
+		align-items: center;
+	}
+
+	.my-info-input-child {
+	}
+
+	#info-update-btn {
+		text-align: center;
+	}
+	
+	#update-btn {
+		border: 0;
+		width: 7em;
+		height: 2em;
+		color: white;
+		font-size: 1em;
+		border-radius: 0.35rem;
+		background-color: #5BC1AC;
+	}
+
+	#delete-user {
+		border: 0;
+		color: #CCC;
+		float: right;
+		outline: none;
+		font-size: small;
+		background-color: white;
+	}
+
+	#delete-user:hover {
+		text-decoration: none;
+	}
+
 </style>
 <body id="page-top">
 
@@ -17,7 +112,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index2.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/apa/main.do">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -26,20 +121,20 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0" >
-
+			
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index2.html" style="">
+                <a class="nav-link" href="/apa/user/info/view.do?seq=${dto.userSeq}" style="">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>마이페이지 메인 </span></a>
-            </li>
-
+                    <span>마이페이지</span></a>
+            </li>			
+			
             <!-- Divider -->
             <hr class="sidebar-divider">
             
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+            <li class="nav-item active">
+                <a class="nav-link collapsed" href="/apa/user/info/view.do?seq=${dto.userSeq}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>내 정보</span>
                 </a>
@@ -47,57 +142,50 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>영업 시간 관리</span>
+                <a class="nav-link collapsed" href="/apa/user/children/view.do?seq=${dto.userSeq}">
+                    <i class="fas fa-fw fa-baby"></i>
+                    <span>자녀 관리</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">휴무일 및 영업 시간: </h6>
-                        <a class="collapse-item" href="#">휴무일 수정</a>
-                        <a class="collapse-item" href="#">영업 시간 수정</a>
-                    </div>
-                </div>
             </li>
             
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>의사 관리</span>
+                <a class="nav-link collapsed" href="/apa/user/treatment/info.do?seq=${dto.userSeq}">
+                    <i class="fas fa-fw fa-stethoscope"></i>
+                    <span>진료 정보</span>
                 </a>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>일단은</span></a>
+                <a class="nav-link" href="/apa/user/favorite/list.do?seq=${dto.userSeq}">
+                    <i class="fas fa-fw fa-hospital-alt"></i>
+                    <span>즐겨찾기 병원</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>그냥둠</span></a>
+                <a class="nav-link" href="/apa/user/storage/list.do?seq=${dto.userSeq}">
+                    <i class="fas fa-fw fa-inbox"></i>
+                    <span>보관함</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="/apa/user/review/list.do?seq=${dto.userSeq}">
+                    <i class="fas fa-fw fa-thumbs-up"></i>
+                    <span>리뷰 관리</span>
+                </a>
+            </li>			
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#">
+                    <i class="fas fa-fw fa-file-alt"></i>
+                    <span>문진표 작성</span>
+                </a>
+            </li>
+            
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="/apa/asset/images/undraw_rocket.svg" alt="...">
-                <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-            </div>
 
         </ul>
         <!-- End of Sidebar -->
@@ -118,7 +206,7 @@
 
 					<!-- Page Heading -->
 	                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	                	<h1 class="h3 mb-0 text-gray-800 hansans" style="padding-top: 28px;">마이페이지 메인</h1>
+	                	<h1 class="h3 mb-0 text-gray-800 hansans" style="padding-top: 28px;">내 정보 관리</h1>
 	                </div>
 	                    
                     <!-- Topbar Navbar -->
@@ -131,7 +219,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">-----님</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${dto.userName}(${dto.userId})님</span>
                                 <img class="img-profile rounded-circle"
                                     src="/apa/asset/images/undraw_profile.svg">
                             </a>
@@ -158,371 +246,197 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Content Row -->
 
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
+                        <div class="col-xl-12">
+                            <div class="card shadow mb-5">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                    <h5 class="m-0 font-weight-bold text-primary">내 정보</h5>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                    </div>
+                                	<form name="form" method="POST" action="/apa/user/info/edit.do" onsubmit="return checkAll()">
+									<div id="my-info">
+	                                    <div id="my-info-name">
+	                              	    	<div class="my-info-name-child">이름</div>                              	   		
+	                              	    	<div class="my-info-name-child">아이디</div>                              	   		
+	                              	    	<div class="my-info-name-child">비밀번호</div>                              	   		
+	                              	    	<div class="my-info-name-child">비밀번호 확인</div>                              	   		
+	                              	    	<div class="my-info-name-child">주민등록번호</div>                              	   		
+	                              	    	<div class="my-info-name-child">연락처</div>                              	   		
+	                              	    	<div class="my-info-name-child">이메일</div>                              	   		
+	                              	    	<div class="my-info-name-child">주소</div>                              	   		
+	                              	    	<div class="my-info-name-child">현재 비밀번호</div>                              	   		
+	                                    </div>
+	                                    <div id="my-info-input">
+	                              	    	<div class="my-info-input-child"><input type="text" name="name" value="${dto.userName}" id="name" maxlength="10"></div>                              	   		
+	                              	    	<div class="my-info-input-child"><input type="text" value="${dto.userId}" id="id" disabled ></div>                              	   		
+	                              	    	<div class="my-info-input-child"><input type="password" name="pw" value="${dto.userPw}" id="pw" maxlength="16"></div>                              	   		
+	                              	    	<div class="my-info-input-child"><input type="password" name="pw-confirm" id="pw-confirm" maxlength="16s"><input type="text" id="message" disabled></div>                              	   		
+	                              	    	<div class="my-info-input-child">
+	                              	    		<input type="text" value="${dto.userSSNs}" size="7" id="ssn1" disabled> -
+	                              	    		<input type="text" value="${maskingSSN}" size="9" id="ssn2" disabled>
+	                              	    	</div>                              	   		
+	                              	    	<div class="my-info-input-child">
+	                              	    		<input type="text" name="tel1" value="${dto.userTels}" size="4" maxlength="3"> - 
+	                              	    		<input type="text" name="tel2" value="${dto.userTelm}" size="4" maxlength="4"> - 
+	                              	    		<input type="text" name="tel3" value="${dto.userTele}" size="4" maxlength="4">
+	                              	    	</div>                              	   		
+	                              	    	<div class="my-info-input-child"><input type="text" name="email" value="${dto.userEmail}" required></div>                              	   		
+	                              	    	<div class="my-info-input-child"><input type="text" name="address" value="${dto.userAddress}" id="address" required  maxlength="70"></div>                              	   		
+	                              	    	<div class="my-info-input-child"><input type="password" name="inputCurrentPw" id="inputCurrentPw" required maxlength="16"></div>                              	   		
+	                                    </div>
+									</div>
+									<input type="hidden" name="id" value="${dto.userId}" id="id">
+									<input type="hidden" name="currentPw" value="${dto.userPw}" id="currentPw">
+									<input type="hidden" name="ssn1" value="${dto.userSSNs}" size="7" id="ssn1">
+	                             	<input type="hidden" name="ssn2" value="${dto.userSSNe}" size="9" id="ssn2">
+									<input type="hidden" name="seq" value="${dto.userSeq}">
+	                                <div id="info-update-btn">
+	                                	<button id="update-btn">수정하기</button>
+	                                </div>
+                                	</form>
+	                                
+	                                <form method="GET" action="/apa/user/info/edit.do" id="delete-form">
+	                                	<button id="delete-user" type="button">회원 탈퇴</button>
+										<input type="hidden" name="seq" value="${dto.userSeq}">
+	                                </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">Server Migration <span
-                                            class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Sales Tracking <span
-                                            class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Customer Database <span
-                                            class="float-right">60%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Payout Details <span
-                                            class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">Account Setup <span
-                                            class="float-right">Complete!</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Color System -->
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-primary text-white shadow">
-                                        <div class="card-body">
-                                            Primary
-                                            <div class="text-white-50 small">#4e73df</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
-                                        <div class="card-body">
-                                            Info
-                                            <div class="text-white-50 small">#36b9cc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Warning
-                                            <div class="text-white-50 small">#f6c23e</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Danger
-                                            <div class="text-white-50 small">#e74a3b</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-secondary text-white shadow">
-                                        <div class="card-body">
-                                            Secondary
-                                            <div class="text-white-50 small">#858796</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-light text-black shadow">
-                                        <div class="card-body">
-                                            Light
-                                            <div class="text-black-50 small">#f8f9fc</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card bg-dark text-white shadow">
-                                        <div class="card-body">
-                                            Dark
-                                            <div class="text-white-50 small">#5a5c69</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 mb-4">
-
-                            <!-- Illustrations -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="/apa/asset/images/undraw_posting_photo.svg" alt="...">
-                                    </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
-                                </div>
-                            </div>
-
-                            <!-- Approach -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
+            	</div>
             </div>
+            
             <!-- End of Main Content -->
+			<%@ include file="/WEB-INF/views/inc/endofmaincontent.jsp" %>
+		
+		
+		<script>
+			// HTML 요소를 찾아 변수에 저장합니다.
+			const pw = document.getElementById('pw');
+			const pwConfirm = document.getElementById('pw-confirm');
+			const message = document.getElementById('message');
+			const btn = document.getElementById('update-btn');
+			const currentPw = document.getElementById('currentPw');
+			
+			// 비밀번호와 비밀번호 확인이 일치하는지 검사하는 함수를 만듭니다.
+			function checkPassword() {
+				
+				if (pwConfirm.value.length == 0) {
+			        message.value = '';
+			        btn.type = "submit";			    	
+			    } else if (pw.value != pwConfirm.value) {
+			        message.value = '비밀번호가 일치하지 않습니다.';
+			        message.style.color = "tomato";
+			        btn.type = "button";
+			    } else {
+			        message.value = '비밀번호가 일치합니다.';
+			        message.style.color = "#5BC1AC";
+			        btn.type = "submit";
+			    }
+			}
+	
+			function changePassword() {
+				
+				if (pw.value != currentPw.value) {
+						
+					pwConfirm.setAttribute('required', '');
+					
+				} else if (pw.value == currentPw.value) {
+					
+					pwConfirm.removeAttribute('required');					
+					
+				}
+				
+			}
+			
+			// 이벤트 리스너를 추가하여 'pw-confirm'의 값이 변경될 때마다 함수를 실행합니다.
+			pwConfirm.addEventListener('keyup', checkPassword);
+			pw.addEventListener('keyup', changePassword);
+			
+			
+			document.getElementById('delete-user').addEventListener('click', function() {
+			    if(confirm('정말로 탈퇴하시겠습니까?')) {
+			        // 사용자가 확인을 선택한 경우, 폼을 제출합니다.
+			        document.getElementById('delete-form').submit();
+			    } else {
+			        // 사용자가 취소를 선택한 경우, 이전 페이지로 돌아갑니다.
+			    }
+			});
+			
+			
+			function checkAll(){
+			    if (!validatePassword(form.id.value, form.pw.value, form['pw-confirm'].value)){
+			        return false;
+			    } else if(!checkMail(form.email.value)){
+			        return false;
+			    } else if(!checkName(form.name.value)){
+			        return false;
+			    }
+			    return true;
+			}
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+			function checkExistData(value, dataName){
+			    if(value == ""){
+			        alert(dataName + "입력해주세요!");
+			        return false;
+			    }
+			    return true;
+			}
 
-        </div>
-        <!-- End of Content Wrapper -->
+			function validatePassword(id, pw, pwchecked) {
+			    if(!checkExistData(pw, "비밀번호를"))
+			        return false;
+			    var pwRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+			    if(!pwRegExp.test(pw)){
+			        alert("비밀번호는 영문 대소문자와 특수문자, 숫자 4~12자리로 입력해야합니다!");
+			        form.pw.value = "";
+			        form.pw.focus();
+			        return false;
+			    }
 
-    </div>
-    <!-- End of Page Wrapper -->
+			    if(id == pw){
+			        alert("아이디와 비밀번호는 같을 수 없습니다!");
+			        form.pw.value = "";
+			        form['pw-confirm'].value = "";
+			        form['pw-confirm'].focus();
+			        return false;
+			    }
+			    return true;
+			}
+			
+	        function checkMail(email){
+	            if(!checkExistData(email, "이메일을"))
+	                return false;
+	            var emailRegExp = /^[A-Za-z0-9_]+[A-Za-z0-9]*[@]{1}[A-Za-z0-9]+[A-Za-z0-9]*[.]{1}[A-Za-z]{1,3}$/;
+	            if(!emailRegExp.test(email)){
+	                alert("이메일 형식이 올바르지 않습니다!");
+	                form.email.value = "";
+	                form.email.focus();
+	                return false;
+	            }
+	            return true;
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+	        }
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+	        function checkName(name){
+	            if(!checkExistData(name, "이름을"))
+	                return false;
+
+	            var nameRegExp = /^[가-힣]{2,10}$/;
+	            if(!nameRegExp.test(name)){
+	                alert("이름이 올바르지 않습니다.");
+	                return false;
+	            }
+	            return true;
+	        }
+			
+		</script>
 </body>
 </html>

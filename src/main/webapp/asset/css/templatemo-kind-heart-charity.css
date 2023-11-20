@@ -7,7 +7,6 @@ https://templatemo.com/tm-581-kind-heart-charity
 */
 
 
-
 @font-face {
     font-family: 'Metropolis';
     src: url('../fonts/Metropolis/Metropolis-Regular.woff2') format('woff2'),
@@ -201,6 +200,9 @@ strong {
 /*---------------------------------------
   CUSTOM BLOCK               
 -----------------------------------------*/
+.custom-block {
+	
+}
 .custom-block-wrap {
   background: var(--white-color);
   border-radius: var(--border-radius-medium);

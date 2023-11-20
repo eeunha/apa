@@ -10,7 +10,6 @@
 .sidebar-clicked {
 	background-color: #dddfeb;
 }
-
 .list {
 	width: 100%;
 }
@@ -68,7 +67,7 @@
 }
 
 .list th:nth-child(5) {
-	width: 500px;
+	width: auto;
 }
 
 .list th:nth-child(6) {

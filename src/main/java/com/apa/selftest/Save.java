@@ -14,7 +14,7 @@ public class Save extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/selftest/save.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/self-test/save.jsp");
 		dispatcher.forward(req, resp);
 	}
 }
