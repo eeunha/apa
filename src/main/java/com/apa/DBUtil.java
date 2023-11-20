@@ -15,8 +15,8 @@ public class DBUtil {
 		
 		//학원
 		//team
-		String url = "jdbc:oracle:thin:@192.168.10.53:1521:xe";
-		String id = "apa";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String id = "hospital";
 		String pw = "java1234";
 		
 		try {

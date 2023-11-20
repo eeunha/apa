@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 import com.apa.DBUtil;
 import com.apa.model.AdminAfterDTO;
-import com.apa.model.AdminHospitalDTO;
 
 public class AdminAfterDAO {
 		

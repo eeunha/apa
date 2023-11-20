@@ -7,128 +7,80 @@
     <meta charset="UTF-8">
     <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
     <style>
-        /*input {*/
-        /*    border: 1px solid #c6c6c6;*/
-        /*    text-align: center;*/
-        /*    border-radius: 5px;*/
-        /*    outline-color: #1cc88a;*/
-        /*}*/
-
-        /*#main {*/
-        /*    font-size: 12px;*/
-        /*    line-height: 2.1;*/
-        /*}*/
-
-        /*#address {*/
-        /*    width: 25em;*/
-        /*}*/
-
-        /*#my-info {*/
-        /*    display: flex;*/
-        /*    align-items: center;*/
-        /*    margin-bottom: 30px;*/
-        /*    justify-content: flex-start;*/
-        /*}*/
-
-        /*#my-info-input {*/
-        /*    height: 400px;*/
-        /*    display: grid;*/
-        /*    align-items: center;*/
-        /*}*/
-
-        /*#info-register-btn {*/
-        /*    text-align: center;*/
-        /*}*/
-
-        /*#register-btn, #add-btn {*/
-        /*    border: 0;*/
-        /*    width: 7em;*/
-        /*    height: 2em;*/
-        /*    color: white;*/
-        /*    font-size: 1em;*/
-        /*    border-radius: 0.35rem;*/
-        /*    background-color: #5BC1AC;*/
-        /*}*/
-
-        /*#normal {*/
-        /*    color: #5bc1ac;*/
-        /*}*/
-
-        /*.col-xl-12 {*/
-        /*    padding-left: 100px;*/
-        /*    padding-right: 100px;*/
-        /*    padding-top: 100px;*/
-        /*}*/
-
-        /*.card-body {*/
-        /*    overflow: auto;*/
-        /*}*/
-
-        h1 {
+        input {
+            border: 1px solid #c6c6c6;
             text-align: center;
-            font-size: 2.5em;
-            color: #5bc1ac;
+            border-radius: 5px;
+            outline-color: #1cc88a;
+        }
+
+        #address {
+            width: 25em;
+        }
+
+        #my-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            justify-content: flex-start;
+        }
+
+        #my-info-name {
+            color: #666666;
+            height: 400px;
+            display: grid;
+            font-weight: bold;
+            align-items: center;
+            margin-right: 100px;
+            padding-left: 20px;
+        }
+
+        .my-info-name-child {
+            height: 20px;
+        }
+
+        .my-info-name-child:last-child {
+            margin-bottom: 0px;
+        }
+
+        #my-info-input {
+            height: 400px;
+            display: grid;
+            align-items: center;
         }
 
         .my-info-input-child {
-            margin-bottom: 10px;
-        }
-        .my-info-input-child label {
-            display: inline-block;
-            width: 100px;
-            text-align: right;
-            margin-right: 10px;
-        }
-        .my-info-input-child input {
-            width: 140px; /* 상자 크기를 30% 줄입니다 */
-            height: 30px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            padding: 5px;
-        }
-        #info-add-btn{
-
-            margin-top: 20px;
         }
 
         #info-register-btn {
             text-align: center;
-            margin-top: 20px;
-        }
-        #add-btn {
-            width: 110px;
-            height: 30px;
-            font-size: 16px;
-            border-radius: 10px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            background-color: #5bc1ac;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-left: 15px;
         }
 
         #register-btn {
-            width: 300px;
-            height: 50px;
-            font-size: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            background-color: #5bc1ac;
+            border: 0;
+            width: 7em;
+            height: 2em;
             color: white;
-            border: none;
-            cursor: pointer;
-        }
-        #add-btn:hover, #register-btn:hover {
-            background-color: white;
-            color: #5bc1ac;
+            font-size: 1em;
+            border-radius: 0.35rem;
+            background-color: #5BC1AC;
         }
 
-        .col-xl-12{
-            width: 50%;
-            margin-left: 30%;
-            margin-top: 5%;
-            margin-bottom: 5%;
+        .mb-5{
+            margin-bottom: 3rem!important;
+            margin-top: 3rem!important;
+        }
+
+        .h3, h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+            padding-top: 40px;
+        }
+        @media (min-width: 1200px)
+        .h3, h3 {
+            font-size: 2rem;
         }
     </style>
 </head>
@@ -136,62 +88,65 @@
 <!-- /user/register.jsp -->
 <%@ include file="/WEB-INF/views/inc/header.jsp" %>
 
-<main id="main">
-    <div class="container-fluid">
+<div id="wrapper">
+    <main id="main">
+        <div class="container-fluid">
 
-        <!-- Content Row -->
-
-        <div class="row">
-            <!-- Area Chart -->
-            <div class="col-xl-12">
-                <div class="card shadow mb-5">
-                    <!-- Card Header - Dropdown -->
-                    <div id="register_title"
-                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h5 id="normal">일반 <small>회원가입</small></h5>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <form name="form" method="POST" action="/apa/user/userregister.do" onsubmit="return checkAll()">
-                            <div id="my-info">
-                                <div id="my-info-input">
-                                    <div class="my-info-input-child">이름 <input type="text" name="name"></div>
-                                    <div class="my-info-input-child">아이디 <input type="text" name="id"></div>
-                                    <div class="my-info-input-child">비밀번호 <input type="password" name="pw"></div>
-                                    <div class="my-info-input-child">비밀번호 확인 <input type="password" name="pwchecked">
+            <!-- Content Row -->
+            <div class="row">
+                <!-- Area Chart -->
+                <div class="col-xl-12">
+                    <div class="card shadow mb-5" style="margin: 0 auto; width: 80%;">
+                        <!-- Card Header - Dropdown -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 class="h3 mb-0 text-gray-800 hansans" style="margin-left: 40px;">회원가입</h1>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <form name="form" method="POST" action="/apa/user/userregister.do" onsubmit="return checkAll()">
+                                <div id="my-info">
+                                    <div id="my-info-name">
+                                        <div class="my-info-name-child">이름</div>
+                                        <div class="my-info-name-child">아이디</div>
+                                        <div class="my-info-name-child">비밀번호</div>
+                                        <div class="my-info-name-child">비밀번호 확인</div>
+                                        <div class="my-info-name-child">주민등록번호</div>
+                                        <div class="my-info-name-child">연락처</div>
+                                        <div class="my-info-name-child">이메일</div>
+                                        <div class="my-info-name-child">주소</div>
+                                        <div class="my-info-name-child">개인정보 이용동의</div>
                                     </div>
-                                    <div class="my-info-input-child"> 주민등록번호
-                                        <input type="text" size="7" id="ssn1" name="ssn1"> -
-                                        <input type="password" size="9" id="ssn2" name="ssn2">
+                                    <div id="my-info-input">
+                                    <div class="my-info-input-child"><input type="text" name="name" maxlength="10"></div>
+                                    <div class="my-info-input-child"><input type="text" name="id" maxlength="12"></div>
+                                    <div class="my-info-input-child"><input type="password" name="pw" maxlength="16"></div>
+                                    <div class="my-info-input-child"><input type="password" name="pwchecked" maxlength="16"></div>
+                                    <div class="my-info-input-child">
+                                        <input type="text" size="7" id="ssn1" name="ssn1" maxlength="6"> -
+                                        <input type="password" size="9" id="ssn2" name="ssn2" maxlength="7">
                                     </div>
-                                    <div class="my-info-input-child">연락처
-                                        <input type="text" name="tel1" size="4"> -
-                                        <input type="text" name="tel2" size="4"> -
-                                        <input type="text" name="tel3" size="4">
+                                    <div class="my-info-input-child">
+                                        <input type="text" name="tel1" size="4" maxlength="3"> -
+                                        <input type="text" name="tel2" size="4" maxlength="4"> -
+                                        <input type="text" name="tel3" size="4" maxlength="4">
                                     </div>
-                                    <div class="my-info-input-child">이메일 <input type="email" name="email" required>
-                                    </div>
-                                    <div class="my-info-input-child">주소 <input type="text" name="address" id="address"
-                                                                               required></div>
-                                    <div id="info-add-btn">
-                                        <input type="button" id="add-btn" value="자녀등록">
-                                    </div>
-                                    <div class="my-info-input-child">개인정보 이용동의 <input type="checkbox" name="info"
-                                                                                     id="info" required></div>
+                                    <div class="my-info-input-child"><input type="email" name="email" required></div>
+                                    <div class="my-info-input-child"><input type="text" name="address" id="address" required></div>
+                                    <div class="my-info-input-child"><input type="checkbox" name="info" id="info" required></div>
 
                                 </div>
                             </div>
                             <div id="info-register-btn">
                                 <input type="submit" id="register-btn" value="가입하기">
                             </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
+</main>
+</div>
     <%@ include file="/WEB-INF/views/inc/footer.jsp" %>
 
     <script>

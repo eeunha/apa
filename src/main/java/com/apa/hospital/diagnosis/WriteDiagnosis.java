@@ -71,16 +71,23 @@ public class WriteDiagnosis extends HttpServlet {
 
 		// 약 제조 상태 수정 update
 		String dispenseSeq = dao.getDispenseSeq(mediSeq); // 약 제조 번호 가져오기
+		
+		PrintWriter writer = resp.getWriter();
 
-		int updateDispenseResult = dao.updateDispenseStatus(dispenseSeq); // 상태 수정하기
+		if (dispenseSeq != null) {
+			int updateDispenseResult = dao.updateDispenseStatus(dispenseSeq); // 상태 수정하기
+			
+			if (updateDispenseResult == 1) {
+				resp.sendRedirect("/apa/hospital/diagnosis/list.do");
+			} else {
+				writer.print("<script>alert('failed');history.back();</script>");
+			}
+		} else {
+			resp.sendRedirect("/apa/hospital/diagnosis/list.do");			
+		}
+		
 		
 
-		PrintWriter writer = resp.getWriter();
-		if (updateDispenseResult == 1) {
-			resp.sendRedirect("/apa/hospital/diagnosis/list.do");
-		} else {
-			writer.print("<script>alert('failed');history.back();</script>");
-		}
 		writer.close();
 	}
 }

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<title>Kind Heart Charity - Free Bootstrap 5.2.2 CSS Template</title>
+<title>아파! 어디가?</title>
 <!-- CSS FILES -->        
+<link rel="shortcut icon" href="/apa/asset/images/logo.png">
 <link href="/apa/asset/css/bootstrap.min.css" rel="stylesheet">
 <link href="/apa/asset/css/bootstrap-icons.css" rel="stylesheet">
 <link href="/apa/asset/css/templatemo-kind-heart-charity.css" rel="stylesheet">

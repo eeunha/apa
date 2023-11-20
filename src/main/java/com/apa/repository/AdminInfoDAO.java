@@ -7,7 +7,6 @@ import java.sql.Statement;
 
 import com.apa.DBUtil;
 import com.apa.model.AdminInfoDTO;
-import com.apa.model.AdminUserDTO;
 
 public class AdminInfoDAO {
 	

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.apa.DBUtil;
-import com.apa.model.AdminReportDTO;
 import com.apa.model.AdminUserDTO;
 
 public class AdminUserDAO {

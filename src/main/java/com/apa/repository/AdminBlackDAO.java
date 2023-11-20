@@ -9,7 +9,6 @@ import java.util.HashMap;
 
 import com.apa.DBUtil;
 import com.apa.model.AdminBlackDTO;
-import com.apa.model.AdminUserDTO;
 
 public class AdminBlackDAO {
 

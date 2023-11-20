@@ -238,7 +238,7 @@ table {
 										</div>
 									</a> 
 									<c:if test="${lv == '1'}">
-														<a href="/apa/reservation/select.do?id=\${item.id}">
+														<a href="/apa/reservation/select.do?id=${hosdto.id}">
 								    							<button class="reservation-button"> 예약하기 </button>
 						    							</a>
 									</c:if>

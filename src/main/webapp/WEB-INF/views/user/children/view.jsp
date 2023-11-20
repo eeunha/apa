@@ -284,7 +284,7 @@
 											<tr>
 												<td>${dto.childName}</td>
 												<td>
-													${dto.childSSN}
+													${dto.childSSNs}-${dto.childSSNe}
 													<div></div>
 												</td>
 												<td>
@@ -313,13 +313,13 @@
 									<table id="add">
 										<tr>
 											<th>이름</th>
-											<td><input type="text" name="name" id="name"></td>
+											<td><input type="text" name="name" id="name" maxlength="10"></td>
 										</tr>
 										<tr>
 											<th>주민등록번호</th>
 											<td>
-												<input type="text" name="ssn1" id="ssn1"> - 
-												<input type="text" name="ssn2" id="ssn2">
+												<input type="text" name="ssn1" id="ssn1" maxlength="6"> - 
+												<input type="text" name="ssn2" id="ssn2" maxlength="7">
 											</td>
 										</tr>
 										<c:if test="${userChild eq '무'}">
@@ -336,9 +336,9 @@
 										<tr>
 											<th>연락처</th>
 											<td>
-												<input type="text" name="tel1" id="tel1"> - 
-												<input type="text" name="tel2" id="tel2"> - 
-												<input type="text" name="tel3" id="tel3">
+												<input type="text" name="tel1" id="tel1" maxlength="3"> - 
+												<input type="text" name="tel2" id="tel2" maxlength="4"> - 
+												<input type="text" name="tel3" id="tel3" maxlength="4">
 											</td>
 										</tr>
 										<input type="hidden" name="seq" value="${dto.userSeq}">
@@ -427,12 +427,12 @@
 				//클릭 > 수정 버튼(<span>) 
 				
 				let name = $(event.target).parents('tr').children().eq(0).text();
-				let ssn = $(event.target).parents('tr').children().eq(1).text();
+// 				let ssn = $(event.target).parents('tr').children().eq(1).text();
 				let tel = $(event.target).parents('tr').children().eq(2).text();
 				
-				let ssnArr = ssn.split("-");
-				ssnArr[0] = ssnArr[0].replace(/\s/g, "");
-				ssnArr[1] = ssnArr[1].replace(/\s/g, "");
+// 				let ssnArr = ssn.split("-");
+// 				ssnArr[0] = ssnArr[0].replace(/\s/g, "");
+// 				ssnArr[1] = ssnArr[1].replace(/\s/g, "");
 
 				let telArr = tel.split("-");
 				telArr[0] = telArr[0].replace(/\s/g, "");
@@ -440,11 +440,11 @@
 				telArr[2] = telArr[2].replace(/\s/g, "");
 								
 				
-				$(event.target).parents('tr').children().eq(0).append(`<input type="text" value="\${name}">`);
+				$(event.target).parents('tr').children().eq(0).append(`<input type="text" value="\${name}" maxlength="10">`);
 				
-				$(event.target).parents('tr').children().eq(1).children().append(`<input type="text" value="\${ssnArr[0]}"> - <input type="text" value="\${ssnArr[1]}">`);
+// 				$(event.target).parents('tr').children().eq(1).children().append(`<input type="text" value="\${ssnArr[0]}"> - <input type="text" value="\${ssnArr[1]}">`);
 				
-				$(event.target).parents('tr').children().eq(2).children().append(`<input type="text" value="\${telArr[0]}"> - <input type="text" value="\${telArr[1]}"> - <input type="text" value="\${telArr[2]}">`);				
+				$(event.target).parents('tr').children().eq(2).children().append(`<input type="text" value="\${telArr[0]}" maxlength="3"> - <input type="text" value="\${telArr[1]}" maxlength="4"> - <input type="text" value="\${telArr[2]}" maxlength="4">`);				
 				
 				$(event.target).parents('tr').children().eq(4).children().html(`<i class="fas fa-fw fa-edit" onclick="editOk(\${seq});"></i>`);
 			}
@@ -454,9 +454,9 @@
 				
 				let name = $(event.target).parents('tr').children().children().eq(0).val();
 				
-				let ssn1 = $(event.target).parents('tr').children().children().eq(1).children().val();
-				let ssn2 = $(event.target).parents('tr').children().children().eq(1).children().eq(1).val();
-				let ssn = ssn1 + "-" + ssn2;
+// 				let ssn1 = $(event.target).parents('tr').children().children().eq(1).children().val();
+// 				let ssn2 = $(event.target).parents('tr').children().children().eq(1).children().eq(1).val();
+// 				let ssn = ssn1 + "-" + ssn2;
 				
 				let tel1 = $(event.target).parents('tr').children().children().eq(2).children().val();
 				let tel2 = $(event.target).parents('tr').children().children().eq(2).children().eq(1).val();
@@ -470,7 +470,6 @@
 					url: '/apa/user/children/edit.do',
 					data: {
 						name: name,
-						ssn: ssn,
 						tel: tel,
 						childSeq: seq,
 						seq: ${dto.userSeq}

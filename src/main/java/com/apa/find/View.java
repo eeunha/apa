@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.apa.model.HospitalDoctorDTO;
 import com.apa.model.HospitalInfoDTO;
 import com.apa.model.MagazineDTO;
 import com.apa.model.MediQuestionDTO;
 import com.apa.repository.MainDAO;
+import com.apa.repository.ReservationDAO;
 
 @WebServlet("/find/view.do")
 public class View extends HttpServlet {
@@ -23,6 +25,7 @@ public class View extends HttpServlet {
 		String seq = req.getParameter("id");
 		
 		MainDAO dao = new MainDAO();
+		ReservationDAO dao2 = new ReservationDAO();
 		
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
@@ -38,8 +41,19 @@ public class View extends HttpServlet {
 		
 		
 		ArrayList<HospitalInfoDTO> deptlist = dao.deptnameslist(seq);
-		req.setAttribute("deptlist", deptlist);
+		ArrayList<HospitalDoctorDTO> doclist = new ArrayList<HospitalDoctorDTO>();
 		
+		int i = 0;
+		for (HospitalInfoDTO docdto : deptlist) {
+			doclist.addAll(dao2.doctorlist(seq, docdto.getDeptnames()));
+			i++;
+		}
+		
+		
+		
+		
+		req.setAttribute("doclist", doclist);
+		req.setAttribute("deptlist", deptlist);
 		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/find/view.jsp");

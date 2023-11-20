@@ -7,23 +7,27 @@
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/inc/asset.jsp" %>
 <style>
-#main{
-	padding: 105px 300px 200px;	
-	
-}	
-
 #contentSector{
 	border-top: 6px solid #EEF5F3;
 }
 
+#box-20 {
+	height: 20px;
+}
+
+.sub {
+	width: 60%;
+	margin: 0 auto;
+}
+
 #view {
-/* 	width:1300px;
- */	/* background-color: green; */
+	width: 60%;
  	height: 400px;
  	border: 1px solid #DCF0EC;
  	background-color: #DCF0EC;
  	font-size: 1.1rem;
  	margin-top: 35px;
+ 	margin: 0 auto;
 }
 
 #view th:nth-child(1) {
@@ -37,11 +41,12 @@
 #num{
 	width:5px;
 	height: 50px;
-	padding-left: 10px;
 	font-size: 1.1rem;
 	border-bottom: 6px solid #EEF5F3;
+	text-align: center;
 }
 #id {
+	border-left: 6px solid #EEF5F3;
 	border-right: 6px solid #EEF5F3;
 	width:80px;
 	text-align: center;
@@ -64,25 +69,25 @@
 }
 #date{
 	width: 70px;
+	border-left: 6px solid #EEF5F3;
 	border-right: 6px solid #EEF5F3;
 	text-align: center;
 	font-size: 1.1rem;
 }
 #getId{
 	width: 120px;
-	padding-left: 10px;
 	font-size: 1.1rem;
+	text-align: center;
 }
 #getDate{
 	width: 220px; 
-	padding-left: 10px;
 	font-size: 1.1rem;
+	text-align: center;
 }
 #subjectSector{
 	border-top: 6px solid #EEF5F3;
 	font-size: 1.1rem;
 }
-#list-comment {width: 90%;}
 #list-comment td:nth-child(1) { width: auto; }
 #list-comment td:nth-child(2) { width: 160px; text-align: center; }
 	
@@ -107,79 +112,79 @@
 	display: inline-block;
 }
 
-#comment{
-	width: 1080px;
-	height: 200px;
-	border-radius: 6px;
-	border: 1px solid grey;
-}
 .bottomBtn{
 	display: flex;
 	padding-bottom: 10px;
 	padding-top: 10px;
 	
 }
-.comment{
-	background-color: #DCF0EC;
-	height:200px;
-	width: 80px;
-	border-radius: 6px;
-	border: 1px solid grey;
 
-}
 .edit, .del, .back, .cancel{
 	border-radius: 4px;
 	border: 1px solid #D0E5E1;
 	background-color: #D0E5E1;
 }
 
-#main > div:nth-child(4){
+#btn-box {
+	width: 60%;
+	margin: 0 auto;
 	text-align: right;
-	margin-right: 150px;
-	margin-bottom: 20px;
 }
+
+#add-comment {
+	width: 60%;
+	height: 100px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+#comment {
+	width: 75%;
+}
+
+#btnComment {
+	width: 20%;
+	border-radius: 4px;
+	border: 1px solid #D0E5E1;
+	background-color: #D0E5E1;
+}
+
+#list-comment {
+	width: 60%;
+	margin: 0 auto;
+}
+
 </style>
 </head>
 <body>
 	<!-- /community/view.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp" %>
-	
-		<main id="main">
+		<div id="box-20"></div>
+		<div id="box-20"></div>
+		<div id="box-20"></div>					
 		<h1 class="sub hansans">커뮤니티 <small>상세보기</small></h1>
 		<table class="vertical" id="view">
 			<tr>
 				<th>번호</th>
-				<td id="num">${dto.communitySeq}</td>
-				<td></td>
+				<td id="num" colspan="2">${dto.communitySeq}</td>
 				<th id="id">아이디</th>
-				<td id="getId">${dto.id}</td>
-				<td></td>
+				<td id="getId" colspan="2">${dto.id}</td>
 				<th id="date">날짜</th>
 				<td id="getDate">${dto.regdate}</td>
 			</tr>
 			<tr id="subjectSector">
 				<th>제목</th>
-				<td id="subject">${dto.subject}</td>
+				<td id="subject" colspan="7">${dto.subject}</td>
 			</tr>
 			<tr>
 				<th id="contentSector">내용</th>
-				<td colspan="8" id="content">${dto.content}</td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-			</tr>
-			<tr>
+				<td id="content" colspan="7">${dto.content}</td>
 			</tr>
 		</table>
 			<div class="bottomBtn">
 							</div>	
-		<div>
+		<div id="btn-box">
 			<button type="button" class="back" onclick="location.href='/apa/community/list.do';">뒤로가기</button>
 			
 			<c:if test="${not empty id && (dto.id==id || lv == 0)}">
@@ -188,23 +193,26 @@
 			</c:if>
 		</div>
 		
+		<div id="box-20"></div>
 		
 		<c:if test="${not empty id}">
-		<table id="add-comment">
-			<tr>
-				<td><input type="text" name="comment" id="comment" class="full"></td>
-				<td><button type="button" class="comment" id="btnComment">등록</button></td>
-			</tr>
-		</table>
+		<div id="add-comment">
+				<input type="text" name="comment" id="comment" class="full">
+				<button type="button" class="comment" id="btnComment">등록</button>
+		</div>
 		</c:if>
 		
+		<div id="box-20"></div>
+				
 		<table id="list-comment">
 			<tbody>
 				
 			</tbody>
 		</table>
+
+		<div id="box-20"></div>
+		<div id="box-20"></div>		
 		
-		</main>
 	   <%@ include file="/WEB-INF/views/inc/footer.jsp" %>
 	<script>
 	

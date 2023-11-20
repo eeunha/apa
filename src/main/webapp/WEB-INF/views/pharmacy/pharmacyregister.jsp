@@ -117,27 +117,23 @@
                                     <div class="my-info-name-child">개인정보 이용동의</div>
                                 </div>
                                 <div id="my-info-input">
-                                    <div class="my-info-input-child"><input type="text" name="name"></div>
+                                    <div class="my-info-input-child"><input type="text" name="name" maxlength="10"></div>
                                     <div class="my-info-input-child">
-                                        <input type="text" size="3" name="ssn1">-
-                                        <input type="text" size="2" name="ssn2">-
+                                        <input type="text" size="4" name="ssn1"> - 
+                                        <input type="text" size="3" name="ssn2"> - 
                                         <input type="text" size="5" name="ssn3">
                                     </div>
-                                    <div class="my-info-input-child"><input type="text" name="id"></div>
-                                    <div class="my-info-input-child"><input type="password" name="pw"></div>
-                                    <div class="my-info-input-child"><input type="password"
-                                                                                    name="pwchecked"></div>
+                                    <div class="my-info-input-child"><input type="text" name="id" maxlength="12"></div>
+                                    <div class="my-info-input-child"><input type="password" name="pw" maxlength="16"></div>
+                                    <div class="my-info-input-child"><input type="password" name="pwchecked"  maxlength="16"></div>
                                     <div class="my-info-input-child">
-                                        <input type="text" name="tel1" size="4"> -
-                                        <input type="text" name="tel2" size="4"> -
-                                        <input type="text" name="tel3" size="4">
+                                        <input type="text" name="tel1" size="4" maxlength="4"> -
+                                        <input type="text" name="tel2" size="4" maxlength="4"> -
+                                        <input type="text" name="tel3" size="4" maxlength="4">
                                     </div>
-                                    <div class="my-info-input-child"><input type="email" name="email" required>
-                                    </div>
-                                    <div class="my-info-input-child"><input type="text" name="address"
-                                                                               id="address" required></div>
-                                    <div class="my-info-input-child"><input type="checkbox" name="info"
-                                                                                      id="info" required></div>
+                                    <div class="my-info-input-child"><input type="email" name="email" required></div>
+                                    <div class="my-info-input-child"><input type="text" name="address" id="address" required></div>
+                                    <div class="my-info-input-child"><input type="checkbox" name="info" id="info" required></div>
                                 </div>
                             </div>
                             <div id="info-register-btn">

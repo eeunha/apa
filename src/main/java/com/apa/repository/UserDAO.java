@@ -234,6 +234,12 @@ public UserDTO get(String seq) {
 				dto.setChildSeq(rs.getString("childSeq"));
 				dto.setUserSeq(rs.getString("userSeq"));
 				dto.setChildName(rs.getString("childName"));
+				
+				String cSSN[] = rs.getString("childSSN").split("-");
+				
+				dto.setChildSSNs(cSSN[0]);
+				dto.setChildSSNe(cSSN[1].charAt(0) + "******");
+				
 				dto.setChildSSN(rs.getString("childSSN"));
 				dto.setChildTel(rs.getString("childTel"));
 				dto.setUserChild(rs.getString("userChild"));

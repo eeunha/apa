@@ -1,7 +1,5 @@
 package com.apa.model;
 
-import lombok.Data;
-
 public class UserDTO {
     private int userSeq;
     private String userSeq2;
@@ -133,14 +131,5 @@ public class UserDTO {
 	public void setIsUserUnregister(String isUserUnregister) {
 		this.isUserUnregister = isUserUnregister;
 	}
-    
-    
-    
-    
-    
-    
-    
-    
-
 
 }

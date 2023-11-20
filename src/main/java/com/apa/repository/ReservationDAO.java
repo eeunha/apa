@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import com.apa.DBUtil;
 import com.apa.model.HospitalDoctorDTO;
-import com.apa.model.HospitalInfoDTO;
 import com.apa.model.InsertRegisterDTO;
 import com.apa.model.OpenTimeDTO;
 import com.apa.model.UserChildDTO;

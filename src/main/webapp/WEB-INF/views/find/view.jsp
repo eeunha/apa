@@ -91,6 +91,13 @@
 	#map {
 		margin-bottom: 80px;
 	}
+	.docter-images {
+		width: 75px;
+		height: 75px;
+		border: 1px solid #FFFFFF;
+		border-radius: 50%;
+		margin-bottom: 10px;
+	}
 </style>
     </head>
     <body id="section_1">
@@ -158,7 +165,17 @@
 				<hr>
 				<div>
 					<c:forEach items="${deptlist}" var="list">
-						<p class="hospital-info-dept">${list.deptnames}</p>
+						<div style="display: flex; padding-left: 0;">
+							<p class="hospital-info-dept">${list.deptnames}</p>
+							<div style="display: flex;">
+								<c:forEach items="${doclist}" var="doc">
+									<c:if test="${list.deptnames == doc.deptname}">
+										<img class="docter-images" src="/apa/asset/images/doc/${doc.img}">
+										<p class="" style="margin-right: 30px;" >${doc.name}</p>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
 					</c:forEach>
 				</div>
 				<hr>

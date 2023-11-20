@@ -9,6 +9,22 @@ public class ChildrenDTO {
 	private String childTel;
 	private String userChild;
 	
+	private String childSSNs;
+	private String childSSNe;
+	
+	
+	public String getChildSSNs() {
+		return childSSNs;
+	}
+	public void setChildSSNs(String childSSNs) {
+		this.childSSNs = childSSNs;
+	}
+	public String getChildSSNe() {
+		return childSSNe;
+	}
+	public void setChildSSNe(String childSSNe) {
+		this.childSSNe = childSSNe;
+	}
 	public String getUserChild() {
 		return userChild;
 	}

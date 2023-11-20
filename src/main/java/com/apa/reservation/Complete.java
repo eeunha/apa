@@ -37,7 +37,7 @@ public class Complete extends HttpServlet {
 		String rezdocseq = req.getParameter("rezdocseq");	//의사번호
 		String rezgotime = req.getParameter("rezgotime");	//예약일
 		String rezregtime = req.getParameter("rezregtime");	//신청일
-		String textarea = req.getParameter("textarea");		//상세증상
+		String reztext = req.getParameter("reztext");		//상세증상
 		//약국
 		String rezdrugtype = req.getParameter("rezdrugtype");//약수령 타입
 		String rezdrugtime = req.getParameter("rezdrugtime");//약받는 시간
@@ -53,7 +53,7 @@ public class Complete extends HttpServlet {
 		dto.setDoctorSeq(rezdocseq);
 		dto.setTreatementDate(rezgotime);
 		dto.setRegdate(rezregtime);
-		dto.setSymptom(textarea);
+		dto.setSymptom(reztext);
 		
 		ReservationDAO dao = new ReservationDAO();
 
