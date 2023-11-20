@@ -13,7 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 리뷰 관리 -> 리뷰 삭제
+ * 
+ */
 @WebServlet("/user/review/del.do")
 public class Del extends HttpServlet {
 	@Override

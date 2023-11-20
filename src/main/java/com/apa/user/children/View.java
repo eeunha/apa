@@ -13,7 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.ChildrenDTO;
 import com.apa.model.UserDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 자녀 관리 -> 자녀 정보 목록 조회
+ * 
+ */
 @WebServlet("/user/children/view.do")
 public class View extends HttpServlet {
 	@Override

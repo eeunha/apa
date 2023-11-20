@@ -13,7 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.ReviewDetailViewDTO;
 import com.apa.model.TagViewDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 리뷰 관리 -> 리뷰 상세 보기
+ * 
+ */
 @WebServlet("/user/review/view.do")
 public class View extends HttpServlet {
 	@Override

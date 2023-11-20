@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.apa.model.MediTestSaveViewDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 보관함 -> 의학 테스트 상세보기
+ * 
+ */
 @WebServlet("/user/storage/selftest/view.do")
 public class View extends HttpServlet {
 	@Override

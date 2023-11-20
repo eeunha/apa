@@ -14,7 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 자녀 관리 -> 자녀 정보 수정
+ * 
+ */
 @WebServlet("/user/children/edit.do")
 public class Edit extends HttpServlet {
 	@Override

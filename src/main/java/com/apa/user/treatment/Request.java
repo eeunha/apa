@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 진료 정보 -> 제증명 서류 요청
+ * 
+ */
 @WebServlet("/user/treatment/request.do")
 public class Request extends HttpServlet {
 	@Override

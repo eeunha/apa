@@ -16,7 +16,12 @@ import org.json.simple.JSONObject;
 import com.apa.model.FavoriteDTO;
 import com.apa.model.UserDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 즐겨찾기 병원 -> 즐겨찾기 목록 조회
+ * 
+ */
 @WebServlet("/user/favorite/list.do")
 public class List extends HttpServlet {
 	@Override

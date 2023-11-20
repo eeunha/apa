@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.apa.model.UserDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 내 정보 -> 내 정보 조회
+ * 
+ */
 @WebServlet("/user/info/view.do")
 public class View extends HttpServlet {
 

@@ -14,7 +14,12 @@ import org.json.simple.JSONObject;
 
 import com.apa.model.ChildrenDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 자녀 관리 -> 자녀 등록
+ * 
+ */
 @WebServlet("/user/children/add.do")
 public class Add extends HttpServlet {
 	@Override
