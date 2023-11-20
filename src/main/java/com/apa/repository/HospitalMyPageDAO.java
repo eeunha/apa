@@ -12,7 +12,9 @@ import com.apa.model.HospitalDoctorDTO;
 import com.apa.model.HospitalInfoDTO;
 import com.apa.model.HospitalMyPageInfoDTO;
 import com.apa.model.OpenTimeDTO;
-
+/**
+ * 병원 마이 페이지와 관련된 기능을 처리하는 데이터 액세스 객체 (DAO)입니다.
+ */
 public class HospitalMyPageDAO {
 	private Connection conn;
     private Statement stat;
@@ -22,7 +24,12 @@ public class HospitalMyPageDAO {
     public HospitalMyPageDAO() {
         this.conn = DBUtil.open();
     }
-
+    /**
+     * 병원 관리자 페이지 정보를 가져옵니다.
+     *
+     * @param 병원 아이디
+     * @return 병원 관리자 페이지 정보를 담고 있는 HospitalMyPageInfoDTO 객체
+     */
 	public HospitalMyPageInfoDTO get(String id) {
 		
 		try {
@@ -56,7 +63,12 @@ public class HospitalMyPageDAO {
 		
 		return null;
 	}
-
+	 /**
+     * 병원을 비활성화(탈퇴) 처리합니다.
+     *
+     * @param 병원 아이디
+     * @return 처리 결과 (성공: 1, 실패: 0)
+     */
 	public int delete(String seq) {
 		try {
 
@@ -73,7 +85,12 @@ public class HospitalMyPageDAO {
 		
 		return 0;
 	}
-
+	/**
+     * 병원 정보를 수정합니다.
+     *
+     * @param 수정할 병원 정보를 담고 있는 HospitalMyPageInfoDTO 객체
+     * @return 처리 결과 (성공: 1, 실패: 0)
+     */
 	public int edit(HospitalMyPageInfoDTO dto) {
 		
 		try {
@@ -94,7 +111,12 @@ public class HospitalMyPageDAO {
 		}	
 		return 0;
 	}
-
+	/**
+     * 병원의 의사 목록을 가져옵니다.
+     *
+     * @param 병원 아이디
+     * @return 의사 목록의 ArrayList
+     */
 	public ArrayList<HospitalDoctorDTO> listDoctor(String seq) {
 		
 		try {
@@ -128,7 +150,12 @@ public class HospitalMyPageDAO {
 		}
 		return null;
 	}
-
+	/**
+     * 병원에 의사를 추가합니다.
+     *
+     * @param 추가할 의사 정보를 담고 있는 HospitalDoctorDTO 객체
+     * @return 처리 결과 (성공: 1, 실패: 0)
+     */
 	public int doctorInsert(HospitalDoctorDTO dto) {
 		try {
 
@@ -148,7 +175,12 @@ public class HospitalMyPageDAO {
 		
 		return 0;
 	}
-
+	/**
+     * 병원의 의사를 삭제합니다.
+     *
+     * @param 삭제할 의사 시퀀스
+     * @return 처리 결과 (성공: 1, 실패: 0)
+     */
 	public int doctordelete(String seq) {
 		try {
 
@@ -164,7 +196,12 @@ public class HospitalMyPageDAO {
 		}
 		return 0;
 	}
-
+	/**
+     * 병원의 운영 시간을 가져옵니다.
+     *
+     * @param 병원 아이디
+     * @return 병원의 운영 시간 정보를 담고 있는 OpenTimeDTO 객체
+     */
 	public OpenTimeDTO getOpenTime(String seq) {
 		try {
 			
@@ -190,7 +227,12 @@ public class HospitalMyPageDAO {
 		}
 		return null;
 	}
-
+	/**
+     * 병원의 휴무일을 가져옵니다.
+     *
+     * @param 병원 아이디
+     * @return 병원의 휴무일 정보
+     */
 	public String getDayOff(String seq) {
 		try {
 
@@ -211,7 +253,12 @@ public class HospitalMyPageDAO {
 		}
 		return null;
 	}
-
+	 /**
+     * 병원의 상세 정보를 가져옵니다.
+     *
+     * @param 병원 아이디
+     * @return 병원의 상세 정보를 담고 있는 HospitalInfoDTO 객체
+     */
 	public HospitalInfoDTO infoget(String seq) {
 try {
 			
@@ -253,7 +300,19 @@ try {
 		}
 		return null;
 	}
-
+	/**
+     * 병원 정보를 업데이트합니다.
+     *
+     * @param 병원 대면 여부
+     * @param 병원 비대면 여부
+     * @param 병원 외래 진료 가능 여부
+     * @param 병원 건강검진 가능 여부
+     * @param 병원 예방접종 가능 여부
+     * @param 병원 야간 진료 가능 여부
+     * @param 병원 휴무일 여부
+     * @param 병원 아이디
+     * @return 처리 결과 (성공: 1, 실패: 0)
+     */
 	public int updateHospitalInfo(String info1, String info2, String info3, String info4, String info5, String info6,
 			String info7, String seq) {
 		try {

@@ -15,6 +15,7 @@ import com.apa.model.MediQuestionDTO;
 import com.apa.repository.MainDAO;
 
 /**
+ * 
  * 메인 페이지를 처리하는 서블릿 클래스
  */
 @WebServlet("/main.do")

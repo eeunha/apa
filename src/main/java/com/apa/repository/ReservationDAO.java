@@ -12,7 +12,9 @@ import com.apa.model.InsertRegisterDTO;
 import com.apa.model.OpenTimeDTO;
 import com.apa.model.UserChildDTO;
 import com.apa.model.UserDTO;
-
+/**
+ * 예약 관련 기능을 처리하는 데이터 액세스 객체 (DAO)입니다.
+ */
 public class ReservationDAO {
 
 	private Connection conn;
@@ -23,7 +25,13 @@ public class ReservationDAO {
 	public ReservationDAO() {
 		this.conn = DBUtil.open();
 	}
-	
+	 /**
+     * 선택한 병원과 진료과에 해당하는 의사 목록을 가져옵니다.
+     *
+     * @param 병원의 시퀀스
+     * @param 진료과 이름
+     * @return 의사 목록의 ArrayList
+     */
 	public ArrayList<HospitalDoctorDTO> doctorlist(String seq, String deptname) {
 		try {
 
@@ -58,7 +66,12 @@ public class ReservationDAO {
 		}
 		return null;
 	}
-
+	  /**
+     * 유저 정보를 가져옵니다.
+     *
+     * @param 유저 시퀀스
+     * @return 유저 정보를 담고 있는 UserDTO 객체
+     */
 	public UserDTO userinfo(String seq) {
 		try {
 			
@@ -89,7 +102,12 @@ public class ReservationDAO {
 		}
 		return null;
 	}
-
+	 /**
+     * 유저의 자녀 목록을 가져옵니다.
+     *
+     * @param 사용자 시퀀스
+     * @return 자녀 목록의 ArrayList
+     */
 	public ArrayList<UserChildDTO> userchild(String seq) {
 		try {
 
@@ -124,7 +142,12 @@ public class ReservationDAO {
 		}
 		return null;
 	}
-
+	 /**
+     * 병원 운영 시간을 가져옵니다.
+     *
+     * @param 병원의 시퀀스
+     * @return 병원 운영 시간 정보를 담고 있는 OpenTimeDTO 객체
+     */
 	public OpenTimeDTO time(String seq) {
 try {
 			
@@ -149,7 +172,12 @@ try {
 		}
 		return null;
 	}
-
+	/**
+     * 약국 운영 시간을 가져옵니다.
+     *
+     * @param 약국의 시퀀스
+     * @return 약국 운영 시간 정보를 담고 있는 OpenTimeDTO 객체
+     */
 	public int insertDispense(String rezdrugtype, String rezdrugtime) {
 		try {
 
@@ -166,7 +194,13 @@ try {
 		}
 		return 0;
 	}
-
+	 /**
+     * 약국에 약 처방 등록을 요청합니다.
+     *
+     * @param 약 처방 유형
+     * @param 약 처방 시간
+     * @return 처리 결과 (성공: 1, 실패: 0)
+     */
 	public int inserRegister(InsertRegisterDTO dto) {
 		try {
 
@@ -190,7 +224,12 @@ try {
 		
 		return 0;
 	}
-
+	 /**
+     * 진료 등록을 처리합니다.
+     *
+     * @param 진료 등록 정보를 담고 있는 InsertRegisterDTO 객체
+     * @return 처리 결과 (성공: 1, 실패: 0)
+     */
 	public int inserRegisterNoDrug(InsertRegisterDTO dto) {
 		try {
 
@@ -214,7 +253,12 @@ try {
 		
 		return 0;
 	}
-
+	 /**
+     * 약 없이 진료 등록을 처리합니다.
+     *
+     * @param 진료 등록 정보를 담고 있는 InsertRegisterDTO 객체
+     * @return 처리 결과 (성공: 1, 실패: 0)
+     */
 	public int insercheck(InsertRegisterDTO dto) {
 		try {
 
@@ -233,7 +277,12 @@ try {
 		}
 		return 0;
 	}
-
+	/**
+     * 건강검진 예약을 처리합니다.
+     *
+     * @param 건강검진 예약 정보를 담고 있는 InsertRegisterDTO 객체
+     * @return 처리 결과 (성공: 1, 실패: 0)
+     */
 	public OpenTimeDTO time2(String seq) {
 		try {
 		String sql = "select tbloperatingtime.opentime, tbloperatingtime.closetime, tbloperatingtime.pharmacyid from tbloperatingtime where tbloperatingtime.pharmacyid=?";
@@ -257,7 +306,12 @@ try {
 		}
 		return null;
 	}
-
+	/**
+     * 약 처방 등록을 처리합니다.
+     *
+     * @param 약 처방 등록 정보를 담고 있는 InsertRegisterDTO 객체
+     * @return 처리 결과 (성공: 1, 실패: 0)
+     */
 	public int insertdurg(InsertRegisterDTO dto) {
 		try {
 
