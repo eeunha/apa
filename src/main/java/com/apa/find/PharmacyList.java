@@ -11,25 +11,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.apa.model.PharmacyInfoDTO;
-import com.apa.model.SelfsymtomDTO;
-import com.apa.repository.MainDAO;
 import com.apa.repository.UserDAO;
 
+/**
+ * 약국 목록을 검색하여 뷰로 전달하는 서블릿 클래스
+ */
 @WebServlet("/find/pharmacylist.do")
 public class PharmacyList extends HttpServlet {
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
-		UserDAO dao = new UserDAO();
-		
-		ArrayList<PharmacyInfoDTO> list = dao.pharmacylist();
-		
-		req.setAttribute("list", list);
-		
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/find/pharmacylist.jsp");
-		dispatcher.forward(req, resp);
-	}
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        // UserDAO 객체 생성
+        UserDAO dao = new UserDAO();
+
+        // 약국 목록을 가져옴
+        ArrayList<PharmacyInfoDTO> list = dao.pharmacylist();
+
+        // 요청 속성으로 약국 목록을 설정
+        req.setAttribute("list", list);
+
+        // 뷰로 포워드
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/find/pharmacylist.jsp");
+        dispatcher.forward(req, resp);
+    }
 }
