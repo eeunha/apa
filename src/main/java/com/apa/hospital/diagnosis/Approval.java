@@ -20,7 +20,7 @@ public class Approval extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mediSeq = req.getParameter("mediSeq");
-		System.out.println(mediSeq);
+//		System.out.println(mediSeq);
 		
 		DiagnosisDAO dao = new DiagnosisDAO();
 	
