@@ -91,7 +91,7 @@ public class Login extends HttpServlet {
                 // 관리자 로그인 성공
                 req.getSession().setAttribute("id", id);
                 req.getSession().setAttribute("pw", pw);
-                req.getSession().setAttribute("lv", "4");
+                req.getSession().setAttribute("lv", "0");
 
                 resp.sendRedirect("/apa/main.do"); // 관리자 페이지 이동
             } else {

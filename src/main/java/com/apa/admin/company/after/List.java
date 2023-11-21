@@ -14,14 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.AdminAfterDTO;
 import com.apa.repository.AdminAfterDAO;
 
-
+/**
+ * @author 이혜진
+ * 부정 태그 비율이 70% 이상인 병원 목록을 조회하는 서블릿 클래스
+ */
 @WebServlet("/admin/company/after/list.do")
 public class List extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//After > list.java
-		
+		//DAO를 통해 모든 병원의 후기 목록 조회
 		AdminAfterDAO dao =  new AdminAfterDAO();
 		
 		ArrayList<AdminAfterDTO> list = dao.list();
@@ -34,6 +36,7 @@ public class List extends HttpServlet {
 			
 		}
 		
+		//조회 결과를 request에 설정
 		req.setAttribute("list", list);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/company/after/list.jsp");

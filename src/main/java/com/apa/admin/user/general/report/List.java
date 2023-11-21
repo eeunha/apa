@@ -14,13 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.AdminReportDTO;
 import com.apa.repository.AdminReportDAO;
 
+/**
+ * @author 이혜진
+ * 일반 회원 신고 현황 리스트를 조회하는 서블릿 클래스
+ */
 @WebServlet("/admin/user/general/report/list.do")
 public class List extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//list.java
-		
 		HashMap<String,String> map = new HashMap<String,String>();
 		
 		//페이징
@@ -47,10 +49,11 @@ public class List extends HttpServlet {
 		begin = ((nowPage - 1) * pageSize) + 1;
 		end = begin + pageSize - 1;
 		
-		
+		// 페이징 정보를 HashMap에 추가
 		map.put("begin", begin + "");
 		map.put("end", end + "");
 		
+		// DAO를 통해 신고 목록 조회
 		AdminReportDAO dao =  new AdminReportDAO();
 		
 		ArrayList<AdminReportDTO> list = dao.list(map);
@@ -68,9 +71,9 @@ public class List extends HttpServlet {
 		
 		//이전 10페이지
 		if (n == 1) {
-			sb.append(String.format("<a href='#!'>[이전 %d페이지]</a>", blockSize));
+			sb.append(String.format("<a href='#!'>[이전]</a>"));
 		} else {
-			sb.append(String.format("<a href='/apa/admin/user/general/report/list.do?page=%d'>[이전 %d페이지]</a>", n - 1, blockSize));
+			sb.append(String.format("<a href='/apa/admin/user/general/report/list.do?page=%d'>[이전]</a>", n - 1));
 		}
 		
 		
@@ -90,12 +93,12 @@ public class List extends HttpServlet {
 		
 		//다음 10페이지
 		if (n > totalPage) {
-			sb.append(String.format("<a href='#!'>[다음 %d페이지]</a>", blockSize));
+			sb.append(String.format("<a href='#!'>[다음]</a>"));
 		} else {
-			sb.append(String.format("<a href='/apa/admin/user/general/report/list.do?page=%d'>[다음 %d페이지]</a>", n, blockSize));
+			sb.append(String.format("<a href='/apa/admin/user/general/report/list.do?page=%d'>[다음]</a>", n));
 		}
 		
-
+		// request에 필요한 속성 설정
 		req.setAttribute("list", list);
 		req.setAttribute("map", map);
 		

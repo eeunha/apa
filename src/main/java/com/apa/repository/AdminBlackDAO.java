@@ -9,7 +9,12 @@ import java.util.HashMap;
 
 import com.apa.DBUtil;
 import com.apa.model.AdminBlackDTO;
+import com.apa.model.AdminUserDTO;
 
+/**
+ * @author 이혜진
+ * 관리자 페이지에서 블랙리스트 관리를 위한 DAO 클래스
+ */
 public class AdminBlackDAO {
 
 	private Connection conn;
@@ -21,7 +26,7 @@ public class AdminBlackDAO {
 		this.conn = DBUtil.open();
 	}
 
-	public ArrayList<AdminBlackDTO> list(HashMap<String, String> map) {
+	public ArrayList<AdminBlackDTO> list(HashMap<String, String> map) { //블랙리스트 목록을 조회하는 메서드
 		
         int begin = Integer.parseInt(map.get("begin"));
         int end = Integer.parseInt(map.get("end"));
@@ -68,7 +73,7 @@ public class AdminBlackDAO {
 		return null;
 	}
 
-	public int getTotalCount() {
+	public int getTotalCount() { //블랙리스트의 총 게시물 수를 조회하는 메서드
 		
 		try {
 			
@@ -90,7 +95,7 @@ public class AdminBlackDAO {
 	}
 
 
-	public String getUserSeq(String id) {
+	public String getUserSeq(String id) { // ID로 일반 회원의 일련번호를 조회하는 메서드
 	    try {
 	        String sql = "SELECT userSeq FROM tblUser WHERE userId = ?";
 
@@ -109,7 +114,7 @@ public class AdminBlackDAO {
 	    return null;
 	}
 
-	public int InsertBlackUser(String seq, String content) {
+	public int InsertBlackUser(String seq, String content) { //블랙리스트에 회원을 추가하는 메서드
 
 		try {
 
@@ -128,16 +133,43 @@ public class AdminBlackDAO {
 		return 0;
 	}
 
-	public int deleteBlackUser(String userSeq) {
+	public AdminBlackDTO detail(String userSeq) { //블랙리스트 정보를 조회하는 메서드
+		
 		try {
-
+	         
+	         String sql = "SELECT * FROM tblBlacklist WHERE userSeq = ?";
+	         
+	         pstat = conn.prepareStatement(sql);
+	         pstat.setString(1, userSeq);
+	         
+	         rs = pstat.executeQuery();
+	         
+	         AdminBlackDTO dto = new AdminBlackDTO();
+	         	         
+	         if(rs.next()) {
+	        	 
+	            dto.setUserSeq(rs.getInt("userSeq"));
+	        	 
+	            return dto;
+	         }
+	         
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+		
+		return null;
+	}
+	
+	public int deleteBlackUser(String userSeq) { //블랙리스트에서 취소하는 메서드
+		try {
+			
 			String sql = "delete from tblBlacklist where userSeq = ?";
-
+			
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, userSeq);
-
+			
 			return pstat.executeUpdate();
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

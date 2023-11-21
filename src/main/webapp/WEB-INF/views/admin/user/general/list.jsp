@@ -166,20 +166,21 @@
 	div {
 		text-align: right;
 	}
-	
 	#btn {
 		text-align: center;
 		border: 1px solid green;
 		border-radius: 5px;
 	}
-	
 	#pagebar {
 		text-align: center;
 		margin-bottom: 15px;
 	}
 	#collapseTwo > div {
-	text-align: left;
-}
+		text-align: left;
+	}
+	.collapse-item {
+		text-align: left;
+	}
 </style>
 <body id="page-top">
 
@@ -202,7 +203,7 @@
 			
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/apa/user/info/view.do?seq=${dto.userSeq}" style="">
+                <a class="nav-link" href="/apa/admin/info/view.do?id=${id}" style="">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>마이페이지</span></a>
             </li>			
@@ -212,7 +213,7 @@
             
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/apa/admin/info/view.do">
+                <a class="nav-link collapsed" href="/apa/admin/info/view.do?id=${id}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>내 정보</span>
                 </a>
@@ -257,6 +258,21 @@
                     <i class="fas fa-fw fa-hospital-alt"></i>
                     <span>병원 사후관리</span></a>
             </li>
+            
+                        <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+                    aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>게시글 관리</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/apa/admin/advice/list.do">게시글</a>
+                        <a class="collapse-item" href="/apa/admin/community/list.do">커뮤니티</a>
+                    </div>
+                </div>
+            </li>
                        
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -293,7 +309,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${dto.userName}(${dto.userId})님</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">관리자(${dto.adminId})님</span>
                                 <img class="img-profile rounded-circle"
                                     src="/apa/asset/images/undraw_profile.svg">
                             </a>

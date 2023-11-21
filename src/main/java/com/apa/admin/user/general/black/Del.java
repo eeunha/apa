@@ -13,11 +13,26 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.AdminBlackDTO;
 import com.apa.repository.AdminBlackDAO;
 
+/**
+ * @author 이혜진
+ * 블랙리스트에 있는 일반 회원을 삭제하는 서블릿 클래스
+ */
 @WebServlet("/admin/user/general/black/del.do")
 public class Del extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
+		//1. 회원 번호(userSeq) 가져오기
+		String userSeq = req.getParameter("userSeq");
+		
+		//2. DAO를 통해 해당 사용자의 블랙리스트 정보 가져오기
+		AdminBlackDAO dao = new AdminBlackDAO();
+		
+		AdminBlackDTO dto = dao.detail(userSeq);
+		
+		//3. 블랙리스트 정보를 request에 설정
+		req.setAttribute("dto", dto);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/user/general/black/del.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -26,27 +41,20 @@ public class Del extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    
 		req.setCharacterEncoding("UTF-8");
-		
-		String userSeq = req.getParameter("userSeq");  // 폼에서 입력한 아이디를 가져옴
 
+	    // 1. 삭제할 사용자의 번호(userSeq) 가져오기
+	    String userSeq = req.getParameter("userSeq");
+
+	    // 2. DAO를 통해 블랙리스트에서 사용자 삭제
 	    AdminBlackDAO dao = new AdminBlackDAO();
-
-
-	    AdminBlackDTO dto = new AdminBlackDTO();
-
 	    int result = dao.deleteBlackUser(userSeq);
-	    
-	    System.out.println(result);
 
 	    if (result == 1) {
+	        resp.sendRedirect("/apa/admin/user/general/black/list.do");
+	    } else {
 	        resp.setContentType("text/html; charset=UTF-8");
 	        PrintWriter writer = resp.getWriter();
-	        writer.print("<script>alert('정상적으로 작성되었습니다.');window.close();</script>");
-	        resp.sendRedirect("/apa/admin/user/general/black/list.do");
-	        writer.close();
-	    } else {
-	        PrintWriter writer = resp.getWriter();
-	        writer.print("<script>alert('failed');history.back();</script>");
+	        writer.print("<script>alert('삭제 실패');history.back();</script>");
 	        writer.close();
 	    }
 	}

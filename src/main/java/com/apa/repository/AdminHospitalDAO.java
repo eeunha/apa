@@ -9,7 +9,12 @@ import java.util.HashMap;
 
 import com.apa.DBUtil;
 import com.apa.model.AdminHospitalDTO;
+import com.apa.model.AdminUserDTO;
 
+/**
+ * @author 이혜진
+ * 관리자 페이지에서 병원 정보를 관리하는 DAO 클래스
+ */
 public class AdminHospitalDAO {
 	
 	private Connection conn;
@@ -21,8 +26,7 @@ public class AdminHospitalDAO {
 		this.conn = DBUtil.open();
 	}
 
-	
-	public ArrayList<AdminHospitalDTO> list(HashMap<String, String> map) {
+	public ArrayList<AdminHospitalDTO> list(HashMap<String, String> map) { //병원 목록을 조회하는 메서드
 		
         int begin = Integer.parseInt(map.get("begin"));
         int end = Integer.parseInt(map.get("end"));
@@ -62,7 +66,7 @@ public class AdminHospitalDAO {
 		return null;
 	}
 
-	public int getTotalCount() {
+	public int getTotalCount() { //병원의 총 게시물 수를 조회하는 메서드
 		
 		try {
 		
@@ -82,7 +86,7 @@ public class AdminHospitalDAO {
 		return 0;
 	}
 	
-	public AdminHospitalDTO detail(String hospitalId) {
+	public AdminHospitalDTO detail(String hospitalId) { //병원 상세 정보를 조회하는 메서드
 		
 		try {
 	         
@@ -117,7 +121,7 @@ public class AdminHospitalDAO {
 		return null;
 	}
 	
-	public int edit(AdminHospitalDTO dto) {
+	public int edit(AdminHospitalDTO dto) { //병원 정보를 수정하는 메서드
 		
 		try {
 
@@ -140,7 +144,7 @@ public class AdminHospitalDAO {
 	}
 
 
-	public int del(String hospitalId) {
+	public int del(String hospitalId) { //병원 정보를 삭제하는 메서드
 		
 		try {
 

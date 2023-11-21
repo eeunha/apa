@@ -10,6 +10,10 @@ import java.util.HashMap;
 import com.apa.DBUtil;
 import com.apa.model.AdminPharmacyDTO;
 
+/**
+ * @author 이혜진
+ * 약국 정보를 처리하는 DAO 클래스
+ */
 public class AdminPharmacyDAO {
 
 	private Connection conn;
@@ -21,8 +25,7 @@ public class AdminPharmacyDAO {
 		this.conn = DBUtil.open();
 	}
 
-	
-	public ArrayList<AdminPharmacyDTO> list(HashMap<String, String> map) {
+	public ArrayList<AdminPharmacyDTO> list(HashMap<String, String> map) { //약국 목록을 조회하는 메서드
 		
         int begin = Integer.parseInt(map.get("begin"));
         int end = Integer.parseInt(map.get("end"));
@@ -63,7 +66,7 @@ public class AdminPharmacyDAO {
 		return null;
 	}
 	
-	public int getTotalCount() {
+	public int getTotalCount() { //약국 총 개수를 조회하는 메서드
 		
 		try {
 			
@@ -84,7 +87,7 @@ public class AdminPharmacyDAO {
 		return 0;
 	}
 	
-	public AdminPharmacyDTO detail(String pharmacyId) {
+	public AdminPharmacyDTO detail(String pharmacyId) { //약국 상세 정보를 조회하는 메서드
 		
 		try {
 	         
@@ -120,7 +123,7 @@ public class AdminPharmacyDAO {
 		return null;
 	}
 	
-	public int edit(AdminPharmacyDTO dto) {
+	public int edit(AdminPharmacyDTO dto) { //약국 정보를 수정하는 메서드
 		
 		try {
 
@@ -143,7 +146,7 @@ public class AdminPharmacyDAO {
 	}
 
 
-	public int del(String pharmacyId) {
+	public int del(String pharmacyId) { //약국 정보를 삭제하는 메서드
 		
 		try {
 

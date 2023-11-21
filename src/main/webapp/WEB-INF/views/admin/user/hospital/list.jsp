@@ -177,6 +177,12 @@
 		text-align: center;
 		margin-bottom: 15px;
 	}
+	#collapseTwo > div {
+		text-align: left;
+	}
+	.collapse-item {
+		text-align: left;
+	}
 </style>
 <body id="page-top">
 
@@ -243,7 +249,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/apa/admin/company/entry/hospitallist.do">병원 회원</a>
-                        <a class="collapse-item" href="/apa/admin/company/entry/pharmacy.do">약국 회원</a>
+                        <a class="collapse-item" href="/apa/admin/company/entry/pharmacylist.do">약국 회원</a>
                     </div>
                 </div>
             </li>
@@ -253,6 +259,22 @@
                 <a class="nav-link" href="/apa/admin/company/after/list.do">
                     <i class="fas fa-fw fa-hospital-alt"></i>
                     <span>병원 사후관리</span></a>
+            </li>
+            
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+                    aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>게시글 관리</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/apa/admin/advice/list.do">게시글</a>
+                        <a class="collapse-item" href="/apa/admin/community/list.do">커뮤니티</a>
+                    </div>
+                </div>
             </li>
                        
             <!-- Divider -->
@@ -327,7 +349,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h5 class="m-0 font-weight-bold text-primary">병원 회원 목록</h5><button id="btn"><a href="/apa/admin/info/view.do">수정</a></button>
+                                    <h5 class="m-0 font-weight-bold text-primary">병원 회원 목록</h5>
                                 </div>
                                 
 			<!-- Card Body -->

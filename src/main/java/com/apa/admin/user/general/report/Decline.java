@@ -16,20 +16,24 @@ import org.json.simple.JSONObject;
 import com.apa.model.AdminReportDTO;
 import com.apa.repository.AdminReportDAO;
 
+/**
+ * @author 이혜진
+ * 신고를 거절하는 서블릿 클래스
+ */
 @WebServlet("/admin/user/general/report/decline.do")
 public class Decline extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//1.
+		//1. 회원 일련번호 파라미터 가져오기
 		String userSeq = req.getParameter("userSeq");
 		
-		//2.
+		//2. DAO를 통해 신고 상세 정보 조회
 		AdminReportDAO dao = new AdminReportDAO();
 		
 		AdminReportDTO dto = dao.detail(userSeq);
 		
-		//3.
+		//3. 조회된 정보를 request에 설정
 		req.setAttribute("dto", dto);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/user/general/report/decline.jsp");
@@ -39,18 +43,12 @@ public class Decline extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//EditOk.java 역할
-		
-		//1. 데이터 가져오기
-		//2. DB 작업 > update
-		//3. 피드백
-		
 		//HttpSession session = req.getSession();		
 		
 		req.setCharacterEncoding("UTF-8");
 		
 		//1.		
-		String userSeq = req.getParameter("userSeq"); //수정할 병원
+		String userSeq = req.getParameter("userSeq");
 		
 		//2.
 		AdminReportDAO dao = new AdminReportDAO();

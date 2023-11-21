@@ -13,20 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.AdminPharmacyDTO;
 import com.apa.repository.AdminPharmacyDAO;
 
+/**
+ * @author 이혜진
+ * 약국 회원 정보 수정을 처리하는 서블릿 클래스
+ */
 @WebServlet("/admin/user/pharmacy/edit.do")
 public class Edit extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//1.
+		//1.. 회원 아이디 파라미터에서 가져오기
 		String pharmacyId = req.getParameter("pharmacyId");
 		
-		//2.
+		//2. AdminPharmacyDAO의 인스턴스 생성
 		AdminPharmacyDAO dao = new AdminPharmacyDAO();
 		
+		//회원 상세 정보 조회
 		AdminPharmacyDTO dto = dao.detail(pharmacyId);
 		
-		//3.
+		//3. 조회한 DTO를 요청 속성으로 설정
 		req.setAttribute("dto", dto);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/user/pharmacy/edit.jsp");
@@ -34,12 +39,6 @@ public class Edit extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		//EditOk.java 역할
-		
-		//1. 데이터 가져오기
-		//2. DB 작업 > update
-		//3. 피드백
 		
 		//HttpSession session = req.getSession();		
 		
@@ -49,7 +48,7 @@ public class Edit extends HttpServlet {
 		String pharmacyName = req.getParameter("pharmacyName");
 		String pharmacyPw = req.getParameter("pharmacyPw");
 		String isPharmacy = req.getParameter("isPharmacy");
-		String pharmacyId = req.getParameter("pharmacyId"); //수정할 병원
+		String pharmacyId = req.getParameter("pharmacyId"); //수정할 약국
 		
 		//2.
 		AdminPharmacyDAO dao = new AdminPharmacyDAO();
@@ -62,9 +61,9 @@ public class Edit extends HttpServlet {
 		//dto.setId(session.getAttribute("id").toString());
 		dto.setPharmacyId(pharmacyId);
 		
-		
 		System.out.println(dto);
 		
+		// DB 작업 > update
 		int result = dao.edit(dto);
 		
 		//3.

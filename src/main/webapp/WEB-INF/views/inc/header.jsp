@@ -116,7 +116,7 @@
                         	</c:if>
                         	<c:if test="${lv == 0}">
 		                        <li class="nav-item ms-3">
-		                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/admin/info/view.do?id=${id}">마이페이지</a>
+		                            <a class="nav-link custom-btn custom-border-btn btn" href="/apa/admin/info/view.do?adminId=${id}">마이페이지</a>
 		                        </li>
                         	</c:if>
                         <li class="nav-item ms-3">

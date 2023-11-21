@@ -8,8 +8,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.apa.DBUtil;
+import com.apa.model.AdminReportDTO;
 import com.apa.model.AdminUserDTO;
 
+/**
+ * @author 이혜진
+ * 사용자 정보를 관리하는 DAO 클래스
+ */
 public class AdminUserDAO {
 	
 	private Connection conn;
@@ -21,7 +26,7 @@ public class AdminUserDAO {
 		this.conn = DBUtil.open();
 	}
 	
-	public ArrayList<AdminUserDTO> userList() {
+	public ArrayList<AdminUserDTO> userList() { //전체 일반 회원 목록을 조회하는 메서드
 		
 		//회원 정보
 	    try {
@@ -55,7 +60,7 @@ public class AdminUserDAO {
 	}
 	
 
-	public ArrayList<AdminUserDTO> blackList() {
+	public ArrayList<AdminUserDTO> blackList() { //전체 블랙리스트 목록을 조회하는 메서드
 
 	    
 	    //블랙리스트
@@ -88,7 +93,7 @@ public class AdminUserDAO {
 		return null;
 	}
 
-	public ArrayList<AdminUserDTO> reporList() {
+	public ArrayList<AdminUserDTO> reporList() { //전체 신고 목록을 조회하는 메서드
 
 	    
 	    //신고현황
@@ -122,7 +127,7 @@ public class AdminUserDAO {
 		return null;
 	}
 
-	public ArrayList<AdminUserDTO> list(HashMap<String, String> map) {
+	public ArrayList<AdminUserDTO> list(HashMap<String, String> map) { //전체 일반 회원 목록을 조회하는 메서드
 		
         int begin = Integer.parseInt(map.get("begin"));
         int end = Integer.parseInt(map.get("end"));
@@ -165,7 +170,7 @@ public class AdminUserDAO {
 		return null;
 	}
 	
-	public int getTotalCount() {
+	public int getTotalCount() { //전체 일반 회원 수를 조회하는 메서드
 		
 		try {
 			
@@ -186,7 +191,7 @@ public class AdminUserDAO {
 		return 0;
 	}
 
-	public AdminUserDTO detail(String userSeq) {
+	public AdminUserDTO detail(String userSeq) { //일반 회원의 상세 정보를 조회하는 메서드
 		
 		try {
 	         
@@ -225,7 +230,7 @@ public class AdminUserDAO {
 		return null;
 	}
 
-	public int edit(AdminUserDTO dto) {
+	public int edit(AdminUserDTO dto) { //회원 정보를 수정하는 메서드
 		
 		try {
 
@@ -246,7 +251,7 @@ public class AdminUserDAO {
 		return 0;
 	}
 
-	public int del(String userSeq) {
+	public int del(String userSeq) { //회원을 삭제하는 메서드
 		
 		try {
 

@@ -161,13 +161,23 @@
 	}
 	
 	#btn {
+		width: 50px;
+		color: #FFF;
 		text-align: center;
 		border: 1px solid green;
 		border-radius: 5px;
 	}
+	.btncontainer {
+		margin-top: 20px;
+		padding-right: 60px;
+		text-align: right;
+	}
 	#collapseTwo > div {
-	text-align: left;
-}
+		text-align: left;
+	}
+	.collapse-item {
+		text-align: left;
+	}
 </style>
 <body id="page-top">
 
@@ -233,7 +243,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/apa/admin/company/entry/hospitallist.do">병원 회원</a>
-                        <a class="collapse-item" href="/apa/admin/company/entry/pharmacy.do">약국 회원</a>
+                        <a class="collapse-item" href="/apa/admin/company/entry/pharmacylist.do">약국 회원</a>
                     </div>
                 </div>
             </li>
@@ -244,7 +254,8 @@
                     <i class="fas fa-fw fa-hospital-alt"></i>
                     <span>병원 사후관리</span></a>
             </li>
-                        <!-- Nav Item - Pages Collapse Menu -->
+            
+            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                     aria-controls="collapsePages">
@@ -332,7 +343,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h5 class="m-0 font-weight-bold text-primary">관리자 정보</h5><%-- <button id="btn"><a href="/apa/admin/info/view.do?id=${id}">수정</a></button> --%>
+                                    <h5 class="m-0 font-weight-bold text-primary">관리자 정보</h5><button id="btn"><a href="/apa/admin/info/edit.do?adminId=${dto.adminId}">수정</a></button>
                                 </div>
                                 
 			<!-- Card Body -->
@@ -352,6 +363,8 @@
 					</tr>
 					</table>
 			</div>
+			
+			<input type="hidden" name="id" value="${dto.adminId}">
             <!-- End of Main Content -->
 			<%@ include file="/WEB-INF/views/inc/endofmaincontent.jsp" %>
 			
