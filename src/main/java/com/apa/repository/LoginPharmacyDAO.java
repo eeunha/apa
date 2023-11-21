@@ -8,15 +8,28 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+/**
+ * `LoginPharmacyDAO` 클래스는 약국과 관련된 데이터 액세스 메서드를 제공합니다.
+ */
 public class LoginPharmacyDAO {
     private Connection conn;
     private Statement stat;
     private PreparedStatement pstat;
     private ResultSet rs;
 
+    /**
+     * 디폴트 생성자는 데이터베이스 연결을 초기화합니다.
+     */
     public LoginPharmacyDAO() {
         this.conn = DBUtil.open();
     }
+
+    /**
+     * 약국 사용자의 로그인 자격 증명을 유효성 검사합니다.
+     *
+     * @param dto 로그인 정보를 포함하는 `LoginPharmacyDTO` 객체
+     * @return 로그인이 성공하면 `LoginPharmacyDTO` 객체를 반환하고, 그렇지 않으면 null을 반환합니다.
+     */
     public LoginPharmacyDTO login(LoginPharmacyDTO dto) {
 
         try {
@@ -36,7 +49,6 @@ public class LoginPharmacyDAO {
 
                 result.setPharmacyId(rs.getString("pharmacyId"));
                 result.setPharmacyPw(rs.getString("pharmacyPw"));
-                result.setPharmacyName(rs.getString("pharmacyName"));
 
                 return result;
             }
@@ -47,6 +59,12 @@ public class LoginPharmacyDAO {
         return null;
     }
 
+    /**
+     * 새로운 약국 사용자를 등록합니다.
+     *
+     * @param dto 등록 정보를 포함하는 `LoginPharmacyDTO` 객체
+     * @return 등록 프로세스에 영향을 받는 행 수
+     */
     public int PharmacyRegister(LoginPharmacyDTO dto) {
 
         try {
@@ -74,6 +92,12 @@ public class LoginPharmacyDAO {
 
     }
 
+    /**
+     * 약국 정보를 검색하여 ID, 이름, 전화번호 및 이메일이 일치하는 경우 `LoginPharmacyDTO` 객체를 반환합니다.
+     *
+     * @param dto 검색 정보를 포함하는 `LoginPharmacyDTO` 객체
+     * @return 검색 결과를 나타내는 `LoginPharmacyDTO` 객체
+     */
     public LoginPharmacyDTO searchId(LoginPharmacyDTO dto) {
         try {
 
@@ -105,6 +129,12 @@ public class LoginPharmacyDAO {
         return null;
     }
 
+    /**
+     * 약국 사용자의 비밀번호를 업데이트합니다.
+     *
+     * @param dto 업데이트할 정보를 포함하는 `LoginPharmacyDTO` 객체
+     * @return 업데이트 프로세스에 영향을 받는 행 수
+     */
     public LoginPharmacyDTO updatePw(LoginPharmacyDTO dto) {
         try {
 
@@ -130,6 +160,12 @@ public class LoginPharmacyDAO {
 
     }
 
+    /**
+     * 약국 사용자의 비밀번호를 검색하여 일치하는 경우 `LoginPharmacyDTO` 객체를 반환합니다.
+     *
+     * @param dto 검색 정보를 포함하는 `LoginPharmacyDTO` 객체
+     * @return 검색 결과를 나타내는 `LoginPharmacyDTO` 객체
+     */
     public LoginPharmacyDTO searchPw(LoginPharmacyDTO dto) {
         try {
 
@@ -161,6 +197,12 @@ public class LoginPharmacyDAO {
 
     }
 
+    /**
+     * 약국 사용자의 정보를 가져옵니다.
+     *
+     * @param dto 사용자 정보를 포함하는 `LoginPharmacyDTO` 객체
+     * @return 약국 사용자 정보를 나타내는 `LoginPharmacyDTO` 객체
+     */
     public LoginPharmacyDTO getPharmacy(LoginPharmacyDTO dto) {
         try {
 

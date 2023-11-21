@@ -14,20 +14,24 @@ import com.apa.model.AdminAfterDTO;
 import com.apa.repository.AdminAfterDAO;
 
 
+/**
+ * @author 이혜진
+ * 입점 취소를 하는 페이지로 이동하는 서블릿 클래스
+ */
 @WebServlet("/admin/company/after/del.do")
 public class Del extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//1.
+		//1. 삭제할 병원의 아이디를 가져옴
 		String hospitalId = req.getParameter("hospitalId");
 		
-		//2.
+		//2. DAO를 통해 병원의 후기 상세 정보 조회
 		AdminAfterDAO dao = new AdminAfterDAO();
 		
 		AdminAfterDTO dto = dao.detail(hospitalId);
 		
-		//3.
+		//3. 조회된 정보를 request에 설정
 		req.setAttribute("dto", dto);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/company/after/del.jsp");

@@ -7,7 +7,12 @@ import java.sql.Statement;
 
 import com.apa.DBUtil;
 import com.apa.model.AdminInfoDTO;
+import com.apa.model.AdminUserDTO;
 
+/**
+ * @author 이혜진
+ * 관리자 정보를 처리하는 DAO 클래스
+ */
 public class AdminInfoDAO {
 	
 	private Connection conn;
@@ -19,7 +24,7 @@ public class AdminInfoDAO {
 		this.conn = DBUtil.open();
 	}
 
-    public AdminInfoDTO get(String adminId) {
+    public AdminInfoDTO get(String adminId) { //관리자의 정보를 조회하는 메서드
         try {
             String sql = "SELECT * FROM tblAdmin WHERE adminId = ?";
             
@@ -44,7 +49,7 @@ public class AdminInfoDAO {
         return null;
     }
 
-	public int edit(AdminInfoDTO dto) {
+	public int edit(AdminInfoDTO dto) { //관리자 정보를 수정하는 메서드
 		
 		try {
 

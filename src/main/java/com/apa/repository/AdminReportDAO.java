@@ -10,6 +10,10 @@ import java.util.HashMap;
 import com.apa.DBUtil;
 import com.apa.model.AdminReportDTO;
 
+/**
+ * @author 이혜진
+ * 신고 관리를 위한 DAO 클래스
+ */
 public class AdminReportDAO {
 	
 	private Connection conn;
@@ -21,7 +25,7 @@ public class AdminReportDAO {
 		this.conn = DBUtil.open();
 	}
 
-	public ArrayList<AdminReportDTO> list(HashMap<String, String> map) {
+	public ArrayList<AdminReportDTO> list(HashMap<String, String> map) { //신고 목록을 조회하는 메서드
 		
         int begin = Integer.parseInt(map.get("begin"));
         int end = Integer.parseInt(map.get("end"));
@@ -63,7 +67,7 @@ public class AdminReportDAO {
 		return null;
 	}
 	
-	public int getTotalCount() {
+	public int getTotalCount() { //신고 총 개수를 조회하는 메서드
 		
 		try {
 			
@@ -84,7 +88,7 @@ public class AdminReportDAO {
 		return 0;
 	}
 
-	public AdminReportDTO detail(String userSeq) {
+	public AdminReportDTO detail(String userSeq) { //신고 정보를 조회하는 메서드
 		
 		try {
 	         
@@ -111,7 +115,7 @@ public class AdminReportDAO {
 		return null;
 	}
 
-	public int approval(AdminReportDTO dto) {
+	public int approval(AdminReportDTO dto) { //신고를 승인 처리하는 메서드
 
 		try {
 
@@ -130,7 +134,7 @@ public class AdminReportDAO {
 		return 0;
 	}
 
-	public int decline(AdminReportDTO dto) {
+	public int decline(AdminReportDTO dto) { //신고를 거절 처리하는 메서드
 		
 		try {
 
@@ -148,9 +152,5 @@ public class AdminReportDAO {
 		
 		return 0;
 	}
-
-
-
-
 
 }

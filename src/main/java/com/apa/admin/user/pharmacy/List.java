@@ -15,13 +15,16 @@ import com.apa.model.AdminHospitalDTO;
 import com.apa.model.AdminPharmacyDTO;
 import com.apa.repository.AdminPharmacyDAO;
 
+/**
+ * @author 이혜진
+ * 약국 회원 목록을 제어하는 서블릿 클래스
+ */
 @WebServlet("/admin/user/pharmacy/list.do")
 public class List extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//Pharmacy > list.java
-		
+		// 페이징 정보를 담은 맵 생성
 		HashMap<String,String> map = new HashMap<String,String>();
 		
 		//페이징
@@ -34,8 +37,6 @@ public class List extends HttpServlet {
 		int n = 0;
 		int loop = 0;
 		int blockSize = 10;
-		
-		
 		
 		String page = req.getParameter("page");
 		
@@ -52,6 +53,7 @@ public class List extends HttpServlet {
 		map.put("begin", begin + "");
 		map.put("end", end + "");
 		
+		// AdminPharmacyDAO를 이용하여 사용자 목록 조회
 		AdminPharmacyDAO dao =  new AdminPharmacyDAO();
 		
 		ArrayList<AdminPharmacyDTO> list = dao.list(map);
@@ -104,7 +106,7 @@ public class List extends HttpServlet {
 			sb.append(String.format("<a href='/apa/admin/user/pharmacy/list.do?page=%d'>[다음 %d페이지]</a>", n, blockSize));
 		}
 
-		
+		// JSP 페이지로 전달할 속성 설정
 		req.setAttribute("list", list);
 		req.setAttribute("map", map);
 		

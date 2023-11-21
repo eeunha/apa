@@ -15,6 +15,10 @@ public class AdminAfterDTO {
 	private String negativeReviews;
 	private String negativePercentage;
 	
+	private String userId;
+	private String reviewContent;
+	private String revRegdate;
+	
 	public String getHospitalId() {
 		return hospitalId;
 	}
@@ -86,6 +90,24 @@ public class AdminAfterDTO {
 	}
 	public void setNegativePercentage(String negativePercentage) {
 		this.negativePercentage = negativePercentage;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getReviewContent() {
+		return reviewContent;
+	}
+	public void setReviewContent(String reviewContent) {
+		this.reviewContent = reviewContent;
+	}
+	public String getRevRegdate() {
+		return revRegdate;
+	}
+	public void setRevRegdate(String revRegdate) {
+		this.revRegdate = revRegdate;
 	}
 
 }

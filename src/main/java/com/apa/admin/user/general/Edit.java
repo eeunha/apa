@@ -14,20 +14,25 @@ import javax.servlet.http.HttpSession;
 import com.apa.model.AdminUserDTO;
 import com.apa.repository.AdminUserDAO;
 
+/**
+ * @author 이혜진
+ * 일반 회원 정보 수정을 처리하는 서블릿 클래스
+ */
 @WebServlet("/admin/user/general/edit.do")
 public class Edit extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//1.
+		//1. 일반 회원 일련번호 파라미터에서 가져오기
 		String userSeq = req.getParameter("userSeq");
 		
-		//2.
+		//2. AdminUserDAO의 인스턴스 생성
 		AdminUserDAO dao = new AdminUserDAO();
 		
+		//일반 회원 상세 정보 조회
 		AdminUserDTO dto = dao.detail(userSeq);
 		
-		//3.
+		//3. 조회한 DTO를 요청 속성으로 설정
 		req.setAttribute("dto", dto);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/user/general/edit.jsp");
@@ -36,12 +41,6 @@ public class Edit extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		//EditOk.java 역할
-		
-		//1. 데이터 가져오기
-		//2. DB 작업 > update
-		//3. 피드백
 		
 		//HttpSession session = req.getSession();		
 		
@@ -67,6 +66,7 @@ public class Edit extends HttpServlet {
 		
 		System.out.println(dto);
 		
+		// DB 작업 > update
 		int result = dao.edit(dto);
 		
 		//3.

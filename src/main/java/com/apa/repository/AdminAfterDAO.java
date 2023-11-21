@@ -9,7 +9,12 @@ import java.util.HashMap;
 
 import com.apa.DBUtil;
 import com.apa.model.AdminAfterDTO;
+import com.apa.model.AdminHospitalDTO;
 
+/**
+ * @author 이혜진
+ * 관리자 페이지에서 병원 후기 및 정보를 관리하기 위한 DAO 클래스
+ */
 public class AdminAfterDAO {
 		
 		private Connection conn;
@@ -22,7 +27,7 @@ public class AdminAfterDAO {
 		}
 
 		
-		public ArrayList<AdminAfterDTO> list() {
+		public ArrayList<AdminAfterDTO> list() { //병원 후기 및 정보 목록을 조회하는 메서드
 			
 		    try {
 		        String sql = "SELECT * FROM vwASHospitalinfo";
@@ -61,7 +66,7 @@ public class AdminAfterDAO {
 			return null;
 		}
 		
-		public AdminAfterDTO detail(String hospitalId) {
+		public AdminAfterDTO detail(String hospitalId) { //병원의 상세 정보를 조회하는 메서드
 			
 			try {
 		         
@@ -101,7 +106,7 @@ public class AdminAfterDAO {
 		}
 
 
-		public int edit(AdminAfterDTO dto) {
+		public int edit(AdminAfterDTO dto) { //병원 정보를 수정하여 입점 취소하는 메서드
 			
 			try {
 
@@ -118,6 +123,41 @@ public class AdminAfterDAO {
 			}
 			
 			return 0;
+		}
+
+
+		public ArrayList<AdminAfterDTO> detailReviews(String hospitalId) { //병원의 후기 목록을 조회하는 메서드
+			ArrayList<AdminAfterDTO> reviewList = new ArrayList<>();
+
+		    try {
+		        String sql = "SELECT u.userSeq, u.userId, r.hospitalId, r.mediSeq, rv.reviewContent, r.regdate AS revRegdate\r\n"
+				        		+ "FROM tblUser u\r\n"
+				        		+ "INNER JOIN tblRegister r ON u.userSeq = r.userSeq\r\n"
+				        		+ "LEFT JOIN tblReview rv ON r.mediSeq = rv.mediHistorySeq\r\n"
+				        		+ "WHERE r.hospitalId = ? AND rv.reviewContent IS NOT NULL\r\n"
+				        		+ "ORDER BY r.hospitalId DESC";
+
+		        pstat = conn.prepareStatement(sql);
+		        pstat.setString(1, hospitalId);
+
+		        rs = pstat.executeQuery();
+
+		        while (rs.next()) {
+		            AdminAfterDTO dtoReview = new AdminAfterDTO();
+		            dtoReview.setUserId(rs.getString("userId"));
+		            dtoReview.setReviewContent(rs.getString("reviewContent"));
+		            dtoReview.setRevRegdate(rs.getString("revRegdate"));
+		            
+		            reviewList.add(dtoReview);
+		        }
+
+		        return reviewList;
+
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
+
+		    return null; // 빈 리스트 반환 또는 null 반환, 상황에 맞게 선택
 		}
 
 }

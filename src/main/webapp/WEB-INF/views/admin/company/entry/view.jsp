@@ -10,7 +10,7 @@
 </style>
 </head>
 <body>
-	<!-- /admin/company/entry/view.jsp -->
+	<!-- approval.jsp -->
 	<%@ include file="/WEB-INF/views/inc/header.jsp" %>
 	
 		

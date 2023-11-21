@@ -14,12 +14,22 @@ public class TestDAO {
     private Statement stat;
     private PreparedStatement pstat;
     private ResultSet rs;
+    /**
+     * 
+     * TestDAO 클래스의 생성자입니다. DB 연결을 수행합니다.
+     */
 
     public TestDAO() {
         this.conn = DBUtil.open();
     }
 
 
+    /**
+     * 특정 의학 테스트에 대한 문제 목록을 가져옵니다.
+     *
+     * @param seq 의학 테스트 시퀀스
+     * @return 의학 테스트 문제 목록을 담은 `ArrayList<TestDTO>` 객체
+     */
     public ArrayList<TestDTO> questionList(String seq) {
 
         try {
@@ -48,7 +58,12 @@ public class TestDAO {
         }
         return null;
     }
-
+    /**
+     * 의학 테스트 결과를 저장합니다.
+     *
+     * @param dto 의학 테스트 결과 정보를 담은 `TestDTO` 객체
+     * @return 데이터베이스에 저장된 행의 수
+     */
     public int testResult(TestDTO dto) {
         try {
             String sql = "insert into tblMediTestSave(meditestsaveseq, meditestseq, userseq, meditesttotalscore, testdate) values (seqMediTestSave.nextval,?, ? , ?, default)";

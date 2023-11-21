@@ -181,6 +181,21 @@
 		text-align: center;
 		margin-bottom: 15px;
 	}
+	#collapseTwo > div {
+		text-align: left;
+	}
+	.collapse-item {
+		text-align: left;
+	}
+	.hidden-row-content {
+        text-align: left;
+    }
+    #btn {
+		text-align: center;
+		border: 1px solid green;
+		border-radius: 5px;
+		color: #5BC1AC;
+	}
 </style>
 <body id="page-top">
 
@@ -203,7 +218,7 @@
 			
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/apa/user/info/view.do?seq=${dto.userSeq}" style="">
+                <a class="nav-link" href="/apa/admin/info/view.do?id=${id}" style="">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>마이페이지</span></a>
             </li>			
@@ -247,7 +262,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/apa/admin/company/entry/hospitallist.do">병원 회원</a>
-                        <a class="collapse-item" href="/apa/admin/company/entry/pharmacy.do">약국 회원</a>
+                        <a class="collapse-item" href="/apa/admin/company/entry/pharmacylist.do">약국 회원</a>
                     </div>
                 </div>
             </li>
@@ -257,6 +272,22 @@
                 <a class="nav-link" href="/apa/admin/company/after/list.do">
                     <i class="fas fa-fw fa-hospital-alt"></i>
                     <span>병원 사후관리</span></a>
+            </li>
+            
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+                    aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>게시글 관리</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/apa/admin/advice/list.do">게시글</a>
+                        <a class="collapse-item" href="/apa/admin/community/list.do">커뮤니티</a>
+                    </div>
+                </div>
             </li>
                        
             <!-- Divider -->
@@ -294,7 +325,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${dto.userName}(${dto.userId})님</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">관리자(${dto.adminId})님</span>
                                 <img class="img-profile rounded-circle"
                                     src="/apa/asset/images/undraw_profile.svg">
                             </a>
@@ -359,16 +390,15 @@
 							<input type="hidden" name="userSeq" value="${dto.userSeq}">
 						</tr>
 						<tr class="hidden-row">
-						    <td colspan="8"> <!-- 모든 열에 걸쳐 있도록 colspan 사용 -->
-						        <div>
+						    <td colspan="8">
+						        <div class="hidden-row-content">
 						            글 제목: ${dto.communityTitle}<br>
 						            글 내용: ${dto.communityContent}
 						            ♥ ${dto.communityLikeCount}
-						<div>
-	                        <!-- 신고 상태가 "접수"인 경우에만 버튼을 보여줌 -->
+								<div>
 	                        <c:if test="${dto.isReportState eq '접수'}">
-	                            <button type="button"><a href="/apa/admin/user/general/report/approval.do?userSeq=${dto.userSeq}">승인</a></button>
-	                            <button type="button"><a href="/apa/admin/user/general/report/decline.do?userSeq=${dto.userSeq}">취소</a></button>
+	                            <button type="button" id="btn"><a href="/apa/admin/user/general/report/approval.do?userSeq=${dto.userSeq}">승인</a></button>
+	                            <button type="button" id="btn"><a href="/apa/admin/user/general/report/decline.do?userSeq=${dto.userSeq}">거절</a></button>
 	                        </c:if>
 	                    </div>
 						        </div>
@@ -389,12 +419,17 @@
 	
 	    $('#selPage').val(${nowPage});
 		
-	    // 평상시에는 hidden-row 클래스를 가진 행을 숨김
-	    $('.hidden-row').hide();
-	
-	    // 버튼 클릭 시 해당 행을 토글하여 나타내거나 숨김
-	    $('.report-row').on('click', '.approval-btn, .decline-btn', function () {
-	        $(this).closest('tr').next('.hidden-row').toggle();
+	    $(document).ready(function() {
+	        // 평상시에는 hidden-row 클래스를 가진 행을 숨김
+	        $('.hidden-row').hide();
+
+	        // 행 클릭 시 해당 행을 토글하여 나타내거나 숨김
+	        $('.report-row').on('click', function () {
+	            var hiddenRow = $(this).next('.hidden-row');
+	            hiddenRow.toggle();
+
+	            // 추가적인 처리를 수행할 수 있습니다.
+	        });
 	    });
 	</script>
 </body>

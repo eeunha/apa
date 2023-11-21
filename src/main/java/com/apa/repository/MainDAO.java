@@ -12,7 +12,10 @@ import com.apa.model.MediQuestionDTO;
 import com.apa.model.PharmacyInfoDTO;
 import com.apa.model.SelfsymtomDTO;
 import com.apa.DBUtil;
-
+/**
+ * @author 이재용
+ * 메인 기능을 처리하는 데이터 액세스 객체 (DAO)입니다.
+ */
 public class MainDAO {
 	
 	private Connection conn;
@@ -23,7 +26,11 @@ public class MainDAO {
 	public MainDAO() {
 		this.conn = DBUtil.open();
 	}
-
+    /**
+     * 최근 의료 상담 질문 목록을 가져옵니다.
+     *
+     * @return 최근 의료 상담 질문 목록의 ArrayList
+     */
 	public ArrayList<MediQuestionDTO> list() {
 		ArrayList<MediQuestionDTO> list = new ArrayList<MediQuestionDTO>();
 		
@@ -57,7 +64,11 @@ public class MainDAO {
 		}
 		return null;
 	}
-
+	 /**
+     * 최근 매거진 목록을 가져옵니다.
+     *
+     * @return 최근 매거진 목록의 ArrayList
+     */
 	public ArrayList<MagazineDTO> magazinelist() {
 		ArrayList<MagazineDTO> list = new ArrayList<MagazineDTO>();
 		
@@ -91,7 +102,11 @@ public class MainDAO {
 		}
 		return null;
 	}
-
+	  /**
+     * 증상 목록을 가져옵니다.
+     *
+     * @return 증상 목록의 ArrayList
+     */
 	public ArrayList<SelfsymtomDTO> symtomlist() {
 		try {
 			
@@ -120,7 +135,19 @@ public class MainDAO {
 		}
 		return null;
 	}
-
+	/**
+     * 선택한 증상을 기반으로 병원 목록을 가져옵니다.
+     *
+     * @param 증상 1의 시퀀스
+     * @param 증상 2의 시퀀스
+     * @param 증상 3의 시퀀스
+     * @param 증상 4의 시퀀스
+     * @param 증상 5의 시퀀스
+     * @param 증상 6의 시퀀스
+     * @param 증상 7의 시퀀스
+     * @param 증상 8의 시퀀스
+     * @return 병원 목록의 ArrayList
+     */
 	public ArrayList<HospitalInfoDTO> hospitallist(String seq1, String seq2, String seq3, String seq4, String seq5, String seq6, String seq7, String seq8) {
 		try {
 			//System.out.println(seq1+","+seq2+","+seq3+","+seq4+","+seq5+","+seq6+","+seq7+","+seq8);
@@ -175,7 +202,12 @@ public class MainDAO {
 		}
 		return null;
 	}
-
+	  /**
+     * 병원 정보를 가져옵니다.
+     *
+     * @param 병원의 시퀀스
+     * @return 병원 정보를 담고 있는 HospitalInfoDTO 객체
+     */
 	public HospitalInfoDTO hospitalinfo(String seq) {
 		
 		try {
@@ -219,7 +251,12 @@ public class MainDAO {
 		return null;
 	}
 	
-
+	/**
+     * 선택한 병원의 진료과 목록을 가져옵니다.
+     *
+     * @param 병원의 시퀀스
+     * @return 진료 과목 목록의 ArrayList
+     */
 	public ArrayList<HospitalInfoDTO> deptnameslist(String seq) {
 		try {
 			String sql = "select dept.departmentname, d.hospitalid from tbldoctor d inner join tbldepartment dept on d.departmentseq = dept.departmentseq where d.hospitalid = ? group by dept.departmentname, d.hospitalid";
@@ -249,7 +286,12 @@ public class MainDAO {
 		}
 		return null;
 	}
-
+	 /**
+     * 약국 정보를 가져옵니다.
+     *
+     * @param 약국의 시퀀스
+     * @return 약국 정보를 담고 있는 PharmacyInfoDTO 객체
+     */
 	public PharmacyInfoDTO pharmacyInfo(String seq) {
 try {
 			
@@ -285,7 +327,11 @@ try {
 		}
 		return null;
 	}
-
+	 /**
+     * 메인 페이지에 표시될 병원 목록을 가져옵니다.
+     *
+     * @return 메인 페이지에 표시될 병원 목록의 ArrayList
+     */
 	public ArrayList<HospitalInfoDTO> hospitallistmain() {
 		try {
 			

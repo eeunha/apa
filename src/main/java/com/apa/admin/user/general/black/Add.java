@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.AdminBlackDTO;
 import com.apa.repository.AdminBlackDAO;
 
+/**
+ * @author 이혜진
+ * 일반 회원을 블랙리스트에 추가하는 서블릿 클래스
+ */
 @WebServlet("/admin/user/general/black/add.do")
 public class Add extends HttpServlet {
 	@Override
@@ -27,7 +31,8 @@ public class Add extends HttpServlet {
 	    
 		req.setCharacterEncoding("UTF-8");
 		
-		String id = req.getParameter("seq");  // 폼에서 입력한 아이디를 가져옴
+		// 폼에서 입력한 아이디를 가져옴
+		String id = req.getParameter("seq");
 	    String content = req.getParameter("content");
 
 	    AdminBlackDAO dao = new AdminBlackDAO();
@@ -38,7 +43,8 @@ public class Add extends HttpServlet {
 	    AdminBlackDTO dto = new AdminBlackDTO();
 	    dto.setUserId(seq);
 	    dto.setBlacklistReason(content);
-
+	    
+	    // 블랙리스트에 사용자 추가
 	    int result = dao.InsertBlackUser(seq, content);
 
 	    if (result == 1) {

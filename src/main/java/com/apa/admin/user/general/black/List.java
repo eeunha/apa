@@ -15,19 +15,21 @@ import com.apa.model.AdminBlackDTO;
 import com.apa.model.AdminUserDTO;
 import com.apa.repository.AdminBlackDAO;
 
-
-
+/**
+ * @author 이혜진
+ * 일반 회원 블랙리스트 정보를 조회하는 서블릿 클래스
+ */
 @WebServlet("/admin/user/general/black/list.do")
 public class List extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//Black > list.java
-		
+		// 검색 조건 파라미터
 		String column = req.getParameter("column");
 		String word = req.getParameter("word");
 		String search = "n"; //검색중("y"), 목록보기("n")
 		
+		// 검색 조건이 없으면 search를 "n"으로 설정
 		if ((column == null && word == null)
 				|| (column.equals("") && word.equals(""))) {
 			search = "n";
@@ -35,6 +37,7 @@ public class List extends HttpServlet {
 			search = "y";
 		}
 		
+		// 검색 조건을 담은 HashMap 생성
 		HashMap<String,String> map = new HashMap<String,String>();
 		
 		map.put("column", column);
@@ -64,10 +67,11 @@ public class List extends HttpServlet {
 		begin = ((nowPage - 1) * pageSize) + 1;
 		end = begin + pageSize - 1;
 		
-		
+		// 페이징 정보를 HashMap에 추가
 		map.put("begin", begin + "");
 		map.put("end", end + "");
 		
+		// DAO를 통해 블랙리스트 목록 조회
 		AdminBlackDAO dao =  new AdminBlackDAO();
 		
 		ArrayList<AdminBlackDTO> list = dao.list(map);
@@ -111,8 +115,9 @@ public class List extends HttpServlet {
 		} else {
 			sb.append(String.format("<a href='/apa/admin/user/general/black/list.do?page=%d'>[다음 %d페이지]</a>", n, blockSize));
 		}
-				
-
+		
+		
+		// request에 필요한 속성 설정
 		req.setAttribute("list", list);
 		req.setAttribute("map", map);
 		

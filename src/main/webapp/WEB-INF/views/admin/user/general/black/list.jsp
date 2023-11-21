@@ -177,6 +177,24 @@
 		text-align: center;
 		margin-bottom: 15px;
 	}
+	#collapseTwo > div {
+		text-align: left;
+	}
+	.collapse-item {
+		text-align: left;
+	}
+	#search-form {
+	    text-align: center;
+	    margin: 20px 0; /* 원하는 여백 값으로 조정 */
+	}
+	.btncontainer {
+		text-align: right;
+		margin-top: 10px;
+		padding-right: 60px;
+	}
+	.semi-title {
+		padding-top: 20px;
+	}
 </style>
 <body id="page-top">
 
@@ -199,7 +217,7 @@
 			
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/apa/user/info/view.do?seq=${dto.userSeq}" style="">
+                <a class="nav-link" href="/apa/admin/info/view.do?id=${id}" style="">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>마이페이지</span></a>
             </li>			
@@ -209,7 +227,7 @@
             
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/apa/admin/info/view.do">
+                <a class="nav-link collapsed" href="/apa/admin/info/view.do?id=${id}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>내 정보</span>
                 </a>
@@ -290,7 +308,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">${dto.userName}(${dto.userId})님</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">관리자(${dto.adminId})님</span>
                                 <img class="img-profile rounded-circle"
                                     src="/apa/asset/images/undraw_profile.svg">
                             </a>
@@ -327,15 +345,13 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-			<form action=""></form>
-                                    <h5 class="m-0 font-weight-bold text-primary">블랙리스트 회원 목록</h5> <button id="btn"><a href="/apa/admin/user/general/black/add.do">관리
-                                    </a></button>
+                                    <h5 class="m-0 font-weight-bold text-primary">블랙리스트 회원 목록</h5> <button id="btn"><a href="/apa/admin/user/general/generalmain.do">돌아가기</a></button>
                                 </div>
                                 
 			<!-- Card Body -->
-	    
-		    <h3>
-		    	<!-- 블랙리스트 회원<small> 목록</small> -->
+					
+			<div class="blatbl">
+		    <h3 class="semi-title">
 		    	<small>
 					<c:if test="${map.search == 'n'}">
 					목록보기
@@ -345,11 +361,8 @@
 					</c:if>
 				</small>
 		    </h3>
-					
-			<div class="blatbl">
 				<table class=black>
 					<tr>
-						<th></th>
 						<th id="num">번호</th>
 						<th id="id">아이디</th>
 						<th id="username">회원명</th>
@@ -358,9 +371,8 @@
 					</tr>
 					<c:forEach items="${list}" var="dto" varStatus="status">
 						<tr>
-							<td><input type="checkbox" name="userSeq" value="${dto.userSeq}"></td>
 							<td>${status.count}</td>		<!-- 순번 -->
-							<td><a href="/apa/admin/user/general/black/del.do?userSeq=${dto.userSeq}">${dto.userId}</a></td>			<!-- 회원아이디 -->
+							<td><a href="/apa/admin/user/general/black/del.do?userSeq=${dto.userSeq}">${dto.userId}</a></td>
 							<td>${dto.userName}</td>		<!-- 회원명 -->
 							<td>${dto.blacklistReason}</td>	<!-- 사유 -->
 							<td>${dto.blacklistDate}</td>	<!-- 블랙리스트 등록 날짜 -->
@@ -368,7 +380,10 @@
 					</c:forEach>
 				</table>
 			</div>
-		
+			
+			<div class="btncontainer">
+				<button id="btn"><a href="/apa/admin/user/general/black/add.do">추가</a></button>
+			</div>
 			<!-- 페이지바 -->
 			<div id="pagebar">${pagebar}</div>
 			
@@ -381,11 +396,6 @@
 				<input type="submit" value="검색하기">
 			</form>
 			
-			<div>			
-				<c:if test="${not empty id}">
-				<button type="button" class="add primary" onclick="location.href='/toy/board/add.do';">글쓰기</button>
-				</c:if>
-			</div>  
 	
             <!-- End of Main Content -->
 			<%@ include file="/WEB-INF/views/inc/endofmaincontent.jsp" %>

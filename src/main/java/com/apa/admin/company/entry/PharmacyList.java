@@ -16,10 +16,10 @@ import com.apa.repository.AdminEntryDAO;
 
 /**
  * @author 이혜진
- * 병원 입점 신청 목록을 조회하는 서블릿 클래스
+ * 약국 입점 신청 목록을 조회하는 서블릿 클래스
  */
-@WebServlet("/admin/company/entry/hospitallist.do")
-public class HospitalList extends HttpServlet {
+@WebServlet("/admin/company/entry/pharmacylist.do")
+public class PharmacyList extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -55,21 +55,25 @@ public class HospitalList extends HttpServlet {
 		
 		AdminEntryDAO dao =  new AdminEntryDAO();
 		
-		// 병원 가입 신청 목록 조회
-		ArrayList<AdminEntryDTO> hospitalList = dao.hospitalList(map);
+		// 약국 가입 신청 목록 조회
+		ArrayList<AdminEntryDTO> pharmacyList = dao.pharmacyList(map);
 		
-		for (AdminEntryDTO dto : hospitalList) {
+		for (AdminEntryDTO dto : pharmacyList) {
 			
 			//가입일 날짜 자르기
-			String hospitalregdate = dto.getHospitalregdate();			
-			dto.setHospitalregdate(hospitalregdate.substring(0, 10));
+			String pharmacyRegdate = dto.getPharmacyRegdate();			
+			dto.setPharmacyRegdate(pharmacyRegdate.substring(0, 10));
 			
 			String entryRegdate = dto.getEntryRegdate();			
 			dto.setEntryRegdate(entryRegdate.substring(0, 10));
+
+//			String entryDate = dto.getEntryDate();			
+//			dto.setEntryDate(entryDate.substring(0, 10));
+
 		}
 		
 		//총 게시물 수
-		totalCount = dao.getHospitalTotalCount();
+		totalCount = dao.getPharmacyTotalCount();
 		
 		totalPage = (int)Math.ceil((double)totalCount / pageSize);
 		
@@ -83,7 +87,7 @@ public class HospitalList extends HttpServlet {
 		if (n == 1) {
 			sb.append(String.format("<a href='#!'>[이전]</a>"));
 		} else {
-			sb.append(String.format("<a href='/apa/admin/company/entry/hospitallist.do?page=%d'>[이전]</a>", n - 1));
+			sb.append(String.format("<a href='/apa/admin/company/entry/pharmacylist.do?page=%d'>[이전]</a>", n - 1));
 		}
 		
 		
@@ -93,7 +97,7 @@ public class HospitalList extends HttpServlet {
 			if (n == nowPage) {
 				sb.append(String.format(" <a href='#!' style='color:tomato;'>%d</a>", n));
 			} else {
-				sb.append(String.format(" <a href='/apa/admin/company/entry/hospitallist.do?page=%d'>%d</a>", n, n));
+				sb.append(String.format(" <a href='/apa/admin/company/entry/pharmacylist.do?page=%d'>%d</a>", n, n));
 			}
 			
 			loop++;
@@ -105,11 +109,11 @@ public class HospitalList extends HttpServlet {
 		if (n > totalPage) {
 			sb.append(String.format("<a href='#!'>[다음]</a>"));
 		} else {
-			sb.append(String.format("<a href='/apa/admin/company/entry/hospitallist.do?page=%d'>[다음]</a>", n));
+			sb.append(String.format("<a href='/apa/admin/company/entry/pharmacylist.do?page=%d'>[다음]</a>", n));
 		}
 		
 		// 결과를 request에 설정
-		req.setAttribute("hospitalList", hospitalList);
+		req.setAttribute("pharmacyList", pharmacyList);
 		req.setAttribute("map", map);
 		
 		req.setAttribute("totalCount", totalCount);
@@ -118,7 +122,7 @@ public class HospitalList extends HttpServlet {
 		
 		req.setAttribute("pagebar", sb.toString());
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/company/entry/hospitallist.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/admin/company/entry/pharmacylist.jsp");
 		dispatcher.forward(req, resp);
 	}
 }

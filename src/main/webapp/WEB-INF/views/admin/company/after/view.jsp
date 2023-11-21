@@ -111,7 +111,7 @@
 	#tel2 { width: 4rem; }
 	#tel3 { width: 4rem; }
 	
-	.afttbl {
+	.afttbl, .revtbl {
     	text-align: center;
     	margin: auto;
 	}
@@ -177,9 +177,64 @@
 		text-align: center;
 		margin-bottom: 15px;
 	}
-	#collapseTwo > div {
-	text-align: left;
-}
+	.collapse-item {
+		text-align: left;
+	}
+	.sbtncontainer {
+		text-align: right;
+		margin-top: 10px;
+		padding-right: 83px;
+	}
+	.sbtn {
+		border: 1px solid #CCC;
+		text-align: center;
+		border: 1px solid green;
+		border-radius: 5px;
+		text-align: center;
+		color: #5BC1AC;	
+	}
+	.sbtn:hover {
+		text-decoration: underline;
+	}
+	.wrap-doughnut {
+	  position: relative;
+	  padding: 2%;
+	}
+	
+	.container-doughnut {
+	  display: flex;
+	  gap: 10px;
+	  margin-left: 120px;
+	}
+	
+	.chart {
+	  position: relative;
+	  width: 80px;
+	  height: 80px;
+	  border-radius: 50%;
+	  transition: 0.3s;
+	}
+	
+	span.center-doughnut {
+	  background: #fff;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  width: 40px;
+	  height: 40px;
+	  border-radius: 50%;
+	  text-align: center;
+	  line-height: 40px;
+	  font-size: 15px;
+	  transform: translate(-50%, -50%);
+	}
+	
+	.revcontent {
+	    text-align: center;
+    	margin: auto;
+    	font-style: bold;
+	}
+	
 </style>
 <body id="page-top">
 
@@ -202,7 +257,7 @@
 			
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/apa/user/info/view.do<%-- ?seq=${dto.userSeq} --%>" style="">
+                <a class="nav-link" href="/apa/admin/info/view.do?id=${id}" style="">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>마이페이지</span></a>
             </li>			
@@ -212,7 +267,7 @@
             
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/apa/admin/info/view.do">
+                <a class="nav-link collapsed" href="/apa/admin/info/view.do?id=${id}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>내 정보</span>
                 </a>
@@ -256,6 +311,22 @@
                     <i class="fas fa-fw fa-hospital-alt"></i>
                     <span>병원 사후관리</span></a>
             </li>
+            
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
+                    aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>게시글 관리</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="/apa/admin/advice/list.do">게시글</a>
+                        <a class="collapse-item" href="/apa/admin/community/list.do">커뮤니티</a>
+                    </div>
+                </div>
+            </li>
                        
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -279,7 +350,7 @@
 
 					<!-- Page Heading -->
 	                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	                	<h1 class="h3 mb-0 text-gray-800 hansans" style="padding-top: 28px;">입점 관리</h1>
+	                	<h1 class="h3 mb-0 text-gray-800 hansans" style="padding-top: 28px;">사후관리</h1>
 	                </div>
 	                    
                     <!-- Topbar Navbar -->
@@ -292,7 +363,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%-- ${dto.userName}(${dto.userId} --%>)님</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">관리자(<%-- ${dto.adminId} --%>)님</span>
                                 <img class="img-profile rounded-circle"
                                     src="/apa/asset/images/undraw_profile.svg">
                             </a>
@@ -329,12 +400,14 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h5 class="m-0 font-weight-bold text-primary">사후 처리 상세보기</h5>
+                                    <h5 class="m-0 font-weight-bold text-primary">사후관리 상세보기</h5><button id="btn"><a href="/apa/admin/company/after/list.do">목록</a></button>
                                 </div>
                                 
 			<!-- Card Body -->		
-			<div>
-				<button id="btn"><a href="/apa/admin/company/after/del.do?hospitalId=${dto.hospitalId}">수정</a></button>
+			<div class="sbtncontainer">
+				<c:if test="${dto.isHospital eq 'y'}">
+					<button class="sbtn" onclick="openDeletePopup();">입점 취소</button>
+				</c:if>
 			</div>
 	
 			<div class="afttbl">
@@ -371,35 +444,89 @@
 						<th id="status">입점 유무</th>
 						<td>${dto.isHospital}</td>
 					</tr>
-					<tr>
-						<th id="status">태그 현황</th>
-						<td>
-							총 태그 개수: ${dto.totalReviews}(${dto.negativePercentage}%)
-							긍정: ${dto.positiveReviews}
-							부정: ${dto.negativeReviews}
-						</td>
-					</tr>
 			</table>
 			</div>
 			
-			<div>
-			<table class=info>
-					<tr>
-						<th id="review">리뷰 내역</th>
-						<td>어쩌구</td>
-					</tr>
-			</table>
+			<div style="display: flex;">
+			    <div class='wrap-doughnut'>
+			        <div class='container-doughnut'>
+			            <div class="chart doughnut"><span class="center-doughnut">${dto.negativePercentage}%</span></div>
+			            <div class='revcontent' style="margin-left: 10px;">
+			                총 태그 개수: ${dto.totalReviews}<br>
+			                긍정: ${dto.positiveReviews} 부정: ${dto.negativeReviews}
+			            </div>
+			        </div>
+			    </div>
+			
+				<div class="revtbl" style="display: none; margin-left: 20px; width: 1100px;">
+				    <table class="info" style="width: 100%;">
+				        <tr>
+				            <th id="id" style="width: 100px;">아이디</th>
+				            <th id="content" style="width: auto;">리뷰내용</th>
+				            <th id="visit" style="width: 200px;">방문일자</th>
+				        </tr>
+				        <c:forEach items="${dtoReview}" var="review" varStatus="status">
+				            <tr>
+				                <td style="width: 100px;">${review.userId}</td>
+				                <td style="width: 400px;">${review.reviewContent}</td>
+				                <td style="width: 200px;">${review.revRegdate}</td>
+				            </tr>
+				        </c:forEach>
+				    </table>
+				</div>
 			</div>
 			
-			<div>
-				<button id="btn"><a href="/apa/admin/company/after/list.do">목록</a></button>
-			</div>
-		
-		    <!-- End of Main Content -->
+			<!-- End of Main Content -->
 			<%@ include file="/WEB-INF/views/inc/endofmaincontent.jsp" %>
 		
 	<script>
+	    document.addEventListener('DOMContentLoaded', function () {
+	        const revtbl = document.querySelector('.revtbl');
+	        const chartDoughnut = document.querySelector('.chart.doughnut');
 	
+	        chartDoughnut.addEventListener('click', function () {
+	            revtbl.style.display = (revtbl.style.display === 'none' || revtbl.style.display === '') ? 'table' : 'none';
+	        });
+	
+	        const chart1 = document.querySelector('.doughnut');
+	
+	        const makeChart = (percent, classname, color) => {
+	            let i = 1;
+	            let chartFn = setInterval(function () {
+	                if (i < percent) {
+	                    colorFn(i, classname, color);
+	                    i++;
+	                } else {
+	                    clearInterval(chartFn);
+	                }
+	            }, 10);
+	        }
+	
+	        const colorFn = (i, classname, color) => {
+	            classname.style.background = "conic-gradient(" + color + " 0% " + i + "%, #dedede " + i + "% 100%)";
+	        }
+	
+	        makeChart(${dto.negativePercentage}, chart1, '#8DA7CE');
+	    });
+	    
+		function openDeletePopup() {
+	    	
+	        var deleteUrl = "/apa/admin/company/after/del.do?hospitalId=${dto.hospitalId}";
+	        var deletePopup = window.open(deleteUrl, "DeleteUserPopup", "width=500, height=400");
+	        
+	        // 팝업이 닫힌 경우 실행되는 함수
+	        function onPopupClose() {
+	            // 삭제가 완료되면 목록 페이지로 이동
+	            window.location.href = "/apa/admin/company/after/list.do";
+	        }
+
+	        // 팝업이 닫힘을 감지하고 onPopupClose 함수를 호출
+	        if (window.addEventListener) {
+	            deletePopup.addEventListener('beforeunload', onPopupClose);
+	        } else {
+	            deletePopup.attachEvent('beforeunload', onPopupClose);
+	        }
+	    }
 	</script>
 </body>
 </html>

@@ -14,15 +14,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.AdminUserDTO;
 import com.apa.repository.AdminUserDAO;
 
-
+/**
+ * @author 이혜진
+ * 일반 회원 목록을 페이징하여 조회하고 JSP 페이지로 전달하는 서블릿 클래스
+ */
 @WebServlet("/admin/user/general/list.do")
 public class List extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
-		//list.java
-		
+		// 페이징 정보를 담은 맵 생성
 		HashMap<String,String> map = new HashMap<String,String>();
 		
 		//페이징
@@ -53,7 +54,7 @@ public class List extends HttpServlet {
 		map.put("begin", begin + "");
 		map.put("end", end + "");
 		
-		
+		// AdminUserDAO를 이용하여 사용자 목록 조회
 		AdminUserDAO dao =  new AdminUserDAO();
 		
 		ArrayList<AdminUserDTO> list = dao.list(map);
@@ -108,7 +109,7 @@ public class List extends HttpServlet {
 		}
 		
 		
-
+		// JSP 페이지로 전달할 속성 설정
 		req.setAttribute("list", list);
 		req.setAttribute("map", map);
 		
