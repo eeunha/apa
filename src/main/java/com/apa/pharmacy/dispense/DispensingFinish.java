@@ -11,26 +11,32 @@ import javax.servlet.http.HttpSession;
 
 import com.apa.pharmacy.repository.DispenseDAO;
 
+/**
+ * 제조완료 처리를 마치는 서블릿
+ */
 @WebServlet("/pharmacy/dispense/dispensingfinish.do")
 public class DispensingFinish extends HttpServlet {
 
-	@Override
-	 protected void doPost(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
-		HttpSession session = req.getSession();
-//		String pharmacyId = (String) session.getAttribute("pharmacyId");
-		String pharmacyId = session.getAttribute("id").toString(); 
-		String[] dispenseIds = req.getParameterValues("dispenseIds");
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        // 세션에서 약국 ID 가져오기
+        String pharmacyId = session.getAttribute("id").toString();
+        
+        // dispenseIds 가져오기
+        String[] dispenseIds = req.getParameterValues("dispenseIds");
 
-	        if (dispenseIds != null && dispenseIds.length > 0) {
-	            DispenseDAO dispenseDAO = new DispenseDAO();
-	            
-	            for (String dispenseId : dispenseIds) {
-	                dispenseDAO.updateDispenseFinish(dispenseId);
-	            }
+        if (dispenseIds != null && dispenseIds.length > 0) {
+            DispenseDAO dispenseDAO = new DispenseDAO();
+            
+            // 선택된 dispenseIds를 반복하여 updateDispenseFinish 실행
+            for (String dispenseId : dispenseIds) {
+                dispenseDAO.updateDispenseFinish(dispenseId);
+            }
 
-	            resp.getWriter().write("Success");
-	        } else {
-	            resp.getWriter().write("NoSelection");
-	        }
-	    }
+            resp.getWriter().write("Success"); // 성공 메시지 전송
+        } else {
+            resp.getWriter().write("NoSelection"); // 선택된 것이 없는 경우 메시지 전송
+        }
+    }
 }

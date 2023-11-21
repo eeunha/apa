@@ -15,27 +15,37 @@ import com.apa.pharmacy.repository.PharmacyDAO;
 
 @WebServlet("/pharmacy/entry/list.do")
 public class List extends HttpServlet {
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-//		String pharmacyId = (String) session.getAttribute("pharmacyId");
-		String pharmacyId = session.getAttribute("id").toString();
-//		session.setAttribute("sla0623", "sla1234");
-		System.out.println(pharmacyId);
+    /**
+     * 입점신청을 위한 약국 정보를 처리하는 서블릿
+     * GET 요청 처리
+     * @param req HTTP 요청 객체
+     * @param resp HTTP 응답 객체
+     * @throws ServletException 서블릿 예외
+     * @throws IOException 입출력 예외
+     */
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 세션에서 약국 ID 가져오기
+        HttpSession session = req.getSession();
+        String pharmacyId = session.getAttribute("id").toString();
+        System.out.println(pharmacyId);
 
-		if (pharmacyId == null || "".equals(pharmacyId)) {
-			pharmacyId = req.getParameter("pharmacyId");
-		}
-		// 1.
-		PharmacyDAO dao = new PharmacyDAO();
+        // 세션에 약국 ID가 없는 경우, 파라미터에서 가져오기
+        if (pharmacyId == null || "".equals(pharmacyId)) {
+            pharmacyId = req.getParameter("pharmacyId");
+        }
+        // PharmacyDAO 인스턴스 생성
+        PharmacyDAO dao = new PharmacyDAO();
 
-		PharmacyDTO dto = dao.getEntryInfo(pharmacyId);
+        // 약국 정보 가져오기
+        PharmacyDTO dto = dao.getEntryInfo(pharmacyId);
 
-		
-		req.setAttribute("dto", dto);
-		req.setAttribute("pharmacyId", pharmacyId);
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/pharmacy/entry/list.jsp");
-		dispatcher.forward(req, resp);
-	}
+        // 요청에 약국 정보 및 ID 속성 추가
+        req.setAttribute("dto", dto);
+        req.setAttribute("pharmacyId", pharmacyId);
+        
+        // JSP로 포워딩
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/pharmacy/entry/list.jsp");
+        dispatcher.forward(req, resp);
+    }
 }

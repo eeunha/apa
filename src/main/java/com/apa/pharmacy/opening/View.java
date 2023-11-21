@@ -13,25 +13,28 @@ import javax.servlet.http.HttpSession;
 import com.apa.pharmacy.model.OpenDTO;
 import com.apa.pharmacy.repository.OpenDAO;
 
+
+/**
+ * 
+ * 약국 운영정보를 확인하는 서블릿
+ *
+ */
 @WebServlet("/pharmacy/opening/view.do")
 public class View extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		// 세션에서 약국 ID를 가져옵니다.
 		HttpSession session = req.getSession();
-//		String pharmacyId = (String) session.getAttribute("pharmacyId");
 		String pharmacyId = session.getAttribute("id").toString();
-//		session.setAttribute("sla0623", "sla1234");
-		System.out.println(pharmacyId);
 
 		if (pharmacyId == null || "".equals(pharmacyId)) {
 			pharmacyId = req.getParameter("pharmacyId");
 		}
-		// 1.
+		// OpenDAO를 사용하여 해당 약국의 오픈 정보를 가져옵니다.
 		OpenDAO openDAO = new OpenDAO();
-
 		OpenDTO openDTO = openDAO.getOpenInfo(pharmacyId);
 
+		// 가져온 정보를 요청 객체에 설정하고 JSP 페이지로 전달합니다.
 		req.setAttribute("dto", openDTO);
 		req.setAttribute("pharmacyId", pharmacyId);
 
