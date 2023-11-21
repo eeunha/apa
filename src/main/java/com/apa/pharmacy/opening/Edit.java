@@ -15,7 +15,7 @@ import com.apa.pharmacy.model.OpenDTO;
 import com.apa.pharmacy.repository.OpenDAO;
 
 /**
- * 
+ * @author 김민정 
  * 약국 운영정보를 수정하는 서블릿
  *
  */

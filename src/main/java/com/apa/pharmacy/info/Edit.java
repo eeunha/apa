@@ -15,6 +15,7 @@ import com.apa.pharmacy.repository.PharmacyDAO;
 @WebServlet("/pharmacy/info/edit.do")
 public class Edit extends HttpServlet {
     /**
+     * @author 김민정 
      * 약국 회원 탈퇴를 처리하는 서블릿
      * GET 요청 처리 
      * @param req HTTP 요청 객체

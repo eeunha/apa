@@ -17,6 +17,7 @@ import com.apa.pharmacy.model.DispenseDTO;
 import com.apa.pharmacy.repository.DispenseDAO;
 
 /**
+ * @author 김민정
  * 전체 제조목록을 보여주는 서블릿
  */
 @WebServlet("/pharmacy/dispense/list.do")

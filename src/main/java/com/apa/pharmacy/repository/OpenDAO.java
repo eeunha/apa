@@ -21,6 +21,7 @@ public class OpenDAO {
 	}
 
 	/**
+	 * @author 김민정 
 	 * 약국의 운영 정보를 가져오는 메서드
 	 * 
 	 * @param pharmacyId 약국 식별자

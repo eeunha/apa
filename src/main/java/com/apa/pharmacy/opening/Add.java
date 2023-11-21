@@ -14,6 +14,7 @@ import com.apa.pharmacy.model.OpenDTO;
 import com.apa.pharmacy.repository.OpenDAO;
 
 /**
+ * @author 김민정 
  * 약국의 운영 정보를 추가하는 기능을 처리하는 서블릿.
  */
 @WebServlet("/pharmacy/opening/add.do")

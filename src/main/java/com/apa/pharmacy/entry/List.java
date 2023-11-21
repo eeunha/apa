@@ -16,6 +16,7 @@ import com.apa.pharmacy.repository.PharmacyDAO;
 @WebServlet("/pharmacy/entry/list.do")
 public class List extends HttpServlet {
     /**
+     * @author 김민정 
      * 입점신청을 위한 약국 정보를 처리하는 서블릿
      * GET 요청 처리
      * @param req HTTP 요청 객체

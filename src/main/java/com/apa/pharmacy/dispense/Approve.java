@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.pharmacy.repository.DispenseDAO;
 
 /**
+ * @author 김민정 
  * 제조 승인을 위한 서블릿 
  */
 @WebServlet("/pharmacy/dispense/approve.do")
