@@ -13,8 +13,17 @@ import com.apa.model.hospital.DiagnosisRgstDTO;
 import com.apa.model.hospital.DgnsMediHistoryDTO;
 import com.apa.repository.hospital.DiagnosisDAO;
 
+/**
+ * 병원 - 내 진료 기능 중 모든 진료 내역의 상세 페이지를 담당하는 클래스입니다.
+ * @author Eunha
+ *
+ */
 @WebServlet("/hospital/diagnosis/all/history/view.do")
 public class View extends HttpServlet {
+	
+	/**
+	 *  모든 진료 내역의 상세 페이지를 불러오는 메소드입니다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

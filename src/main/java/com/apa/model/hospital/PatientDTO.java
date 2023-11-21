@@ -1,5 +1,10 @@
 package com.apa.model.hospital;
 
+/**
+ * 환자의 정보를 담을 DTO 클래스입니다.
+ * @author Eunha
+ *
+ */
 public class PatientDTO {
 	private String patientSeq;
 	private String patientName;

@@ -12,8 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.hospital.DiagnosisRgstDTO;
 import com.apa.repository.hospital.DiagnosisDAO;
 
+/**
+ * 병원 - 내 진료 기능 중 오늘의 진료의 예약 상세 페이지를 담당하는 클래스입니다.
+ * @author Eunha
+ *
+ */
 @WebServlet("/hospital/diagnosis/register-view.do")
 public class RegisterView extends HttpServlet {
+	
+	/**
+	 * 예약 상세 페이지를 불러오는 메소드입니다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
