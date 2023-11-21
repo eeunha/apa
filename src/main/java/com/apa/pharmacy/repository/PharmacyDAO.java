@@ -23,6 +23,7 @@ public class PharmacyDAO {
 	}
 
 	/**
+	 * @author 김민정 
 	 * 지정된 약국 ID를 사용하여 해당 약국 정보를 검색하는 메서드입니다.
 	 * @param pharmacyId 검색할 약국의 ID
 	 * @return PharmacyDTO 객체에 검색된 약국 정보를 담아 반환합니다. 검색 결과가 없으면 null을 반환합니다.

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.apa.pharmacy.repository.DispenseDAO;
 
 /**
+ * @author 김민정
  * 제조완료 처리를 마치는 서블릿
  */
 @WebServlet("/pharmacy/dispense/dispensingfinish.do")

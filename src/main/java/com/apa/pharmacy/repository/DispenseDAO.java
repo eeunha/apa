@@ -25,6 +25,7 @@ public class DispenseDAO {
 	}
 	
 	/**
+	 * @author 김민정 
      * 여러 제조 상태를 '거부'로 업데이트하는 메서드
      * 
      * @param dispenseIds 처리할 처방전 ID 배열

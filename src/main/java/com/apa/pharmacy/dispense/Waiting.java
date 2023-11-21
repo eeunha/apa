@@ -19,6 +19,7 @@ import com.apa.pharmacy.repository.DispenseDAO;
 @WebServlet("/pharmacy/dispense/waiting.do")
 public class Waiting extends HttpServlet {
     /**
+     * @author 김민정
      * 제조 대기중인 목록을 처리하는 서블릿
      * 대기 중인 Dispense 객체 목록을 가져와서 화면에 표시하는 GET 요청 처리
      * @param req HTTP 요청 객체

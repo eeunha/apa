@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import com.apa.pharmacy.repository.DispenseDAO;
 
 /**
+ * @author 김민정
  * 제조 완료 처리를 마치는 서블릿
  */
 @WebServlet("/pharmacy/dispense/completefinish.do")
@@ -31,7 +32,7 @@ public class CompleteFinish extends HttpServlet {
 
             // 선택된 dispenseIds를 반복하며 updatecompleteFinish 실행
             for (String dispenseId : dispenseIds) {
-                dispenseDAO.updatecompleteFinish(dispenseId);
+                dispenseDAO.updateCompleteFinish(dispenseId);
             }
 
             resp.getWriter().write("Success"); // 성공 메시지 전송

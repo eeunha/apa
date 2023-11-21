@@ -17,6 +17,7 @@ import com.apa.pharmacy.model.DispenseDTO;
 import com.apa.pharmacy.repository.DispenseDAO;
 
 /**
+ * @author 김민정
  * 제조 완료된 약을 수령완료 처리 하는 서블릿
  */
 @WebServlet("/pharmacy/dispense/pickup.do")

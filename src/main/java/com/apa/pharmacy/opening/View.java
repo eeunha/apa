@@ -15,7 +15,7 @@ import com.apa.pharmacy.repository.OpenDAO;
 
 
 /**
- * 
+ * @author 김민정 
  * 약국 운영정보를 확인하는 서블릿
  *
  */

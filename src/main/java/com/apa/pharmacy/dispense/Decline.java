@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.pharmacy.repository.DispenseDAO;
 
 /**
+ * @author 김민정
  * 제조를 거부하는 서블릿
  */
 @WebServlet("/pharmacy/dispense/decline.do")

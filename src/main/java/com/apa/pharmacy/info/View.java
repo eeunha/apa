@@ -16,6 +16,7 @@ import com.apa.pharmacy.repository.PharmacyDAO;
 @WebServlet("/pharmacy/info/view.do")
 public class View extends HttpServlet {
     /**
+     * @author 김민정 
      * 약국 정보를 확인하는 서블릿
      * GET 요청 처리 
      * @param req HTTP 요청 객체
