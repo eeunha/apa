@@ -22,6 +22,7 @@ import com.apa.repository.ReservationDAO;
 public class Select extends HttpServlet {
 	
 	/**
+	 * @author 이재용
 	 * 진료방식 선택 페이지
 	 */
 	@Override

@@ -13,6 +13,7 @@ import com.apa.model.PharmacyInfoDTO;
 import com.apa.model.SelfsymtomDTO;
 import com.apa.DBUtil;
 /**
+ * @author 이재용
  * 메인 기능을 처리하는 데이터 액세스 객체 (DAO)입니다.
  */
 public class MainDAO {

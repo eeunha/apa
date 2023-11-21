@@ -18,6 +18,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
+ * @author 이재용
  * 병원의 의사를 추가하는 서블릿 클래스입니다.
  */
 @WebServlet("/hospital/doctor/add.do")

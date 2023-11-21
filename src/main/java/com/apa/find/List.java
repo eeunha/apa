@@ -15,6 +15,7 @@ import com.apa.model.SelfsymtomDTO;
 import com.apa.repository.MainDAO;
 
 /**
+ * @author 이재용
  * 증상선택에 따른 병원 목록을 검색하여 출력하는 서블릿 클래스
  */
 @WebServlet("/find/list.do")

@@ -18,12 +18,14 @@ import com.apa.repository.HospitalMyPageDAO;
 import com.apa.repository.UserDAO;
 
 /**
+ * @author 이재용
  * 병원의 의사 목록을 조회하는 서블릿 클래스입니다.
  */
 @WebServlet("/hospital/doctor/list.do")
 public class List extends HttpServlet {
 	
 	/**
+	 * @author 이재용
 	 * 병원의 의사 목록을 조회하여 목록 페이지로 이동하는 GET 요청 처리 메서드입니다.
 	 */
 	@Override

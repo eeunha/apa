@@ -1,108 +1,183 @@
 package com.apa.model;
 
-import lombok.Data;
-
-@Data
+/**
+ * 테스트 정보를 담는 데이터 모델 클래스입니다.
+ */
 public class TestDTO {
+    private String mediTestSeq;             // 테스트 일련번호
+    private String mediTestSaveSeq;         // 테스트 저장 일련번호
+    private String userSeq;                 // 사용자 일련번호
+    private String mediTestTotalScore;      // 테스트 총 점수
+    private String testDate;                // 테스트 응시 일자
+    private String mediTestName;            // 테스트 이름
+    private String minScore;                // 최소 점수
+    private String maxScore;                // 최대 점수
+    private String mediTestResultContent;   // 테스트 결과 내용
+    private String mediTestQuestionContent; // 테스트 문항 내용
+    private String mediTestQuestionNo;      // 테스트 문항 번호
 
-	private String mediTestSeq;
-	private String mediTestSaveSeq;
-	private String userSeq;
-	private String mediTestTotalScore;
-	private String testDate;
-	private String mediTestName;
-	private String minScore;
-	private String maxScore;
-	private String mediTestResultContent;
-	private String mediTestQuestionContent;
-	private String mediTestQuestionNo;
+    /**
+     * 테스트 일련번호를 반환합니다.
+     */
+    public String getMediTestSeq() {
+        return mediTestSeq;
+    }
 
-	public String getMediTestSeq() {
-		return mediTestSeq;
-	}
+    /**
+     * 테스트 일련번호를 설정합니다.
+     * @param mediTestSeq 테스트 일련번호
+     */
+    public void setMediTestSeq(String mediTestSeq) {
+        this.mediTestSeq = mediTestSeq;
+    }
 
-	public void setMediTestSeq(String mediTestSeq) {
-		this.mediTestSeq = mediTestSeq;
-	}
+    /**
+     * 테스트 저장 일련번호를 반환합니다.
+     */
+    public String getMediTestSaveSeq() {
+        return mediTestSaveSeq;
+    }
 
-	public String getMediTestSaveSeq() {
-		return mediTestSaveSeq;
-	}
+    /**
+     * 테스트 저장 일련번호를 설정합니다.
+     * @param mediTestSaveSeq 테스트 저장 일련번호
+     */
+    public void setMediTestSaveSeq(String mediTestSaveSeq) {
+        this.mediTestSaveSeq = mediTestSaveSeq;
+    }
 
-	public void setMediTestSaveSeq(String mediTestSaveSeq) {
-		this.mediTestSaveSeq = mediTestSaveSeq;
-	}
+    /**
+     * 사용자 일련번호를 반환합니다.
+     */
+    public String getUserSeq() {
+        return userSeq;
+    }
 
-	public String getUserSeq() {
-		return userSeq;
-	}
+    /**
+     * 사용자 일련번호를 설정합니다.
+     * @param userSeq 사용자 일련번호
+     */
+    public void setUserSeq(String userSeq) {
+        this.userSeq = userSeq;
+    }
 
-	public void setUserSeq(String userSeq) {
-		this.userSeq = userSeq;
-	}
+    /**
+     * 테스트 총 점수를 반환합니다.
+     */
+    public String getMediTestTotalScore() {
+        return mediTestTotalScore;
+    }
 
-	public String getMediTestTotalScore() {
-		return mediTestTotalScore;
-	}
+    /**
+     * 테스트 총 점수를 설정합니다.
+     * @param mediTestTotalScore 테스트 총 점수
+     */
+    public void setMediTestTotalScore(String mediTestTotalScore) {
+        this.mediTestTotalScore = mediTestTotalScore;
+    }
 
-	public void setMediTestTotalScore(String mediTestTotalScore) {
-		this.mediTestTotalScore = mediTestTotalScore;
-	}
+    /**
+     * 테스트 응시 일자를 반환합니다.
+     */
+    public String getTestDate() {
+        return testDate;
+    }
 
-	public String getTestDate() {
-		return testDate;
-	}
+    /**
+     * 테스트 응시 일자를 설정합니다.
+     * @param testDate 테스트 응시 일자
+     */
+    public void setTestDate(String testDate) {
+        this.testDate = testDate;
+    }
 
-	public void setTestDate(String testDate) {
-		this.testDate = testDate;
-	}
+    /**
+     * 테스트 이름을 반환합니다.
+     */
+    public String getMediTestName() {
+        return mediTestName;
+    }
 
-	public String getMediTestName() {
-		return mediTestName;
-	}
+    /**
+     * 테스트 이름을 설정합니다.
+     * @param mediTestName 테스트 이름
+     */
+    public void setMediTestName(String mediTestName) {
+        this.mediTestName = mediTestName;
+    }
 
-	public void setMediTestName(String mediTestName) {
-		this.mediTestName = mediTestName;
-	}
+    /**
+     * 최소 점수를 반환합니다.
+     */
+    public String getMinScore() {
+        return minScore;
+    }
 
-	public String getMinScore() {
-		return minScore;
-	}
+    /**
+     * 최소 점수를 설정합니다.
+     * @param minScore 최소 점수
+     */
+    public void setMinScore(String minScore) {
+        this.minScore = minScore;
+    }
 
-	public void setMinScore(String minScore) {
-		this.minScore = minScore;
-	}
+    /**
+     * 최대 점수를 반환합니다.
+     */
+    public String getMaxScore() {
+        return maxScore;
+    }
 
-	public String getMaxScore() {
-		return maxScore;
-	}
+    /**
+     * 최대 점수를 설정합니다.
+     * @param maxScore 최대 점수
+     */
+    public void setMaxScore(String maxScore) {
+        this.maxScore = maxScore;
+    }
 
-	public void setMaxScore(String maxScore) {
-		this.maxScore = maxScore;
-	}
+    /**
+     * 테스트 결과 내용을 반환합니다.
+     */
+    public String getMediTestResultContent() {
+        return mediTestResultContent;
+    }
 
-	public String getMediTestResultContent() {
-		return mediTestResultContent;
-	}
+    /**
+     * 테스트 결과 내용을 설정합니다.
+     * @param mediTestResultContent 테스트 결과 내용
+     */
+    public void setMediTestResultContent(String mediTestResultContent) {
+        this.mediTestResultContent = mediTestResultContent;
+    }
 
-	public void setMediTestResultContent(String mediTestResultContent) {
-		this.mediTestResultContent = mediTestResultContent;
-	}
+    /**
+     * 테스트 문항 내용을 반환합니다.
+     */
+    public String getMediTestQuestionContent() {
+        return mediTestQuestionContent;
+    }
 
-	public String getMediTestQuestionContent() {
-		return mediTestQuestionContent;
-	}
+    /**
+     * 테스트 문항 내용을 설정합니다.
+     * @param mediTestQuestionContent 테스트 문항 내용
+     */
+    public void setMediTestQuestionContent(String mediTestQuestionContent) {
+        this.mediTestQuestionContent = mediTestQuestionContent;
+    }
 
-	public void setMediTestQuestionContent(String mediTestQuestionContent) {
-		this.mediTestQuestionContent = mediTestQuestionContent;
-	}
+    /**
+     * 테스트 문항 번호를 반환합니다.
+     */
+    public String getMediTestQuestionNo() {
+        return mediTestQuestionNo;
+    }
 
-	public String getMediTestQuestionNo() {
-		return mediTestQuestionNo;
-	}
-
-	public void setMediTestQuestionNo(String mediTestQuestionNo) {
-		this.mediTestQuestionNo = mediTestQuestionNo;
-	}
-
+    /**
+     * 테스트 문항 번호를 설정
+     * @param mediTestQuestionNo
+     */
+    public void setMediTestQuestionNo(String mediTestQuestionNo) {
+        this.mediTestQuestionNo = mediTestQuestionNo;
+    }
 }

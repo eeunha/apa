@@ -13,6 +13,7 @@ import com.apa.model.HospitalInfoDTO;
 import com.apa.model.HospitalMyPageInfoDTO;
 import com.apa.model.OpenTimeDTO;
 /**
+ * @author 이재용
  * 병원 마이 페이지와 관련된 기능을 처리하는 데이터 액세스 객체 (DAO)입니다.
  */
 public class HospitalMyPageDAO {

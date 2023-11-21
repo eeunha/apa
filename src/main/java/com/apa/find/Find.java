@@ -17,6 +17,7 @@ import com.apa.model.HospitalInfoDTO;
 import com.apa.repository.MainDAO;
 
 /**
+ * @author 이재용
  * 선택된 증상에 적합한 병원 정보를 검색하여 JSON 형식으로 응답하는 서블릿 클래스
  */
 @WebServlet("/find/find.do")

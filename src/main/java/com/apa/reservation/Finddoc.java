@@ -22,6 +22,7 @@ import com.apa.repository.ReservationDAO;
 public class Finddoc extends HttpServlet {
 	
 	/**
+	 * @author 이재용
 	 * 특정 진료과에 속한 의사 목록 조회
 	 */
 	@Override

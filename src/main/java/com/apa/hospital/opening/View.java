@@ -16,6 +16,7 @@ import com.apa.model.OpenTimeDTO;
 import com.apa.repository.HospitalMyPageDAO;
 
 /**
+ * @author 이재용
  * 병원 영업 정보를 조회하고 수정하는 서블릿 클래스입니다.
  */
 @WebServlet("/hospital/opening/view.do")

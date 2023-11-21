@@ -15,6 +15,7 @@ import org.json.simple.JSONObject;
 import com.apa.repository.HospitalMyPageDAO;
 
 /**
+ * @author 이재용
  * 병원의 의사를 삭제하는 서블릿 클래스입니다.
  */
 @WebServlet("/hospital/doctor/del.do")

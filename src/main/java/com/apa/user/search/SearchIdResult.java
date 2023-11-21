@@ -10,11 +10,20 @@ import java.io.IOException;
 
 @WebServlet("/user/search/searchidresult.do")
 public class SearchIdResult extends HttpServlet {
-    //SearchIdResult.java
+    /**
+     * GET 방식으로 "/user/search/searchidresult.do" 주소로 요청이 들어올 때 호출되는 메소드입니다.
+     * 사용자의 아이디 찾기 결과 페이지로 이동합니다.
+     *
+     * @param req  HttpServletRequest 객체로 클라이언트의 요청 정보를 받습니다.
+     * @param resp HttpServletResponse 객체로 클라이언트에게 응답을 보냅니다.
+     * @throws ServletException Servlet 예외가 발생할 경우 던져집니다.
+     * @throws IOException      입출력 예외가 발생할 경우 던져집니다.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         RequestDispatcher dispatcher
+
                 = req.getRequestDispatcher("/WEB-INF/views/user/search/searchidresult.jsp");
         dispatcher.forward(req, resp);
     }

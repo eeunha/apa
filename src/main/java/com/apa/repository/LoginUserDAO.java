@@ -15,10 +15,19 @@ public class LoginUserDAO {
     private PreparedStatement pstat;
     private ResultSet rs;
 
+    /**
+     * LoginUserDAO 클래스의 생성자입니다. DB 연결을 수행합니다.
+     */
     public LoginUserDAO() {
         this.conn = DBUtil.open();
     }
 
+    /**
+     * 사용자 회원가입을 처리합니다.
+     *
+     * @param dto 사용자 정보를 담은 `LoginUserDTO` 객체
+     * @return 데이터베이스에 저장된 행의 수
+     */
     public int userRegister(LoginUserDTO dto) {
         try {
             String sql = "insert into tblUser(userseq, username, userssn, userid, userpw, usertel ,useraddress, useremail, userchild, usercautioncount, registerdate, isuserunregister) values (SEQUSER.nextval,?, ? , ?, ?, ?, ? , ?, default, default, default, default)";
@@ -44,6 +53,13 @@ public class LoginUserDAO {
         return 0;
     }
 
+
+    /**
+     * 사용자 로그인을 처리합니다.
+     *
+     * @param dto 사용자 로그인 정보를 담은 `LoginUserDTO` 객체
+     * @return 로그인 성공 시 해당 사용자 정보를 담은 `LoginUserDTO` 객체, 실패 시 null
+     */
     public LoginUserDTO login(LoginUserDTO dto) {
             try {
 
@@ -75,6 +91,12 @@ public class LoginUserDAO {
         }
 
 
+    /**
+     * 사용자 아이디 찾기를 처리합니다.
+     *
+     * @param dto 사용자 아이디 찾기 정보를 담은 `LoginUserDTO` 객체
+     * @return 찾은 사용자 정보를 담은 `LoginUserDTO` 객체, 실패 시 null
+     */
     public LoginUserDTO searchId(LoginUserDTO dto) {
         try {
 
@@ -107,6 +129,13 @@ public class LoginUserDAO {
         return null;
 
     }
+
+    /**
+     * 사용자 정보를 가져옵니다.
+     *
+     * @param dto 사용자 정보를 담은 `LoginUserDTO` 객체
+     * @return 사용자 정보를 담은 `LoginUserDTO` 객체, 실패 시 null
+     */
     public LoginUserDTO getUser(LoginUserDTO dto) {
         try {
 
@@ -137,6 +166,12 @@ public class LoginUserDAO {
 
     }
 
+    /**
+     * 사용자 비밀번호 찾기를 처리합니다.
+     *
+     * @param dto 사용자 비밀번호 찾기 정보를 담은 `LoginUserDTO` 객체
+     * @return 찾은 사용자 정보를 담은 `LoginUserDTO` 객체, 실패 시 null
+     */
     public LoginUserDTO searchPw(LoginUserDTO dto) {
         try {
 
@@ -169,6 +204,12 @@ public class LoginUserDAO {
 
     }
 
+    /**
+     * 사용자 비밀번호를 업데이트합니다.
+     *
+     * @param dto 사용자 정보를 담은 `LoginUserDTO` 객체
+     * @return 업데이트 성공 시 해당 사용자 정보를 담은 `LoginUserDTO` 객체, 실패 시 null
+     */
     public LoginUserDTO updatePw(LoginUserDTO dto) {
         try {
 
@@ -194,6 +235,12 @@ public class LoginUserDAO {
 
     }
 
+    /**
+     * 사용자 비밀번호로 사용자 정보를 가져옵니다.
+     *
+     * @param dto 사용자 정보를 담은 `LoginUserDTO` 객체
+     * @return 사용자 정보를 담은 `LoginUserDTO` 객체, 실패 시 null
+     */
     public LoginUserDTO getUserPw(LoginUserDTO dto) {
         try {
 

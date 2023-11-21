@@ -13,6 +13,7 @@ import com.apa.model.OpenTimeDTO;
 import com.apa.model.UserChildDTO;
 import com.apa.model.UserDTO;
 /**
+ * @author 이재용
  * 예약 관련 기능을 처리하는 데이터 액세스 객체 (DAO)입니다.
  */
 public class ReservationDAO {

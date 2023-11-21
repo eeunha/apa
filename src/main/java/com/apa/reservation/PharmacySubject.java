@@ -22,6 +22,7 @@ import com.apa.repository.ReservationDAO;
 public class PharmacySubject extends HttpServlet {
 	
 	/**
+	 * @author 이재용
 	 * 약국 상세 정보 조회
 	 */
 	@Override

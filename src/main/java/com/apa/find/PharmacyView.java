@@ -13,6 +13,7 @@ import com.apa.model.PharmacyInfoDTO;
 import com.apa.repository.MainDAO;
 
 /**
+ * @author 이재용
  * 약국 상세 정보를 가져와서 뷰로 전달하는 서블릿 클래스
  */
 @WebServlet("/find/pharmacyview.do")

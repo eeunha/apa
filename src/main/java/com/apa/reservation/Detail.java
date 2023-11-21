@@ -22,6 +22,7 @@ import com.apa.repository.ReservationDAO;
 public class Detail extends HttpServlet {
 	
 	/**
+	 * @author 이재용
 	 * 예약 상세 정보 페이지로 이동 (POST 방식 요청 처리)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

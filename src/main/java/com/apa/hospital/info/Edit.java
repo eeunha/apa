@@ -16,6 +16,7 @@ import com.apa.repository.HospitalMyPageDAO;
 import com.apa.repository.UserDAO;
 
 /**
+ * @author 이재용
  * 병원 정보를 수정하고 탈퇴하는 서블릿 클래스입니다.
  */
 @WebServlet("/hospital/info/edit.do")

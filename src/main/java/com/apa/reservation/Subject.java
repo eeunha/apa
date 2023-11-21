@@ -22,6 +22,7 @@ import com.apa.repository.ReservationDAO;
 public class Subject extends HttpServlet {
 	
 	/**
+	 * @author 이재용
 	 * 진료과, 의사, 날짜 선택 페이지
 	 */
 	@Override

@@ -16,6 +16,7 @@ import com.apa.repository.MainDAO;
 import com.apa.repository.ReservationDAO;
 
 /**
+ * @author 이재용
  * 병원 상세 정보 및 의사 목록을 가져와서 뷰로 전달하는 서블릿 클래스
  */
 @WebServlet("/find/view.do")

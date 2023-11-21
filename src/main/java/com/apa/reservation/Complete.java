@@ -27,6 +27,7 @@ public class Complete extends HttpServlet {
 	}
 
 	/**
+	 * @author 이재용
 	 * 진료 예약 정보를 처리하고 예약 완료 페이지로 이동
 	 */
 	@Override

@@ -8,16 +8,27 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-
+/**
+ * 병원과 관련된 데이터베이스 액세스 객체입니다.
+ */
 public class LoginHospitalDAO {
     private Connection conn;
     private Statement stat;
     private PreparedStatement pstat;
     private ResultSet rs;
-
+    /**
+     * LoginHospitalDAO 생성자입니다. 데이터베이스 연결을 수행합니다.
+     */
     public LoginHospitalDAO() {
         this.conn = DBUtil.open();
     }
+
+    /**
+     * 병원 회원가입을 수행합니다.
+     *
+     * @param dto 회원가입할 병원의 정보를 담은 DTO
+     * @return 회원가입 성공 시 1, 실패 시 0
+     */
     public int HospitalRegister(LoginHospitalDTO dto) {
         try {
 
@@ -44,6 +55,13 @@ public class LoginHospitalDAO {
         return 0;
     }
 
+
+    /**
+     * 병원 로그인을 수행합니다.
+     *
+     * @param dto 로그인 시도하는 병원의 정보를 담은 DTO
+     * @return 로그인 성공 시 해당 병원의 정보를 담은 DTO, 실패 시 null
+     */
     public LoginHospitalDTO login(LoginHospitalDTO dto) {
         try {
             System.out.println(dto.getHospitalId());
@@ -62,7 +80,6 @@ public class LoginHospitalDAO {
 
                 result.setHospitalId(rs.getString("hospitalId"));
                 result.setHospitalPw(rs.getString("hospitalPw"));
-                result.setHospitalName(rs.getString("hospitalName"));
 
                 return result;
             }
@@ -74,6 +91,12 @@ public class LoginHospitalDAO {
     }
 
 
+    /**
+     * 병원 아이디 찾기를 수행합니다.
+     *
+     * @param dto 찾으려는 병원의 정보를 담은 DTO
+     * @return 찾기 성공 시 해당 병원의 정보를 담은 DTO, 실패 시 null
+     */
     public LoginHospitalDTO searchId(LoginHospitalDTO dto) {
         try {
 
@@ -106,6 +129,13 @@ public class LoginHospitalDAO {
         return null;
     }
 
+
+    /**
+     * 병원 비밀번호 업데이트를 수행합니다.
+     *
+     * @param dto 업데이트할 병원의 정보를 담은 DTO
+     * @return 업데이트 성공 시 해당 병원의 정보를 담은 DTO, 실패 시 null
+     */
     public LoginHospitalDTO updatePw(LoginHospitalDTO dto) {
         try {
 
@@ -131,6 +161,12 @@ public class LoginHospitalDAO {
 
     }
 
+    /**
+     * 병원 비밀번호 찾기를 수행합니다.
+     *
+     * @param dto 찾으려는 병원의 정보를 담은 DTO
+     * @return 찾기 성공 시 해당 병원의 정보를 담은 DTO, 실패 시 null
+     */
     public LoginHospitalDTO searchPw(LoginHospitalDTO dto) {
         try {
 
@@ -162,6 +198,12 @@ public class LoginHospitalDAO {
 
     }
 
+    /**
+     * 병원 정보 조회를 수행합니다.
+     *
+     * @param dto 조회할 병원의 정보를 담은 DTO
+     * @return 조회 성공 시 해당 병원의 정보를 담은 DTO, 실패 시 null
+     */
     public LoginHospitalDTO getHospital(LoginHospitalDTO dto) {
         try {
 
