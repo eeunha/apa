@@ -48,7 +48,7 @@ public class Test extends HttpServlet {
 		req.setAttribute("list", list);
 
 		// 문제 페이지로 포워딩
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/selftest/test.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/self-test/test.jsp");
 		dispatcher.forward(req, resp);
 	}
 

@@ -2,6 +2,11 @@ package com.apa.wikilist;
 
 public class WikilistDTO {
 	
+	/**
+	 * @author 안대명
+	 * 위키 리스트의 정보를 담는 DTO (Data Transfer Object) 클래스입니다.
+	 */
+	
 	private String wikiSeq;
 	private String diseaseName;
 	private String diseaseExplanation; 

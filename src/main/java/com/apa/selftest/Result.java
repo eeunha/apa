@@ -43,7 +43,7 @@ public class Result extends HttpServlet {
 		req.setAttribute("sum", sum);
 
 		// 결과 페이지로 포워딩
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/selftest/result.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/self-test/result.jsp");
 		dispatcher.forward(req, resp);
 	}
 }

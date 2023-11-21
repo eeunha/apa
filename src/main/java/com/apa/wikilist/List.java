@@ -15,10 +15,18 @@ import javax.servlet.http.HttpSession;
 import com.apa.wikilist.WikilistDAO;
 import com.apa.wikilist.WikilistDTO;
 
+/**
+ * @author 안대명
+ * 
+ * 위키 리스트를 조회하는 서블릿 클래스입니다.
+ */
+
 @WebServlet("/wikilist/list.do")
 public class List extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		
 		
 		//magazineList.java
 		//A. list.do > 호출(목록보기)
@@ -80,8 +88,15 @@ public class List extends HttpServlet {
 		map.put("end", end + "");
 				
 				
-		//1. DB 작업 > select
-		//2. 반환 > JSP 호출하기
+		/**
+		 * 1. DB 작업 > select
+		 */
+		
+		
+		
+		/**
+		 * 2. 반환 > JSP 호출하기
+		 */
 				
 				
 		HttpSession session = req.getSession();				
@@ -92,7 +107,9 @@ public class List extends HttpServlet {
 		ArrayList<WikilistDTO> list = dao.list(map);
 		
 	
-		//총 게시물 수
+		/**
+		 * 총 게시물 수
+		 */
 		totalCount = dao.getTotalCount(); //200
 		totalPage = (int)Math.ceil((double)totalCount / pageSize); //20
 

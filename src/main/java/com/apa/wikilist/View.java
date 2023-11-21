@@ -13,6 +13,12 @@ import javax.servlet.http.HttpSession;
 import com.apa.wikilist.WikilistDAO;
 import com.apa.wikilist.WikilistDTO;
 
+/**
+ * @author 안대명
+ * ㄴ
+ * 위키 정보를 조회하는 서블릿 클래스입니다.
+ */
+
 @WebServlet("/wikilist/view.do")
 public class View extends HttpServlet {
 	@Override
@@ -21,14 +27,18 @@ public class View extends HttpServlet {
 		//wikilist/view.java
 		HttpSession session = req.getSession();
 		
-		//1.데이터 불러오기
+		/**
+		 * 1.데이터 불러오기
+		 */
 		String wikiSeq = req.getParameter("wikiSeq");
 
 		String search = req.getParameter("search");
 		String column = req.getParameter("column");
 		String word = req.getParameter("word");
 		
-		//2.
+		/**
+		 * 2.DB작업 수행
+		 */
 		WikilistDAO dao = new WikilistDAO();
 		
 		if (session.getAttribute("read") != null
@@ -41,7 +51,9 @@ public class View extends HttpServlet {
 		
 		WikilistDTO dto = dao.get(wikiSeq);
 		
-		//2.5 데이터 조작
+		/**
+		 * 2.5 데이터 조작
+		 */
 
 		//태그 비활성화
 		//- <div>   ->   &lt;div&gt;
@@ -90,11 +102,13 @@ public class View extends HttpServlet {
 		
 		
 
-		//3.피드백
+		/**
+		 * 3.피드백
+		 */
 		req.setAttribute("dto", dto);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/wikilist/view.jsp");
 		dispatcher.forward(req, resp);
-}
+	}
 
 }
