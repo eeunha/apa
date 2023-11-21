@@ -14,8 +14,17 @@ import org.json.simple.JSONObject;
 
 import com.apa.repository.hospital.DiagnosisDAO;
 
+/**
+ * 병원 - 내 진료 기능 중 예약을 거절하는 클래스입니다.
+ * @author Eunha
+ *
+ */
 @WebServlet("/hospital/diagnosis/decline.do")
 public class Decline extends HttpServlet {
+	
+	/**
+	 * 진료 예약 거절 처리를 하고 결과를 반환하는 클래스입니다.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

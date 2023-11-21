@@ -13,7 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.CommunityStorageCommentDTO;
 import com.apa.model.CommunityStorageViewDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 보관함 -> 커뮤니티 보관함 글 상세보기
+ * 
+ */
 @WebServlet("/user/storage/community/view.do")
 public class View extends HttpServlet {
 	@Override

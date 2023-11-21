@@ -12,7 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.apa.model.UserDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 내 정보 -> 내 정보 수정 및 탈퇴
+ * 
+ */
 @WebServlet("/user/info/edit.do")
 public class Edit extends HttpServlet {
 	

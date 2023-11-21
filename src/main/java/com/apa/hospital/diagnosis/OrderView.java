@@ -13,8 +13,17 @@ import com.apa.model.hospital.DiagnosisRgstDTO;
 import com.apa.model.hospital.DgnsMediHistoryDTO;
 import com.apa.repository.hospital.DiagnosisDAO;
 
+/**
+ * 병원 - 내 진료 기능 중 오늘의 진료 중 진료 순서 세부 페이지를 담당하는 클래스입니다.
+ * @author Eunha
+ *
+ */
 @WebServlet("/hospital/diagnosis/order-view.do")
 public class OrderView extends HttpServlet {
+	
+	/**
+	 * 진료 순서 세부 페이지를 불러오는 메소드입니다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

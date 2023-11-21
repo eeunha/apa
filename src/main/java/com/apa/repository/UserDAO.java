@@ -134,7 +134,11 @@ public class UserDAO {
 		}
 		return null;
 	}
-
+/**
+ * 유저의 정보를 반환합니다.
+ * @param seq 유저 번호
+ * @return 유저 정보
+ */
 public UserDTO get(String seq) {
 		
 		try {
@@ -168,7 +172,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 유저의 정보를 수정합니다.
+ * @param dto 수정할 유저 정보
+ * @return 0,1
+ */
 	public int edit(UserDTO dto) {
 
 		try {
@@ -192,7 +200,11 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 유저의 탈퇴 여부를 수정합니다. (삭제)
+ * @param seq 유저 번호
+ * @return 0,1
+ */
 	public int delete(String seq) {
 
 		try {
@@ -210,7 +222,11 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 유저의 자녀 목록을 반환합니다.
+ * @param seq 유저 번호
+ * @return 자녀 목록
+ */
 	public ArrayList<ChildrenDTO> listChildren(String seq) {
 
 		try {
@@ -256,17 +272,21 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 유저의 자녀 정보를 수정합니다.
+ * @param map 자녀 이름, 자녀 전화번호
+ * @return 0,1
+ */
 	public int editChild(HashMap<String, String> map) {
 
 		try {
-			String sql = "UPDATE tblChild SET childName = ?, childSSN = ?, childTel = ? WHERE childSeq = ?";
+			String sql = "UPDATE tblChild SET childName = ?, childTel = ? WHERE childSeq = ?";
 
 			pstat = conn.prepareStatement(sql);
 			pstat.setString(1, map.get("name"));
-			pstat.setString(2, map.get("ssn"));
-			pstat.setString(3, map.get("tel"));
-			pstat.setString(4, map.get("childSeq"));
+			//pstat.setString(2, map.get("ssn"));
+			pstat.setString(2, map.get("tel"));
+			pstat.setString(3, map.get("childSeq"));
 			
 			return pstat.executeUpdate();
 
@@ -276,7 +296,11 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 자녀 삭제 여부를 수정합니다. (삭제)
+ * @param seq 자녀 번호
+ * @return 0,1
+ */
 	public int deleteChild(String seq) {
 
 		try {
@@ -294,7 +318,11 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 유저의 자녀를 등록합니다.
+ * @param dto 등록할 자녀의 정보
+ * @return 0,1
+ */
 	public int childInsert(ChildrenDTO dto) {
 
 		try {
@@ -315,7 +343,11 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 유저의 예약 진료 내역 목록을 반환합니다.
+ * @param seq 유저 번호
+ * @return 예약 진료 내역 목록
+ */
 	public ArrayList<RegisterDTO> getRegister(String seq) {
 
 		try {
@@ -355,7 +387,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 유저의 진료 내역 목록을 반환합니다.
+ * @param seq 유저 번호
+ * @return 진료 내역 목록
+ */
 	public ArrayList<MediHistoryDTO> getMediHistory(String seq) {
 
 		try {
@@ -366,7 +402,7 @@ public UserDTO get(String seq) {
 					+ "	WHEN R.childSeq IS NOT NULL THEN R.childSeq\r\n"
 					+ "	ELSE -1\r\n"
 					+ "END AS childSeq, \r\n"
-					+ "H.hospitalName, D.doctorName, R.treatmentDate, MH.mediName, RV.reviewSeq FROM tblMediHistory MH\r\n"
+					+ "H.hospitalName, D.doctorName, R.treatmentDate, MH.mediName, RV.reviewSeq, RD.reqDocumentSeq FROM tblMediHistory MH\r\n"
 					+ "INNER JOIN tblRegister R\r\n"
 					+ "	ON MH.mediSeq = R.mediSeq \r\n"
 					+ "INNER JOIN tblHospital H\r\n"
@@ -376,7 +412,9 @@ public UserDTO get(String seq) {
 					+ "INNER JOIN tblChild C\r\n"
 					+ "	ON C.userSeq = R.userSeq\r\n"
 					+ "LEFT OUTER JOIN tblReview RV\r\n"
-					+ "	ON RV.mediHistorySeq = mh.mediHistorySeq\r\n"
+					+ "	ON RV.mediHistorySeq = MH.mediHistorySeq\r\n"
+					+ "LEFT OUTER JOIN tblRequestDocument RD\r\n"
+					+ "	ON RD.mediHistorySeq = MH.mediHistorySeq\r\n"
 					+ "		WHERE R.userSeq = ? AND sysdate > R.treatmentDate\r\n"
 					+ "			ORDER BY R.treatmentDate DESC";
 			
@@ -391,6 +429,7 @@ public UserDTO get(String seq) {
 				
 				MediHistoryDTO dto = new MediHistoryDTO();
 				
+				dto.setReqDocumentSeq(rs.getString("reqDocumentSeq"));
 				dto.setReviewSeq(rs.getString("reviewSeq"));
 				dto.setMediHistorySeq(rs.getString("mediHistorySeq"));
 				dto.setHospitalName(rs.getString("hospitalName"));
@@ -410,7 +449,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 유저의 진료 내역 상세보기를 위한 정보를 반환합니다.
+ * @param seq 진료 내역 번호
+ * @return 진료 내역 상세보기 정보
+ */
 	public MediHistoryViewDTO getMediHistoryView(String seq) {
 
 		try {
@@ -451,7 +494,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 자녀 번호에 해당하는 자녀 이름을 반환합니다.
+ * @param cseq 자녀 번호
+ * @return 자녀 이름
+ */
 	public String getChildName(String cseq) {
 
 		try {
@@ -474,7 +521,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 유저의 건강검진 내역 목록을 반환합니다.
+ * @param seq 유저 번호
+ * @return 건강검진 내역 목록
+ */
 	public ArrayList<MediCheckupReservationDTO> getMediCheckupReservation(String seq) {
 
 		try {
@@ -515,7 +566,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 유저가 즐겨찾기한 병원의 목록을 반환합니다.
+ * @param seq 유저 번호
+ * @return 즐겨찾기 병원 목록
+ */
 	public ArrayList<FavoriteDTO> getFavorite(String seq) {
 
 		try {
@@ -577,7 +632,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 유저가 즐겨찾기한 병원을 해제합니다.
+ * @param seq 즐겨찾기 번호
+ * @return 0,1
+ */
 	public int delFavor(String seq) {
 
 		try {
@@ -595,7 +654,11 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 유저의 자녀 관계를 반환합니다.
+ * @param seq 유저 번호
+ * @return 자녀 관계
+ */
 	public String getUserChild(String seq) {
 
 		try {
@@ -618,7 +681,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 유저의 자녀 관계를 수정합니다. (무 -> 부 or 모)
+ * @param dto 유저의 자녀 관계
+ * @return 0,1
+ */
 	public int userChildUpdate(ChildrenDTO dto) {
 
 		try {
@@ -637,7 +704,11 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 유저가 완료한 테스트의 목록을 반환합니다.
+ * @param seq 유저 번호
+ * @return 의학 테스트 결과 목록
+ */
 	public ArrayList<MediTestSaveDTO> getMediTestSave(String seq) {
 
 		try {
@@ -674,7 +745,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 의학 테스트의 상세보기(결과)를 보기위한 정보를 반환합니다.
+ * @param seq 의학 테스트 결과 번호
+ * @return 의학 테스트 결과 상세보기 정보
+ */
 	public MediTestSaveViewDTO getMediTestSaveView(String seq) {
 
 		try {
@@ -712,7 +787,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 유저가 질문한 의학 상담 목록을 반환합니다.
+ * @param seq 유저 번호
+ * @return 의학 상담 질문 목록
+ */
 	public ArrayList<MediCounselQuestionDTO> getMediCounselQuestion(String seq) {
 
 		try {
@@ -754,7 +833,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 의학 상담 질문의 상세 보기를 위한 정보를 반환합니다.
+ * @param seq 의학 상담 질문 번호
+ * @return 의학 상담 상세보기 정보
+ */
 	public MediCounselQuestionViewDTO getMediCounselQuestionView(String seq) {
 
 		try {
@@ -811,7 +894,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 의학 상담 질문을 삭제합니다.
+ * @param seq 의학 상담 질문 번호
+ * @return 0,1
+ */
 	public int deleteAdvice(String seq) {
 
 		try {
@@ -830,7 +917,10 @@ public UserDTO get(String seq) {
 		return 0;
 		
 	}
-
+/**
+ * 의학 상담 질문의 답변을 삭제합니다.
+ * @param seq 의학 상담 질문 번호
+ */
 	public void deleteAdviceAnswer(String seq) {
 
 		try {
@@ -847,7 +937,10 @@ public UserDTO get(String seq) {
 		}
 		
 	}
-
+/**
+ * 의학상담 보관함에서 답변 번호에 해당하는 질문을 삭제합니다.
+ * @param aseq 의학 상담 답변 번호
+ */
 	public void deleteStorageAdvice(String aseq) {
 
 		try {
@@ -864,7 +957,11 @@ public UserDTO get(String seq) {
 		}
 		
 	}
-
+/**
+ * 유저가 보관함 의학상담 목록을 반환합니다.
+ * @param seq 유저 번호
+ * @return 의학상담 보관 목록
+ */
 	public ArrayList<MediCounselingBoxDTO> getMediCounselBox(String seq) {
 
 		try {
@@ -907,7 +1004,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 의학 상담 보관함에서 보관한 의학 상담을 삭제합니다.
+ * @param bseq 의학 상담 보관함 번호
+ * @return 0,1
+ */
 	public int deleteAdviceBox(String bseq) {
 
 		try {
@@ -925,7 +1026,11 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 유저가 작성한 커뮤니티 글의 목록을 반환합니다.
+ * @param seq 유저 번호
+ * @return 커뮤니티 작성 목록
+ */
 	public ArrayList<CommunityStorageDTO> getCommnuityStorage(String seq) {
 
 		try {
@@ -965,7 +1070,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 커뮤니티의 상세보기를 위한 정보를 반환합니다.
+ * @param seq 커뮤니티 번호
+ * @return 커뮤니티 상세보기 정보
+ */
 	public CommunityStorageViewDTO getCommunityStorageView(String seq) {
 
 		try {
@@ -1002,7 +1111,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 커뮤니티 글에 작성된 댓글의 목록을 반환합니다.
+ * @param seq 커뮤니티 번호
+ * @return 커뮤니티 댓글 목록
+ */
 	public ArrayList<CommunityStorageCommentDTO> getCommunityStorageComment(String seq) {
 
 		try {
@@ -1042,7 +1155,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 유저가 작성한 커뮤니티의 글을 수정합니다.
+ * @param dto 수정할 커뮤니티 제목, 내용, 번호
+ * @return 0,1
+ */
 	public int updateCommunity(CommunityStorageViewDTO dto) {
 
 		try {
@@ -1062,7 +1179,10 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 커뮤니티 글의 댓글을 삭제합니다.
+ * @param cseq 커뮤니티 번호
+ */
 	public void deleteComment(String cseq) {
 
 		try {
@@ -1079,7 +1199,11 @@ public UserDTO get(String seq) {
 		}
 		
 	}
-
+/**
+ * 커뮤니티 글을 삭제합니다.
+ * @param cseq 커뮤니티 번호
+ * @return 0,1
+ */
 	public int deleteCommunity(String cseq) {
 
 		try {
@@ -1097,7 +1221,11 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 리뷰 작성 페이지에 리뷰에 대한 정보를 출력하기 위한 정보를 반환합니다.
+ * @param seq 진료 내역 번호
+ * @return 리뷰 작성 정보
+ */
 	public ReviewInsertInfoDTO getReviewInsertInfo(String seq) {
 
 		try {
@@ -1134,7 +1262,12 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 리뷰를 등록합니다.
+ * @param seq 진료 내역 번호
+ * @param content 리뷰 내용
+ * @return 0,1
+ */
 	public int insertReview(String seq, String content) {
 
 		try {
@@ -1153,7 +1286,10 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 가장 최근에 작성된 리뷰 번호를 반환합니다.
+ * @return 마지막 리뷰 번호
+ */
 	public String selectLastReview() {
 
 		try {
@@ -1174,7 +1310,12 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 해당되는 리뷰번호의 리뷰에 태그를 추가합니다.
+ * @param rseq 리뷰 번호
+ * @param tag 태그 번호
+ * @return 0,1
+ */
 	public int insertTag(String rseq, String tag) {
 
 		try {
@@ -1193,7 +1334,11 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 유저가 작성한 리뷰의 목록을 반환합니다.
+ * @param seq 유저 번호
+ * @return 리뷰 목록
+ */
 	public ArrayList<ReviewListDTO> getReviewList(String seq) {
 
 		try {
@@ -1238,7 +1383,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 리뷰번호에 해당하는 리뷰의 상세보기 정보를 반환합니다.
+ * @param seq 리뷰 번호
+ * @return 리뷰 상세보기 정보
+ */
 	public ReviewDetailViewDTO getReviewDetailView(String seq) {
 
 		try {
@@ -1279,7 +1428,11 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 리뷰번호에 해당하는 태그를 반환합니다.
+ * @param seq 리뷰 번호
+ * @return 태그 목록
+ */
 	public ArrayList<TagViewDTO> getTagView(String seq) {
 
 		try {
@@ -1315,7 +1468,10 @@ public UserDTO get(String seq) {
 		
 		return null;
 	}
-
+/**
+ * 작성한 리뷰의 모든 태그를 삭제합니다.
+ * @param seq 리뷰 번호
+ */
 	public void delReviewTag(String seq) {
 
 		try {
@@ -1332,7 +1488,11 @@ public UserDTO get(String seq) {
 		}
 		
 	}
-
+/**
+ * 리뷰 삭제 여부를 y로 바꿉니다.
+ * @param seq 리뷰 번호
+ * @return 0,1
+ */
 	public int deleteReview(String seq) {
 		
 		try {
@@ -1350,7 +1510,12 @@ public UserDTO get(String seq) {
 		
 		return 0;
 	}
-
+/**
+ * 제증명 서류를 요청 합니다.
+ * @param seq 진료 내역 번호
+ * @param content 서류명
+ * @return 0,1
+ */
 	public int insertDocument(String seq, String content) {
 
 		try {

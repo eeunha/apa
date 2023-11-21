@@ -15,7 +15,12 @@ import com.apa.model.MediHistoryDTO;
 import com.apa.model.RegisterDTO;
 import com.apa.model.UserDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 진료 정보 -> 진료 정보 조회
+ * 
+ */
 @WebServlet("/user/treatment/info.do")
 public class Info extends HttpServlet {
 	@Override

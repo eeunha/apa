@@ -16,7 +16,12 @@ import com.apa.model.MediCounselingBoxDTO;
 import com.apa.model.MediTestSaveDTO;
 import com.apa.model.UserDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 보관함 -> 보관함 목록 조회
+ * 
+ */
 @WebServlet("/user/storage/list.do")
 public class List extends HttpServlet {
 	@Override

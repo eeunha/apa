@@ -12,7 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.apa.model.ReviewInsertInfoDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 진료 내역 -> 리뷰 작성
+ * 
+ */
 @WebServlet("/user/review/add.do")
 public class Add extends HttpServlet {
 	@Override

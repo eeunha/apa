@@ -14,9 +14,17 @@ import org.json.simple.JSONObject;
 
 import com.apa.repository.hospital.DiagnosisDAO;
 
+/**
+ * 병원 - 내 진료 기능 중 진료 예약을 승인하는 클래스입니다.
+ * @author Eunha
+ *
+ */
 @WebServlet("/hospital/diagnosis/approval.do")
 public class Approval extends HttpServlet {
 	
+	/**
+	 * 진료 예약 승인 처리를 하고 결과를 반환하는 메소드입니다.
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mediSeq = req.getParameter("mediSeq");

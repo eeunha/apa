@@ -11,7 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.apa.model.MediHistoryViewDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 진료 정보 -> 진료 내역 상세보기
+ * 
+ */
 @WebServlet("/user/treatment/view.do")
 public class View extends HttpServlet {
 	@Override

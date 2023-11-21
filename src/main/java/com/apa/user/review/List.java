@@ -13,7 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.ReviewListDTO;
 import com.apa.model.UserDTO;
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 리뷰 관리 -> 작성 리뷰 목록
+ * 
+ */
 @WebServlet("/user/review/list.do")
 public class List extends HttpServlet {
 	@Override

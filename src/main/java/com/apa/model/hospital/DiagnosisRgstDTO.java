@@ -1,5 +1,10 @@
 package com.apa.model.hospital;
 
+/**
+ * 진료 예약 정보를 담을 DTO 클래스입니다.
+ * @author Eunha
+ *
+ */
 public class DiagnosisRgstDTO {
 	private String mediSeq;
 	private String userSeq;

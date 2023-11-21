@@ -13,6 +13,11 @@ import com.apa.model.hospital.DiagnosisHistoryDTO;
 import com.apa.model.hospital.DiagnosisRgstDTO;
 //import com.apa.repository.DBUtil;
 
+/**
+ * 병원 - 내 진료의 진료 부분을 담당하는 DAO 클래스입니다.
+ * @author Eunha
+ *
+ */
 public class DiagnosisDAO {
 	private Connection conn;
 	private Statement stat;
@@ -25,6 +30,11 @@ public class DiagnosisDAO {
 		/* conn = DBUtil.open("localhost", "apa_test_2", "java1234"); */
 	}
 
+	/**
+	 * 해당 병원의 오늘의 예약 목록을 가져오는 메소드입니다.
+	 * @param hospitalId 병원 아이디
+	 * @return 진료예약DTO가 담긴 ArrayList
+	 */
 	public ArrayList<DiagnosisRgstDTO> getRegisterList(String hospitalId) {
 		try {
 			String sql = "select * from vwRegisterList where to_date(regdate, 'yyyy-mm-dd') = to_date((select sysdate from dual), 'yyyy-mm-dd') and mediSeq not in (select mediSeq from tblWatingPatientList) and hospitalId = ? order by regdate";
@@ -60,6 +70,11 @@ public class DiagnosisDAO {
 		return null;
 	}
 
+	/**
+	 * 해당 병원의 오늘의 진료 내역 목록을 가져오는 메소드입니다.
+	 * @param map 병원 아이디, 시작 글 번호, 종료 글 번호
+	 * @return 진료내역DTo가 담긴 ArrayList
+	 */
 	public ArrayList<DiagnosisHistoryDTO> getHistoryList(HashMap<String, String> map) {
 		try {
 
@@ -99,6 +114,12 @@ public class DiagnosisDAO {
 		return null;
 	}
 
+	/**
+	 * 해당 진료예약번호의 예약을 승인하는 메소드입니다.
+	 * 테이블에 상태가 변경됩니다.
+	 * @param mediSeq 진료예약번호
+	 * @return 승인에 성공했을 경우 1, 아닌 경우 0
+	 */
 	public int approvalRegister(String mediSeq) {
 		try {
 			// System.out.println("approval- mediSeq: " + mediSeq);
@@ -116,6 +137,12 @@ public class DiagnosisDAO {
 		return 0;
 	}
 
+	/**
+	 * 해당 진료예약번호의 예약을 거부하는 메소드입니다.
+	 * 테이블에 상태가 변경됩니다.
+	 * @param mediSeq 진료예약번호
+	 * @return 거부가 성공했을 경우 1, 아니면 0
+	 */
 	public int declineRegister(String mediSeq) {
 		try {
 
@@ -133,6 +160,11 @@ public class DiagnosisDAO {
 		return 0;
 	}
 
+	/**
+	 * 해당 진료예약번호의 예약 상세 정보를 가져오는 메소드입니다.
+	 * @param mediSeq 진료예약번호
+	 * @return 하나의 예약번호에 해당하는 예약 정보 DTO
+	 */
 	public DiagnosisRgstDTO getRegisterDetail(String mediSeq) {
 		try {
 
@@ -179,6 +211,11 @@ public class DiagnosisDAO {
 		return null;
 	}
 
+	/**
+	 * 해당 병원의 모든 예약 목록을 가져오는 메소드입니다.
+	 * @param map 병원 아이디, 시작 글 번호, 종료 글 번호
+	 * @return 진료 예약 정보 DTO가 담긴 ArrayList
+	 */
 	public ArrayList<DiagnosisRgstDTO> getAllRegisterList(HashMap<String, String> map) {
 		try {
 
@@ -218,6 +255,11 @@ public class DiagnosisDAO {
 		return null;
 	}
 
+	/**
+	 * 해당 병원의 모든 진료 예약 내의 진료예약번호에 해당하는 예약 상세 정보를 가져오는 메소드입니다.
+	 * @param mediSeq 진료예약번호
+	 * @return 예약 상세 정보가 담긴 DTO
+	 */
 	public DiagnosisRgstDTO getAllRegisterDetail(String mediSeq) {
 		try {
 
@@ -266,6 +308,11 @@ public class DiagnosisDAO {
 		return null;
 	}
 
+	/**
+	 * 해당 병원의 총 예약 개수를 가져오는 메소드입니다.
+	 * @param hospitalId 병원 아이디
+	 * @return 총 예약 개수
+	 */
 	public int getAllRegisterCount(String hospitalId) {
 		try {
 
@@ -287,6 +334,11 @@ public class DiagnosisDAO {
 		return 0;
 	}
 
+	/**
+	 * 해당 병원의 총 진료내역 개수를 가져오는 메소드입니다.
+	 * @param hospitalId 병원 아이디
+	 * @return 총 진료내역 개수
+	 */
 	public int getHistoryListCount(String hospitalId) {
 		try {
 
@@ -308,6 +360,12 @@ public class DiagnosisDAO {
 		return 0;
 	}
 
+	/**
+	 * 해당 진료예약번호의 환자호출을 하는 메소드입니다.
+	 * 테이블의 상태가 변경됩니다.
+	 * @param mediSeq 진료예약번호
+	 * @return 상태 변경에 성공했을 경우 1, 아닌 경우 0
+	 */
 	public int callPatient(String mediSeq) {
 		try {
 
@@ -325,6 +383,11 @@ public class DiagnosisDAO {
 		return 0;
 	}
 
+	/**
+	 * 오늘의 진료 순서 중 해당 진료예약번호의 상세 정보를 가져오는 메소드입니다.
+	 * @param mediSeq 진료예약번호
+	 * @return 해당 예약의 상세 정보 DTO
+	 */
 	public DiagnosisRgstDTO getOrderDetail(String mediSeq) {
 		try {
 
@@ -374,6 +437,11 @@ public class DiagnosisDAO {
 		return null;
 	}
 
+	/**
+	 * 해당 진료예약번호의 진료 의사의 이름을 가져오는 메소드입니다.
+	 * @param mediSeq 진료예약번호
+	 * @return 의사명
+	 */
 	public String getDoctorName(String mediSeq) {
 		try {
 
@@ -395,6 +463,11 @@ public class DiagnosisDAO {
 		return null;
 	}
 
+	/**
+	 * 진료기록을 작성하는 메소드입니다.
+	 * @param dto 진료내역서 정보
+	 * @return 작성에 성공했을 경우 1, 아니면 0
+	 */
 	public int addMediHistory(DgnsMediHistoryDTO dto) {
 		try {
 
@@ -415,6 +488,11 @@ public class DiagnosisDAO {
 		return 0;
 	}
 
+	/**
+	 * 해당 진료예약번호의 진료완료 시 상태를 변경하는 메소드입니다.
+	 * @param mediSeq 진료예약번호
+	 * @return 성공 시 1, 실패 시 0
+	 */
 	public int updateWaitingStatus(String mediSeq) {
 		try {
 
@@ -432,6 +510,11 @@ public class DiagnosisDAO {
 		return 0;
 	}
 
+	/**
+	 * 해당 병원의 모든 진료 내역을 가져오는 메소드입니다.
+	 * @param map 병원아이디, 시작 글 번호, 종료 글 번호
+	 * @return 진료 내역 DTO가 담긴 ArrayList
+	 */
 	public ArrayList<DiagnosisHistoryDTO> getAllHistoryList(HashMap<String, String> map) {
 		try {
 
@@ -471,6 +554,11 @@ public class DiagnosisDAO {
 		return null;
 	}
 
+	/**
+	 * 해당 병원의 총 진료 내역 개수를 가져오는 메소드입니다.
+	 * @param hospitalId 병원 아이디
+	 * @return 총 진료 내역 수
+	 */
 	public int getAllHistoryListCount(String hospitalId) {
 		try {
 
@@ -492,6 +580,11 @@ public class DiagnosisDAO {
 		return 0;
 	}
 
+	/**
+	 * 진료 내역의 해당 진료예약번호의 세부 정보를 가져오는 메소드입니다.
+	 * @param mediSeq 진료예약번호
+	 * @return 진료 내역 정보 DTO
+	 */
 	public DiagnosisRgstDTO getHistoryDetail(String mediSeq) {
 		try {
 
@@ -541,6 +634,11 @@ public class DiagnosisDAO {
 		return null;
 	}
 
+	/**
+	 * 해당 진료예약번호의 진료내역서를 가져오는 메소드입니다.
+	 * @param mediSeq 진료예약번호
+	 * @return 진료 내역 정보 DTO
+	 */
 	public DgnsMediHistoryDTO getWriteDiagnosis(String mediSeq) {
 		try {
 
@@ -569,6 +667,11 @@ public class DiagnosisDAO {
 		return null;
 	}
 
+	/**
+	 * 해당 진료예약번호의 약 처방 번호를 가져오는 메소드입니다.
+	 * @param mediSeq 진료예약번호
+	 * @return 약 처방 번호
+	 */
 	public String getDispenseSeq(String mediSeq) {
 		try {
 
@@ -590,6 +693,11 @@ public class DiagnosisDAO {
 		return null;
 	}
 
+	/**
+	 * 해당 약 제조 번호의 약 처방 상태를 변경하는 메소드입니다.
+	 * @param dispenseSeq 약 제조 번호
+	 * @return 성공 시 1, 실패 시 0
+	 */
 	public int updateDispenseStatus(String dispenseSeq) {
 		try {
 

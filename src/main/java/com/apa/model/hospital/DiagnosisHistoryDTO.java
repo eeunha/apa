@@ -1,5 +1,10 @@
 package com.apa.model.hospital;
 
+/**
+ * 진료내역 정보를 담을 DTO 클래스입니다.
+ * @author Eunha
+ *
+ */
 public class DiagnosisHistoryDTO {
 	private String mediSeq;
 	private String userName;

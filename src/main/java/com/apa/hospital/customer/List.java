@@ -14,8 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 import com.apa.model.hospital.PatientDTO;
 import com.apa.repository.hospital.CustomerDAO;
 
+/**
+ * 병원 - 내 진료의 고객 관리 중 내원환자를 담당하는 클래스입니다.
+ * @author Eunha
+ *
+ */
 @WebServlet("/hospital/customer/list.do")
 public class List extends HttpServlet {
+	
+	/**
+	 * 내원 환자 목록을 불러오는 메소드입니다.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

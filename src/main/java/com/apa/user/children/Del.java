@@ -13,7 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 자녀 관리 -> 자녀 삭제
+ *
+ */
 @WebServlet("/user/children/del.do")
 public class Del extends HttpServlet {
 	@Override

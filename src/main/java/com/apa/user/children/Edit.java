@@ -14,7 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.apa.repository.UserDAO;
-
+/**
+ * 서블릿 입니다.
+ * 
+ * 회원 마이페이지 -> 자녀 관리 -> 자녀 정보 수정
+ * 
+ */
 @WebServlet("/user/children/edit.do")
 public class Edit extends HttpServlet {
 	@Override
@@ -28,7 +33,7 @@ public class Edit extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String name = req.getParameter("name");
-		String ssn = req.getParameter("ssn");
+		//String ssn = req.getParameter("ssn");
 		String tel = req.getParameter("tel");
 		String child = req.getParameter("child");
 		String childSeq = req.getParameter("childSeq");
@@ -39,7 +44,7 @@ public class Edit extends HttpServlet {
 		HashMap<String,String> map = new HashMap<String,String>();
 		
 		map.put("name", name);
-		map.put("ssn", ssn);
+		//map.put("ssn", ssn);
 		map.put("tel", tel);
 		map.put("child", child);
 		map.put("childSeq", childSeq);

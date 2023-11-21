@@ -11,7 +11,11 @@ import com.apa.DBUtil;
 import com.apa.model.hospital.PatientDTO;
 /*import com.apa.repository.DBUtil;*/
 
-
+/**
+ * 병원 - 내 진료에서 고객관리를 담당하는 DAO 클래스입니다.
+ * @author Eunha
+ *
+ */
 public class CustomerDAO {
 	private Connection conn;
 	private Statement stat;
@@ -24,6 +28,11 @@ public class CustomerDAO {
 		/* conn = DBUtil.open("localhost", "apa_test_2", "java1234"); */
 	}
 
+	/**
+	 * 해당 병원의 내원환자 목록을 가져오는 메소드입니다.
+	 * @param hospitalId
+	 * @return 환자DTO가 담긴 ArrayList
+	 */
 	public ArrayList<PatientDTO> getPatientList(String hospitalId) {
 		try {
 
@@ -61,6 +70,12 @@ public class CustomerDAO {
 		return null;
 	}
 
+	/**
+	 * 해당 병원의 내원환자 목록을 가져오는 메소드입니다.
+	 * begin부터 end번까지 가져옵니다.
+	 * @param map
+	 * @return 환자DTO가 담긴 ArrayList
+	 */
 	public ArrayList<PatientDTO> getPatientList(HashMap<String, String> map) {
 		try {
 
@@ -97,6 +112,11 @@ public class CustomerDAO {
 		return null;
 	}
 
+	/**
+	 * 총 내원 환자의 수를 반환하는 메소드입니다.
+	 * @param hospitalId
+	 * @return 총 내원환자 수
+	 */
 	public int getPatientListCount(String hospitalId) {
 		try {
 
