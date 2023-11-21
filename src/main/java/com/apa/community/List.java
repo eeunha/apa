@@ -12,8 +12,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 최진희
+ * 커뮤니티 게시물 목록을 표시하는 서블릿 구현체입니다.
+ * "/community/list.do" 경로로의 요청을 처리합니다.
+ */
 @WebServlet("/community/list.do")
 public class List extends HttpServlet {
+    /**
+     * 커뮤니티 게시물 목록을 표시하는 GET 요청을 처리합니다.
+     *
+     * @param req  요청 정보를 포함하는 {@code HttpServletRequest} 객체
+     * @param resp 응답 정보를 포함하는 {@code HttpServletResponse} 객체
+     * @throws ServletException 서블릿 관련 오류가 발생한 경우
+     * @throws IOException      I/O 오류가 발생한 경우
+     */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//List.java

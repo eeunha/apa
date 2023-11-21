@@ -9,6 +9,10 @@ import java.util.HashMap;
 
 import com.apa.DBUtil;
 
+/**
+ * @author 최진희
+ * 커뮤니티 게시판의 데이터베이스 연동을 처리하는 DAO 클래스입니다.
+ */
 public class communityDAO {
 	private Connection conn;
 	private Statement stat;
@@ -18,6 +22,13 @@ public class communityDAO {
 	public communityDAO() {
 		this.conn = DBUtil.open();
 	}	
+    /**
+     * 커뮤니티 게시판의 게시물 목록을 가져오는 메서드입니다.
+     *
+     * @param map 검색 조건 및 페이징을 위한 정보를 담고 있는 {@code HashMap} 객체
+     * @return 게시물 목록을 담은 {@code ArrayList<communityDTO>} 객체
+     */	
+	
 	public ArrayList<communityDTO> list(HashMap<String, String> map) {
 			int begin = Integer.parseInt(map.get("begin"));
 			int end = Integer.parseInt(map.get("end"));
@@ -70,6 +81,11 @@ public class communityDAO {
 		}
 		return null;
 	}
+    /**
+     * 전체 게시물 수를 반환하는 메서드입니다.
+     *
+     * @return 전체 게시물 수
+     */
 	public int getTotalCount() {
 		
 		try {
@@ -92,6 +108,12 @@ public class communityDAO {
 		
 		return 0;
 	}
+    /**
+     * 특정 게시물의 상세 정보를 가져오는 메서드입니다.
+     *
+     * @param seq 조회할 게시물의 번호
+     * @return 게시물의 상세 정보를 담은 {@code communityDTO} 객체
+     */
 	public communityDTO get(String seq) {
 		
 		try {
@@ -124,6 +146,12 @@ public class communityDAO {
 		
 		return null;
 	}
+	/**
+     * 특정 게시물에 대한 댓글 목록을 가져오는 메서드입니다.
+     *
+     * @param communitySeq 댓글을 가져올 게시물의 번호
+     * @return 댓글 목록을 담은 {@code ArrayList<CommentDTO>} 객체
+     */
 	
 	public ArrayList<CommentDTO> listComment(String communitySeq) {
 		try {
@@ -159,6 +187,13 @@ public class communityDAO {
 		}
 		return null;
 	}
+	/**
+     * 주어진 댓글 정보를 이용하여 새로운 댓글을 추가하는 메서드입니다.
+     *
+     * @param dto 댓글 정보를 담은 {@code CommentDTO} 객체
+     * @return 데이터베이스에 추가된 행 수
+     */
+	
 	public int addComment(CommentDTO dto) {
 		
 		try {
@@ -177,7 +212,12 @@ public class communityDAO {
 		return 0;
 	}
 	
-	
+	/**
+     * 주어진 댓글 번호에 해당하는 댓글을 삭제하는 메서드입니다.
+     *
+     * @param seq 댓글 번호
+     * @return 데이터베이스에서 삭제된 행 수
+     */
 	public int delComment(String seq) {
 		
 		try {
@@ -196,6 +236,12 @@ public class communityDAO {
 
 		return 0;
 	}
+	 /**
+     * 주어진 댓글 정보를 이용하여 댓글을 수정하는 메서드입니다.
+     *
+     * @param dto 댓글 정보를 담은 {@code CommentDTO} 객체
+     * @return 데이터베이스에서 수정된 행 수
+     */
 	public int editComment(CommentDTO dto) {
 		
 		try {
@@ -213,6 +259,12 @@ public class communityDAO {
 		}
 		return 0;
 	}
+	/**
+     * 주어진 커뮤니티 게시물 정보를 이용하여 새로운 게시물을 추가하는 메서드입니다.
+     *
+     * @param dto 커뮤니티 게시물 정보를 담은 {@code communityDTO} 객체
+     * @return 데이터베이스에 추가된 행 수
+     */
 	public int add(communityDTO dto) {
 		
 		try {
@@ -234,6 +286,12 @@ public class communityDAO {
 		
 		return 0;
 	}
+	  /**
+     * 주어진 커뮤니티 게시물 정보를 이용하여 게시물을 수정하는 메서드입니다.
+     *
+     * @param dto 커뮤니티 게시물 정보를 담은 {@code communityDTO} 객체
+     * @return 데이터베이스에서 수정된 행 수
+     */
 	public int edit(communityDTO dto) {
 				
 		// Edit.java
@@ -255,6 +313,12 @@ public class communityDAO {
 				}
 		return 0;
 	}
+	/**
+     * 커뮤니티 데이터를 삭제합니다.
+     *
+     * @param seq 삭제할 커뮤니티 데이터의 일련번호
+     * @return 삭제된 레코드의 수를 반환합니다.
+     */
 	public int del(String seq) {
 				
 			// Del.java
@@ -275,6 +339,11 @@ public class communityDAO {
 				}
 		return 0;
 	}
+	/**
+     * 특정 커뮤니티 글에 대한 모든 댓글을 삭제합니다.
+     *
+     * @param seq 삭제할 커뮤니티 글의 일련번호
+     */
 	public void delCommentAll(String seq) {
 		//queryParamNoReturn
 				try {

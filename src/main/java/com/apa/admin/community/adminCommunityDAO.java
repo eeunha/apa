@@ -9,16 +9,30 @@ import java.util.HashMap;
 
 import com.apa.DBUtil;
 
+
+/**
+ * @author 최진희
+ * 관리자가 커뮤니티 관리를 위해 데이터베이스에 액세스하는 DAO 클래스입니다.
+ */
 public class adminCommunityDAO {
 	private Connection conn;
 	private Statement stat;
 	private PreparedStatement pstat;
 	private ResultSet rs;
+	
+	/**
+     * 생성자: 데이터베이스 연결을 초기화합니다.
+     */
 
 	public adminCommunityDAO() {
 		this.conn = DBUtil.open();
 	}
-
+	/**
+     * 커뮤니티 목록을 조회하는 메서드입니다.
+     *
+     * @param map 페이지 범위 및 검색 조건을 담은 HashMap
+     * @return 커뮤니티 목록을 담은 ArrayList
+     */
 	public ArrayList<adminCommunityDTO> list(HashMap<String, String> map) {
 		int begin = Integer.parseInt(map.get("begin"));
 		int end = Integer.parseInt(map.get("end"));
@@ -63,7 +77,11 @@ public class adminCommunityDAO {
 		}
 		return null;
 	}
-
+	 /**
+     * 총 커뮤니티 목록의 수를 조회하는 메서드입니다.
+     *
+     * @return 총 커뮤니티 목록의 수
+     */
 	public int getTotalCount() {
 		try {
 
@@ -84,7 +102,12 @@ public class adminCommunityDAO {
 
 		return 0;
 	}
-
+	/**
+     * 특정 커뮤니티를 조회하는 메서드입니다.
+     *
+     * @param seq 조회할 커뮤니티의 일련번호
+     * @return 조회된 커뮤니티의 데이터를 담은 DTO 객체
+     */
 	public adminCommunityDTO get(String seq) {
 
 		try {
@@ -116,7 +139,12 @@ public class adminCommunityDAO {
 
 		return null;
 	}
-
+	/**
+     * 특정 커뮤니티에 대한 댓글 목록을 조회하는 메서드입니다.
+     *
+     * @param communitySeq 조회할 커뮤니티의 일련번호
+     * @return 댓글 목록을 담은 ArrayList
+     */
 	public ArrayList<adminCommentDTO> listComment(String communitySeq) {
 		try {
 
@@ -151,7 +179,12 @@ public class adminCommunityDAO {
 	}
 
 	
-
+	/**
+     * 특정 댓글을 삭제하는 메서드입니다.
+     *
+     * @param seq 삭제할 댓글의 일련번호
+     * @return 삭제된 레코드의 수
+     */
 	public int del(String seq) {
 		try {
 
@@ -168,6 +201,11 @@ public class adminCommunityDAO {
 
 		return 0;
 	}
+	/**
+     * 특정 커뮤니티에 대한 모든 댓글을 삭제하는 메서드입니다.
+     *
+     * @param seq 삭제할 커뮤니티의 일련번호
+     */
 	public void delCommentAll(String seq) {
 		//queryParamNoReturn
 		try {

@@ -9,6 +9,10 @@ import java.util.HashMap;
 
 import com.apa.DBUtil;
 
+/**
+ * @author 최진희
+ * 의학 상담 목록과 관련된 데이터베이스 액세스 객체입니다.
+ */
 public class adviceListDAO {
 
 		private Connection conn;
@@ -16,9 +20,18 @@ public class adviceListDAO {
 		private PreparedStatement pstat;
 		private ResultSet rs;
 		
-		public adviceListDAO() {
+		/**
+	     * 생성자: 데이터베이스 연결을 초기화합니다.
+	     */
+	public adviceListDAO() {
 			this.conn = DBUtil.open();
 		}
+	/**
+     * 의료 상담 목록을 조회하는 메서드입니다.
+     *
+     * @param map 페이지 범위를 지정하는 매개변수를 담은 HashMap
+     * @return 의료 상담 목록을 담은 ArrayList
+     */
 	public ArrayList<adviceListDTO> listAdvice(HashMap<String, String> map) {
 		
 		  int begin = Integer.parseInt(map.get("begin"));
@@ -73,6 +86,11 @@ public class adviceListDAO {
 		
 		return null;
 	}
+	/**
+     * 총 의료 상담 목록의 수를 조회하는 메서드입니다.
+     *
+     * @return 총 의료 상담 목록의 수
+     */
 	public int getTotalCount() {
 		
 		try {
@@ -93,6 +111,12 @@ public class adviceListDAO {
 		
 		return 0;
 	}
+	/**
+     * 의료 상담 목록에 새로운 데이터를 추가하는 메서드입니다.
+     *
+     * @param dto 추가할 의료 상담 목록의 데이터를 담은 DTO 객체
+     * @return 추가된 레코드의 수
+     */
 	public int add(adviceListDTO dto) {
 		
 		try {
@@ -115,6 +139,12 @@ public class adviceListDAO {
 		return 0;
 	
 	}
+	/**
+     * 특정 의료 상담 목록을 조회하는 메서드입니다.
+     *
+     * @param seq 조회할 의료 상담 목록의 일련번호
+     * @return 조회된 의료 상담 목록의 데이터를 담은 DTO 객체
+     */
 	public adviceListDTO get(String seq) {
 		
 		try {

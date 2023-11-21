@@ -11,8 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author 최진희
+ *
+ */
 @WebServlet("/community/edit.do")
 public class Edit extends HttpServlet {
+    /**
+     * HTTP GET 요청을 처리하고 수정 폼을 표시합니다.
+     *
+     * @param req  클라이언트로부터의 HTTP GET 요청 객체
+     * @param resp 서블릿이 클라이언트로 응답을 보낼 때 사용하는 HTTP 응답 객체
+     * @throws ServletException 서블릿에서 발생한 일반적인 예외
+     * @throws IOException      입출력 작업 중 발생한 예외
+     */
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -48,6 +61,14 @@ public class Edit extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 	
+    /**
+     * HTTP POST 요청을 처리하고 커뮤니티 글을 수정합니다.
+     *
+     * @param req  클라이언트로부터의 HTTP POST 요청 객체
+     * @param resp 서블릿이 클라이언트로 응답을 보낼 때 사용하는 HTTP 응답 객체
+     * @throws ServletException 서블릿에서 발생한 일반적인 예외
+     * @throws IOException      입출력 작업 중 발생한 예외
+     */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			

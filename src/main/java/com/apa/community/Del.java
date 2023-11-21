@@ -10,8 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author 최진희
+ *
+ */
 @WebServlet("/community/del.do")
 public class Del extends HttpServlet {
+    /**
+     * HTTP GET 요청을 처리하고 커뮤니티 글 삭제 페이지로 이동합니다.
+     *
+     * @param req  클라이언트로부터의 HTTP 요청 객체
+     * @param resp 서블릿이 클라이언트로 응답을 보낼 때 사용하는 HTTP 응답 객체
+     * @throws ServletException 서블릿에서 발생한 일반적인 예외
+     * @throws IOException      입출력 작업 중 발생한 예외
+     */	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -26,7 +38,14 @@ public class Del extends HttpServlet {
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/community/del.jsp");
 		dispatcher.forward(req, resp);
 	}
-	
+    /**
+     * HTTP POST 요청을 처리하고 커뮤니티 글을 삭제합니다.
+     *
+     * @param req  클라이언트로부터의 HTTP 요청 객체
+     * @param resp 서블릿이 클라이언트로 응답을 보낼 때 사용하는 HTTP 응답 객체
+     * @throws ServletException 서블릿에서 발생한 일반적인 예외
+     * @throws IOException      입출력 작업 중 발생한 예외
+     */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

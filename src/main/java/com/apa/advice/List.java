@@ -16,8 +16,20 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+/**
+ * @author 최진희
+ * 이 서블릿은 상담 글 목록을 조회하고 페이징하여 화면에 표시하는 기능을 제공합니다.
+ */
 @WebServlet("/advice/list.do")
 public class List extends HttpServlet {
+    /**
+     * HTTP GET 요청을 처리하고 상담 글 목록을 조회하여 화면에 표시합니다.
+     *
+     * @param req  클라이언트로부터의 HTTP 요청 객체
+     * @param resp 서블릿이 클라이언트로 응답을 보낼 때 사용하는 HTTP 응답 객체
+     * @throws ServletException 서블릿에서 발생한 일반적인 예외
+     * @throws IOException      입출력 작업 중 발생한 예외
+     */	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -112,26 +124,7 @@ public class List extends HttpServlet {
 		req.setAttribute("nowPage", nowPage);
 		
 		req.setAttribute("pagebar", sb.toString());
-		
-		//2.list > JSONArray
-		/*
-		 * resp.setContentType("application/json"); resp.setCharacterEncoding("UTF-8");
-		 * 
-		 * JSONArray arr = new JSONArray();
-		 * 
-		 * for(adviceListDTO dto : list) { JSONObject obj = new JSONObject();
-		 * 
-		 * obj.put("departmentName", dto.getDepartName()); obj.put("counselTitle",
-		 * dto.getAdviceTitle()); obj.put("counselContent", dto.getAdviceContent());
-		 * obj.put("isCounselAnswer", dto.getIsAnswer());
-		 * 
-		 * 
-		 * arr.add(obj); }
-		 * 
-		 * PrintWriter writer = resp.getWriter(); writer.write(arr.toString());
-		 * writer.close();
-		 */
-		
+
 		  RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/advice/list.jsp");
 		  dispatcher.forward(req, resp);
 		 
