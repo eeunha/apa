@@ -2,10 +2,12 @@ package com.apa.model.hospital;
 
 /**
  * 환자의 정보를 담을 DTO 클래스입니다.
+ * 
  * @author Eunha
  *
  */
 public class PatientDTO {
+	private String rnum;
 	private String patientSeq;
 	private String patientName;
 	private String patientSSN;
@@ -14,6 +16,14 @@ public class PatientDTO {
 	private String patientEmail;
 	private String patientStatus;
 	private String memo;
+
+	public String getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(String rnum) {
+		this.rnum = rnum;
+	}
 
 	public String getPatientStatus() {
 		return patientStatus;
