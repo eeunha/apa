@@ -13,17 +13,17 @@ import javax.servlet.http.HttpSession;
 import com.apa.pharmacy.model.PharmacyDTO;
 import com.apa.pharmacy.repository.PharmacyDAO;
 
+/**
+ * @author 김민정 
+ * 약국 정보를 확인하는 서블릿
+ * GET 요청 처리 
+ * @param req HTTP 요청 객체
+ * @param resp HTTP 응답 객체
+ * @throws ServletException 서블릿 예외
+ * @throws IOException 입출력 예외
+ */
 @WebServlet("/pharmacy/info/view.do")
 public class View extends HttpServlet {
-    /**
-     * @author 김민정 
-     * 약국 정보를 확인하는 서블릿
-     * GET 요청 처리 
-     * @param req HTTP 요청 객체
-     * @param resp HTTP 응답 객체
-     * @throws ServletException 서블릿 예외
-     * @throws IOException 입출력 예외
-     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();

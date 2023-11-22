@@ -14,17 +14,17 @@ import javax.servlet.http.HttpSession;
 import com.apa.pharmacy.model.PharmacyDTO;
 import com.apa.pharmacy.repository.PharmacyDAO;
 
+/**
+ * @author 김민정 
+ * 입점 신청서를 처리하는 서블릿
+ * GET 요청 처리
+ * @param req HTTP 요청 객체
+ * @param resp HTTP 응답 객체
+ * @throws ServletException 서블릿 예외
+ * @throws IOException 입출력 예외
+ */
 @WebServlet("/pharmacy/entry/apply.do")
 public class Apply extends HttpServlet {
-    /**
-     * @author 김민정 
-     * 입점 신청서를 처리하는 서블릿
-     * GET 요청 처리
-     * @param req HTTP 요청 객체
-     * @param resp HTTP 응답 객체
-     * @throws ServletException 서블릿 예외
-     * @throws IOException 입출력 예외
-     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 세션에서 약국 ID 가져오기
