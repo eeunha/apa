@@ -292,9 +292,9 @@ button {
 										</thead>
 										
 										<tbody>
-											<c:forEach items="${list}" var="dto" varStatus="status">
+											<c:forEach items="${list}" var="dto">
 												<tr>
-													<td>${status.count}</td>
+													<td>${dto.rnum}</td>
 													<%-- <td>${dto.patientSeq}</td> --%>
 													<td>${dto.patientName}</td>
 													<td>${dto.patientSSN}</td>

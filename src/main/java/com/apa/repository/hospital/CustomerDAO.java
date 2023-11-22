@@ -91,6 +91,7 @@ public class CustomerDAO {
 			while (rs.next()) {
 				PatientDTO dto = new PatientDTO();
 
+				dto.setRnum(rs.getString("rnum"));
 				dto.setPatientSeq(rs.getString("patientSeq"));
 				dto.setPatientName(rs.getString("patientName"));
 				dto.setPatientSSN(rs.getString("patientSSN"));
